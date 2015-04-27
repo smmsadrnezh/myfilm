@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -57,7 +56,7 @@ ROOT_URLCONF = 'proj1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -103,7 +102,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR,  'templates'),
-    '/var/www/univ/web-course/proj1/templates/'
+TEMPLATE_LOADERS = (
+        'django.template.loaders.filesystem.Loader',
+        'django.template.loaders.app_directories.Loader',
 )
