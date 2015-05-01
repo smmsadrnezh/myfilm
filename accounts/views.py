@@ -20,6 +20,13 @@ def users(request):
     html = template.render(Context({'pageBody': pageHtml}))
     return HttpResponse(html)
 
+def register(request):
+    name = "register"
+    t = get_template('register.html')
+    pageHtml = t.render(Context({'mtitle': name}))
+    t = get_template('layout.html')
+    html = t.render(Context({'pageBody' : pageHtml}))
+    return HttpResponse(html)
 
 
 
