@@ -8,6 +8,6 @@ def movie(request):
     name = "Movie Name"
     t = get_template('movie.html')
     pageHtml = t.render(Context({'mtitle': name}))
-    t = get_template('layout.html')
+    t = get_template('tlayout.html')
     html = t.render(Context({'pageBody': pageHtml}))
     return HttpResponse(html)
