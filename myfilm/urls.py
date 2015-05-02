@@ -9,5 +9,8 @@ urlpatterns = [
     url(r'^accounts/users/$', 'accounts.views.users', name='salam'),
     url(r'^accounts/register$', 'accounts.views.register', name='salam'),
     url(r'^$', 'myfilm.views.home', name='salam'),
+    url(r'^timeline/$', 'myfilm.views.timelinehome', name='salam'),
+    url(r'^posts/$', 'posts.views.post', name='salam'),
     url(r'^admin/', include(admin.site.urls)),
+
 ]
