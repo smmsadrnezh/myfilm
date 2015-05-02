@@ -8,7 +8,7 @@ def artists(request):
     name = "artist"
     template = get_template('artists.html')
     pageHtml = template.render(Context({'mtitle': name}))
-    template = get_template('layout.html')
+    template = get_template('tlayout.html')
     html = template.render(Context({'pageBody': pageHtml}))
     return HttpResponse(html)
 
