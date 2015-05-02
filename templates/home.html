@@ -125,7 +125,7 @@
                         <h1>Absolutely Free</h1>
 
                         <p>As aways, use MyFilm for free If you love MyFilm and want to
-                            thank me, simply <a href="blog/donate">Donate this site</a>. </p>
+                            thank us, simply <a href="blog/donate">Donate this site</a>. </p>
                         <a href="blog/pricing" class="read-more-btn">Read More <i
                                 class="fa fa-chevron-circle-right"></i></a>
                     </div>
@@ -141,22 +141,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="device wp3">
-                        <div class="device-content">
-                            <div class="showcase-slider">
-                                <ul class="slides" id="showcaseSlider">
-                                    <li>
-                                        <img src="{% static "img/screen1.jpg" %}" alt="Device Content Image">
-                                    </li>
-                                    <li>
-                                        <img src="{% static "img/screen2.jpg" %}" alt="Device Content Image">
-                                    </li>
-                                    <li>
-                                        <img src="{% static "img/screen3.jpg" %}" alt="Device Content Image">
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -202,14 +187,14 @@
         <div class="row">
             <ul class="grid">
                 <li>
-                    <figure>
-                        <img src="{% static "img/01-screenshot.jpg" %}" alt="Movie Title 00">
+                                        <figure>
+                        <img src="{% static "img/covers/thumb/gloomy-sunday.jpg" %}" alt="Gloomy Sunday (1999)">
                         <figcaption>
                             <div class="caption-content">
-                                <a href="img/large/01.jpg" class="single_image">
+                                <a href="{% static "img/covers/large/gloomy-sunday.jpg" %}" class="single_image">
                                     <i class="fa fa-search"></i><br>
 
-                                    <p>Movie Title 00</p>
+                                    <p>Gloomy Sunday (1999)</p>
                                 </a>
                             </div>
                         </figcaption>
@@ -217,13 +202,13 @@
                 </li>
                 <li>
                     <figure>
-                        <img src="{% static "img/02-screenshot.jpg" %}" alt="Movie Cover 01">
+                        <img src="{% static "img/covers/thumb/schindlers-list.jpg" %}" alt="Schindler's List (1993)">
                         <figcaption>
                             <div class="caption-content">
-                                <a href="img/large/02.jpg" class="single_image">
+                                <a href="{% static "img/covers/large/schindlers-list.jpg" %}" class="single_image">
                                     <i class="fa fa-search"></i><br>
 
-                                    <p>Movie Title 01</p>
+                                    <p>Schindler's List (1993)</p>
                                 </a>
                             </div>
                         </figcaption>
@@ -231,13 +216,13 @@
                 </li>
                 <li>
                     <figure>
-                        <img src="{% static "img/03-screenshot.jpg" %}" alt="Movie Cover 02">
+                        <img src="{% static "img/covers/thumb/goodfellas.jpg" %}" alt="Goodfellas (1990)">
                         <figcaption>
                             <div class="caption-content">
-                                <a href="img/large/03.jpg" class="single_image">
+                                <a href="{% static "img/covers/large/goodfellas.jpg" %}" class="single_image">
                                     <i class="fa fa-search"></i><br>
 
-                                    <p>Movie Title 02</p>
+                                    <p>Goodfellas (1990)</p>
                                 </a>
                             </div>
                         </figcaption>
@@ -245,13 +230,69 @@
                 </li>
                 <li>
                     <figure>
-                        <img src="{% static "img/04-screenshot.jpg" %}" alt="Movie Cover 03">
+                        <img src="{% static "img/covers/thumb/the-dark-knight.jpg" %}" alt="The Dark Knight (2008)">
                         <figcaption>
                             <div class="caption-content">
-                                <a href="img/large/04.jpg" class="single_image">
+                                <a href="{% static "img/covers/large/the-dark-knight.jpg" %}" class="single_image">
                                     <i class="fa fa-search"></i><br>
 
-                                    <p>Movie Title 03</p>
+                                    <p>The Dark Knight (2008)</p>
+                                </a>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </li>
+                <li>
+                                        <figure>
+                        <img src="{% static "img/covers/thumb/django-unchained.jpg" %}" alt="Django Unchained (2012)">
+                        <figcaption>
+                            <div class="caption-content">
+                                <a href="{% static "img/covers/large/django-unchained.jpg" %}" class="single_image">
+                                    <i class="fa fa-search"></i><br>
+
+                                    <p>Django Unchained (2012)</p>
+                                </a>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </li>
+                <li>
+                    <figure>
+                        <img src="{% static "img/covers/thumb/leon-the-professional.jpg" %}" alt="Leon The Professional">
+                        <figcaption>
+                            <div class="caption-content">
+                                <a href="{% static "img/covers/large/leon-the-professional.jpg" %}" class="single_image">
+                                    <i class="fa fa-search"></i><br>
+
+                                    <p>Leon The Professional</p>
+                                </a>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </li>
+                <li>
+                    <figure>
+                        <img src="{% static "img/covers/thumb/one-flew-over-the-cuckoos-nest.jpg" %}" alt="One Flew Over the Cuckoo's Nest (1975)">
+                        <figcaption>
+                            <div class="caption-content">
+                                <a href="{% static "img/covers/large/one-flew-over-the-cuckoos-nest.jpg" %}" class="single_image">
+                                    <i class="fa fa-search"></i><br>
+
+                                    <p>One Flew Over the Cuckoo's Nest (1975)</p>
+                                </a>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </li>
+                <li>
+                    <figure>
+                        <img src="{% static "img/covers/thumb/fight-club.jpg" %}" alt="Fight Club (1999)">
+                        <figcaption>
+                            <div class="caption-content">
+                                <a href="{% static "img/covers/large/fight-club.jpg" %}" class="single_image">
+                                    <i class="fa fa-search"></i><br>
+
+                                    <p>Fight Club (1999)</p>
                                 </a>
                             </div>
                         </figcaption>
@@ -262,60 +303,7 @@
         <div class="row">
             <ul class="grid">
                 <li>
-                    <figure>
-                        <img src="{% static "img/04-screenshot.jpg" %}" alt="Movie Cover 04">
-                        <figcaption>
-                            <div class="caption-content">
-                                <a href="img/large/05.jpg" class="single_image">
-                                    <i class="fa fa-search"></i><br>
 
-                                    <p>Movie Title 04</p>
-                                </a>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li>
-                    <figure>
-                        <img src="{% static "img/04-screenshot.jpg" %}" alt="Movie Cover 05">
-                        <figcaption>
-                            <div class="caption-content">
-                                <a href="img/large/06.jpg" class="single_image">
-                                    <i class="fa fa-search"></i><br>
-
-                                    <p>Movie Title 05</p>
-                                </a>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li>
-                    <figure>
-                        <img src="{% static "img/07-screenshot.jpg" %}" alt="Movie Cover 06">
-                        <figcaption>
-                            <div class="caption-content">
-                                <a href="img/large/07.jpg" class="single_image">
-                                    <i class="fa fa-search"></i><br>
-
-                                    <p>Movie Title 06</p>
-                                </a>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li>
-                    <figure>
-                        <img src="{% static "img/08-screenshot.jpg" %}" alt="Movie Cover 07">
-                        <figcaption>
-                            <div class="caption-content">
-                                <a href="img/large/08.jpg" class="single_image">
-                                    <i class="fa fa-search"></i><br>
-
-                                    <p>Movie Title 07</p>
-                                </a>
-                            </div>
-                        </figcaption>
-                    </figure>
                 </li>
             </ul>
         </div>
