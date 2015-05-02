@@ -5,9 +5,9 @@ from django.template import Context
 # Create your views here.
 
 def movie(request):
-    name = "Movie Name"
+    title = "Leon the Professional"
     t = get_template('movie.html')
-    pageHtml = t.render(Context({'mtitle': name}))
+    pageHtml = t.render()
     t = get_template('tlayout.html')
-    html = t.render(Context({'pageBody': pageHtml}))
+    html = t.render(Context({'pageBody': pageHtml , 'PageTitle': title}))
     return HttpResponse(html)

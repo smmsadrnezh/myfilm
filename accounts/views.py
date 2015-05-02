@@ -14,36 +14,36 @@ def login(request):
 
 
 def users(request):
-    title = "users"
+    title = "Users"
     template = get_template('users.html')
-    pageHtml = template.render(Context({'mtitle': title}))
+    pageHtml = template.render()
     template = get_template('tlayout.html')
-    html = template.render(Context({'pageBody': pageHtml}))
+    html = template.render(Context({'pageBody': pageHtml , 'PageTitle': title}))
     return HttpResponse(html)
 
 
 def register(request):
-   title = "register"
+   title = "Register"
    t = get_template('register.html')
-   pageHtml = t.render(Context({'mtitle': title}))
+   pageHtml = t.render()
    t = get_template('layout.html')
-   html = t.render(Context({'pageBody': pageHtml}))
+   html = t.render(Context({'pageBody': pageHtml , 'PageTitle': title}))
    return HttpResponse(html)
 
 
 def masoud(request):
     title = "Masoud"
     t = get_template('masoud.html')
-    pageHtml = t.render(Context({'mtitle': title}))
+    pageHtml = t.render()
     t = get_template('tlayout.html')
-    html = t.render(Context({'pageBody': pageHtml}))
+    html = t.render(Context({'pageBody': pageHtml , 'PageTitle': title}))
     return HttpResponse(html)
 
 
 def forget(request):
-    title = "forget"
+    title = "Forget"
     t = get_template('forget.html')
-    pageHtml = t.render(Context({'mtitle': title}))
+    pageHtml = t.render()
     t = get_template('layout.html')
-    html = t.render(Context({'pageBody': pageHtml}))
+    html = t.render(Context({'pageBody': pageHtml , 'PageTitle': title}))
     return HttpResponse(html)
