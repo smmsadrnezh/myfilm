@@ -5,11 +5,11 @@ from django.template import Context
 # Create your views here.
 
 def login(request):
-    title = "login"
+    title = "Login"
     template = get_template('login.html')
-    pageHtml = template.render(Context({'mtitle': title}))
+    pageHtml = template.render()
     template = get_template('layout.html')
-    html = template.render(Context({'pageBody': pageHtml}))
+    html = template.render(Context({'pageBody': pageHtml , 'PageTitle': title}))
     return HttpResponse(html)
 
 
