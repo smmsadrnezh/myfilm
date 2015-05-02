@@ -9,7 +9,7 @@ def login(request):
     template = get_template('login.html')
     pageHtml = template.render()
     template = get_template('layout.html')
-    html = template.render(Context({'pageBody': pageHtml , 'PageTitle': title}))
+    html = template.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
     return HttpResponse(html)
 
 
@@ -18,17 +18,17 @@ def users(request):
     template = get_template('users.html')
     pageHtml = template.render()
     template = get_template('tlayout.html')
-    html = template.render(Context({'pageBody': pageHtml , 'PageTitle': title}))
+    html = template.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
     return HttpResponse(html)
 
 
 def register(request):
-   title = "Register"
-   t = get_template('register.html')
-   pageHtml = t.render()
-   t = get_template('layout.html')
-   html = t.render(Context({'pageBody': pageHtml , 'PageTitle': title}))
-   return HttpResponse(html)
+    title = "Register"
+    t = get_template('register.html')
+    pageHtml = t.render()
+    t = get_template('layout.html')
+    html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
+    return HttpResponse(html)
 
 
 def masoud(request):
@@ -36,7 +36,7 @@ def masoud(request):
     t = get_template('masoud.html')
     pageHtml = t.render()
     t = get_template('tlayout.html')
-    html = t.render(Context({'pageBody': pageHtml , 'PageTitle': title}))
+    html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
     return HttpResponse(html)
 
 
@@ -45,5 +45,5 @@ def forget(request):
     t = get_template('forget.html')
     pageHtml = t.render()
     t = get_template('layout.html')
-    html = t.render(Context({'pageBody': pageHtml , 'PageTitle': title}))
+    html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
     return HttpResponse(html)

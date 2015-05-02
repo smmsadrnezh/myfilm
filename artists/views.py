@@ -9,7 +9,7 @@ def artists(request):
     template = get_template('artists.html')
     pageHtml = template.render()
     template = get_template('tlayout.html')
-    html = template.render(Context({'pageBody': pageHtml , 'PageTitle': title}))
+    html = template.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
     return HttpResponse(html)
 
 
@@ -18,5 +18,5 @@ def tomhanks(request):
     template = get_template('tomhanks.html')
     pageHtml = template.render()
     template = get_template('tlayout.html')
-    html = template.render(Context({'pageBody': pageHtml , 'PageTitle': title}))
+    html = template.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
     return HttpResponse(html)

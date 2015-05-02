@@ -8,5 +8,5 @@ def search(request):
     template = get_template('search.html')
     pageHtml = template.render()
     template = get_template('tlayout.html')
-    html = template.render(Context({'pageBody': pageHtml , 'PageTitle': title}))
+    html = template.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
     return HttpResponse(html)
