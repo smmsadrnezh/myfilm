@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^artists/$', 'artists.views.artists', name='salam'),
     url(r'^artists/TomHanks/$', 'artists.views.tomhanks', name='salam'),
     url(r'^accounts/login/$', 'accounts.views.login', name='salam'),
+    url(r'^accounts/Masoud/$', 'accounts.views.masoud', name='salam'),
     url(r'^accounts/users/$', 'accounts.views.users', name='salam'),
     url(r'^accounts/register/$', 'accounts.views.register', name='salam'),
     url(r'^$', 'myfilm.views.home', name='salam'),

@@ -31,6 +31,12 @@ def register(request):
     return HttpResponse(html)
 
 
-
+def masoud(request):
+    name = "Masoud"
+    t = get_template('Masoud.html')
+    pageHtml = t.render(Context({'mtitle': name}))
+    t = get_template('layout.html')
+    html = t.render(Context({'pageBody': pageHtml}))
+    return HttpResponse(html)
 
 
