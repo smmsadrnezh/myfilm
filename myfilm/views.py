@@ -12,7 +12,7 @@ def home(request):
 
 
 def timelinehome(request):
-    t = get_template('home.html')
+    t = get_template('timeline.html')
     pageHtml = t.render()
     t = get_template('tlayout.html')
     html = t.render(Context({'pageBody': pageHtml}))
