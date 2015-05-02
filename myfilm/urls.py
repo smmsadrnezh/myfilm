@@ -5,8 +5,8 @@ urlpatterns = [
 
     url(r'^movies/1$', 'movies.views.movie', name='salam'),
     url(r'^search/$', 'search.views.search', name='salam'),
-    url(r'^artist/$', 'artists.views.artists', name='salam'),
-    url(r'^artist/TomHanks/$', 'artists.views.tomhanks', name='salam'),
+    url(r'^artists/$', 'artists.views.artists', name='salam'),
+    url(r'^artists/TomHanks/$', 'artists.views.tomhanks', name='salam'),
     url(r'^accounts/login/$', 'accounts.views.login', name='salam'),
     url(r'^accounts/users/$', 'accounts.views.users', name='salam'),
     url(r'^accounts/register/$', 'accounts.views.register', name='salam'),
