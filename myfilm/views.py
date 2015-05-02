@@ -10,6 +10,7 @@ def home(request):
     html = t.render(Context({'pageBody': pageHtml}))
     return HttpResponse(html)
 
+
 def timelinehome(request):
     t = get_template('home.html')
     pageHtml = t.render()
