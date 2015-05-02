@@ -14,7 +14,7 @@ def artists(request):
 
 def tomhanks(request):
     name = "Tom Hanks"
-    template = get_template('TomHanks.html')
+    template = get_template('tomhanks.html')
     pageHtml = template.render(Context({'mtitle': name}))
     template = get_template('layout.html')
     html = template.render(Context({'pageBody': pageHtml}))
