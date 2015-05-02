@@ -12,6 +12,7 @@ def artists(request):
     html = template.render(Context({'pageBody': pageHtml}))
     return HttpResponse(html)
 
+
 def tomhanks(request):
     name = "Tom Hanks"
     template = get_template('tomhanks.html')
