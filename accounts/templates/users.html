@@ -1,22 +1,22 @@
 <h1>following</h1>
 <table>
 
-{% for i in item_list %}
-    <tr>
-        {% load staticfiles %}
-        <td><img height="40px" width="40px" src= "{% static i %}"></td>
-        <td>{{ i }}</td>
-    </tr>
-{% endfor %}
+    {% for i in item_list %}
+        <tr>
+            {% load staticfiles %}
+            <td><img height="40px" width="40px" src="{% static i %}"></td>
+            <td>{{ i }}</td>
+        </tr>
+    {% endfor %}
 </table>
-<br />
+<br/>
 
 <br/>
 <table>
-{% for i,j in item_list2 %}
-    <tr>
-        <td><img src="{{ j }}"></td>
-        <td>{{ i }}</td>
-    </tr>
-{% endfor %}
+    {% for i,j in item_list2 %}
+        <tr>
+            <td><img src="{{ j }}"></td>
+            <td>{{ i }}</td>
+        </tr>
+    {% endfor %}
 </table>

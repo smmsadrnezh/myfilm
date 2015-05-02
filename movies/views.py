@@ -9,5 +9,5 @@ def movie(request):
     t = get_template('movie.html')
     pageHtml = t.render(Context({'mtitle': name}))
     t = get_template('layout.html')
-    html = t.render(Context({'pageBody' : pageHtml}))
+    html = t.render(Context({'pageBody': pageHtml}))
     return HttpResponse(html)
