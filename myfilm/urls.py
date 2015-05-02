@@ -15,5 +15,7 @@ urlpatterns = [
     url(r'^timeline/$', 'myfilm.views.timelinehome', name='salam'),
     url(r'^posts/$', 'posts.views.post', name='salam'),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^tlayout/$', 'myfilm.views.tlayout', name='salam'),
+
 
 ]
