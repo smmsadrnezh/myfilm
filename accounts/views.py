@@ -5,45 +5,45 @@ from django.template import Context
 # Create your views here.
 
 def login(request):
-    name = "login"
+    title = "login"
     template = get_template('login.html')
-    pageHtml = template.render(Context({'mtitle': name}))
+    pageHtml = template.render(Context({'mtitle': title}))
     template = get_template('layout.html')
     html = template.render(Context({'pageBody': pageHtml}))
     return HttpResponse(html)
 
 
 def users(request):
-    name = "Arman"
+    title = "users"
     template = get_template('users.html')
-    pageHtml = template.render(Context({'name': name}))
+    pageHtml = template.render(Context({'mtitle': title}))
     template = get_template('tlayout.html')
     html = template.render(Context({'pageBody': pageHtml}))
     return HttpResponse(html)
 
 
 def register(request):
-    name = "register"
-    t = get_template('register.html')
-    pageHtml = t.render(Context({'mtitle': name}))
-    t = get_template('layout.html')
-    html = t.render(Context({'pageBody': pageHtml}))
-    return HttpResponse(html)
+   title = "register"
+   t = get_template('register.html')
+   pageHtml = t.render(Context({'mtitle': title}))
+   t = get_template('layout.html')
+   html = t.render(Context({'pageBody': pageHtml}))
+   return HttpResponse(html)
 
 
 def masoud(request):
-    name = "Masoud"
+    title = "Masoud"
     t = get_template('masoud.html')
-    pageHtml = t.render(Context({'mtitle': name}))
+    pageHtml = t.render(Context({'mtitle': title}))
     t = get_template('tlayout.html')
     html = t.render(Context({'pageBody': pageHtml}))
     return HttpResponse(html)
 
 
 def forget(request):
-    name = "forget"
+    title = "forget"
     t = get_template('forget.html')
-    pageHtml = t.render(Context({'mtitle': name}))
+    pageHtml = t.render(Context({'mtitle': title}))
     t = get_template('layout.html')
     html = t.render(Context({'pageBody': pageHtml}))
     return HttpResponse(html)
