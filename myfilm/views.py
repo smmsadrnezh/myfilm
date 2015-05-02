@@ -19,9 +19,3 @@ def timelinehome(request):
     t = get_template('tlayout.html')
     html = t.render(Context({'pageBody': pageHtml}))
     return HttpResponse(html)
-
-def tlayout(request):
-    t = get_template('tlayout.html')
-    html = t.render()
-    return HttpResponse(html)
-
