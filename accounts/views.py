@@ -40,3 +40,10 @@ def masoud(request):
     return HttpResponse(html)
 
 
+def forget(request):
+    name = "forget"
+    t = get_template('forget.html')
+    pageHtml = t.render(Context({'mtitle': name}))
+    t = get_template('layout.html')
+    html = t.render(Context({'pageBody': pageHtml}))
+    return HttpResponse(html)
