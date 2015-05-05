@@ -47,3 +47,11 @@ def forget(request):
     t = get_template('layout.html')
     html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
     return HttpResponse(html)
+
+def notifs(request):
+    title = "Notifications"
+    t = get_template('notifications.html')
+    pageHtml = t.render()
+    t = get_template('tlayout.html')
+    html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
+    return HttpResponse(html)
