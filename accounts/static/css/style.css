@@ -1,21 +1,22 @@
-.gray{
-    background-color:#eee;
+.gray {
+    background-color: #eee;
 }
 
-.btn-margin{
+.btn-margin {
     margin-top: 5px;
 }
 
-.hide{
+.hide {
     visibility: hidden;
 }
 
-.show{
+.show {
     visibility: visible;
 }
-.chat{
-float:right;
-margin-right: 4px;
+
+.chat {
+    float: right;
+    margin-right: 4px;
     padding: 10px;
     position: fixed;
     right: 5px;

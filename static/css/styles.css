@@ -857,29 +857,6 @@ Showcase
     color: #fff;
 }
 
-.device {
-    position: absolute;
-    top: -60px;
-    left: 20%;
-    min-height: 676px;
-    width: 359px;
-    background: url('../img/iphone-skeleton.png') no-repeat center center;
-}
-
-.device-content {
-    position: absolute;
-    top: 115px;
-    left: 56px;
-    width: 247px;
-    height: 445px;
-    background: rgba(0, 0, 0, 0.3);
-}
-
-.device-content img {
-    width: 247px;
-    height: 445px;
-}
-
 .showcase-wrap {
     position: relative;
     padding: 100px 0;

@@ -33,8 +33,10 @@ def register(request):
 
 def masoud(request):
     title = "Masoud"
-    t = get_template('masoud.html')
+    t = get_template('post.html')
     pageHtml = t.render()
+    t = get_template('masoud.html')
+    pageHtml = t.render(Context({'userPosts': pageHtml}))
     t = get_template('tlayout.html')
     html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
     return HttpResponse(html)
@@ -48,6 +50,7 @@ def forget(request):
     html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
     return HttpResponse(html)
 
+
 def notifs(request):
     title = "Notifications"
     t = get_template('notifications.html')
@@ -55,6 +58,7 @@ def notifs(request):
     t = get_template('tlayout.html')
     html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
     return HttpResponse(html)
+
 
 def settings(request):
     title = "Settings"
@@ -64,6 +68,7 @@ def settings(request):
     html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
     return HttpResponse(html)
 
+
 def changepass(request):
     title = "Change Password"
     t = get_template('changepass.html')
@@ -71,6 +76,7 @@ def changepass(request):
     t = get_template('tlayout.html')
     html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
     return HttpResponse(html)
+
 
 def lists(request):
     title = "List"

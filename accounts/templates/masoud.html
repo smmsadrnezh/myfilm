@@ -1,86 +1,33 @@
-<article>
+{% load staticfiles %}
 
-    <button>Edit Profile</button>
-    <br/>
-    <br/>
-    {% load staticfiles %}
-    <img height="120px" width="100px" src="{% static "images/example.jpg" %}"/>
+<div class="row clearfix">
+    <div class="col-md-2 column">
+        <img class="img-thumbnail" src="{% static "images/example.jpg" %}"/>
+    </div>
+    <div class="col-md-10 column">
+        <h1>S. M. Masoud Sadrnezhaad</h1>
 
-    <p>
-        Showing Name: S. M. Masoud Sadrnezhaad<br/>
-        User Name:Masoud
-    </p>
+        <h2>@Masoud</h2>
+    </div>
+</div>
 
-    <h3>followers: 2</h3>
-    <img src=""/>
+<h3>followers (2)</h3>
+<img class="img-circle" src="http://lorempixel.com/40/40/">
+<img class="img-circle" src="http://lorempixel.com/40/40/">
 
-    <p></p>
+<p></p>
 
-    <h3>following: 1</h3>
-    <img src=""/>
+<h3>following (3)</h3>
+<img class="img-circle" src="http://lorempixel.com/40/40/">
+<img class="img-circle" src="http://lorempixel.com/40/40/">
 
-    <p></p>
-
-
-    <section id="posts">
-        <h2>Posts</h2>
-
-        <p style="border: double; width: 500px">
-            this is my post. it has fantastic text.<br/>
-            it is very good.
-        </p>
-        <br/>
-
-        <p style="border: double; width: 500px">
-            This is another post. It is very good.<br/>
-            it is so good.
-
-        </p>
-
-        <p></p>
-    </section>
-
-</article>
-<article>
-
-    <button>Edit Profile</button>
-    <br/>
-    <br/>
-    {% load staticfiles %}
-    <img height="120px" width="100px" src="{% static "images/example.jpg" %}"/>
-
-    <p>
-        Showing Name: S. M. Masoud Sadrnezhaad<br/>
-        User Name:Masoud
-    </p>
-
-    <h3>followers: 2</h3>
-    <img src=""/>
-
-    <p></p>
-
-    <h3>following: 1</h3>
-    <img src=""/>
-
-    <p></p>
+<img class="img-circle" src="http://lorempixel.com/40/40/">
 
 
-    <section id="posts">
-        <h2>Posts</h2>
+<p></p>
 
-        <p style="border: double; width: 500px">
-            this is my post. it has fantastic text.<br/>
-            it is very good.
-        </p>
-        <br/>
+<h3>User Posts</h3>
 
-        <p style="border: double; width: 500px">
-            This is another post. It is very good.<br/>
-            it is so good.
-
-        </p>
-
-        <p></p>
-    </section>
-
-</article>
+<section id="posts">
+    {{ userPosts }}
+</section>
