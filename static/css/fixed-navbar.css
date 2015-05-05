@@ -1,3 +1,20 @@
+{
+%
+load
+staticfiles
+%
+}
+
 body {
     padding-top: 70px;
+}
+
+.star {
+    background-image: url("/static/img/total.png");
+    width: 65px;
+    height: 65px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 65px;
 }
