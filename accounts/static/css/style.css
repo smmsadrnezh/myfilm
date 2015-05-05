@@ -1,0 +1,15 @@
+.gray{
+    background-color:#eee;
+}
+
+.btn-margin{
+    margin-top: 5px;
+}
+
+.hide{
+    visibility: hidden;
+}
+
+.show{
+    visibility: visible;
+}

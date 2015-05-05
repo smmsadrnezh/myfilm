@@ -55,3 +55,27 @@ def notifs(request):
     t = get_template('tlayout.html')
     html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
     return HttpResponse(html)
+
+def settings(request):
+    title = "Settings"
+    t = get_template('settings.html')
+    pageHtml = t.render()
+    t = get_template('tlayout.html')
+    html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
+    return HttpResponse(html)
+
+def changepass(request):
+    title = "Change Password"
+    t = get_template('changepass.html')
+    pageHtml = t.render()
+    t = get_template('tlayout.html')
+    html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
+    return HttpResponse(html)
+
+def lists(request):
+    title = "List"
+    t = get_template('lists.html')
+    pageHtml = t.render()
+    t = get_template('tlayout.html')
+    html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
+    return HttpResponse(html)
