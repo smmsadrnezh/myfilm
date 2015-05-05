@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3c966b5e-e416-40f5-a563-d39a37619953" name="Default" comment="timeline layout">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/posts/templates/post.html" afterPath="$PROJECT_DIR$/posts/templates/post.html" />
+    <list default="true" id="3c966b5e-e416-40f5-a563-d39a37619953" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/tlayout.html" afterPath="$PROJECT_DIR$/templates/tlayout.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="a908a800-0f2a-4909-ace6-4d7388bff904" name=".idea" comment=".idea" />
@@ -43,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tlayout.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="tlayout.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/tlayout.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.96" vertical-offset="2883" max-vertical-offset="4245">
-              <caret line="242" column="61" selection-start-line="242" selection-start-column="61" selection-end-line="242" selection-end-column="61" />
+            <state vertical-scroll-proportion="0.6720779" vertical-offset="1218" max-vertical-offset="4245">
+              <caret line="95" column="46" selection-start-line="95" selection-start-column="46" selection-end-line="95" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -93,10 +93,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="post.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="post.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/posts/templates/post.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.14610389" vertical-offset="0" max-vertical-offset="1095">
+            <state vertical-scroll-proportion="-0.6" vertical-offset="0" max-vertical-offset="1095">
               <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
               <folding />
             </state>
@@ -143,8 +143,8 @@
         <option value="$PROJECT_DIR$/static/css/styles.css" />
         <option value="$PROJECT_DIR$/static/css/fixed-navbar.css" />
         <option value="$PROJECT_DIR$/movies/templates/movie.html" />
-        <option value="$PROJECT_DIR$/templates/tlayout.html" />
         <option value="$PROJECT_DIR$/posts/templates/post.html" />
+        <option value="$PROJECT_DIR$/templates/tlayout.html" />
       </list>
     </option>
   </component>
@@ -860,7 +860,13 @@
       <option name="project" value="LOCAL" />
       <updated>1430864740558</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="posts image margin">
+      <created>1430864828401</created>
+      <option name="number" value="00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1430864828401</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -949,7 +955,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="search facility improvement" />
     <MESSAGE value="timeline page" />
     <MESSAGE value="working on timeline layout" />
     <MESSAGE value="notif images" />
@@ -974,7 +979,8 @@
     <MESSAGE value="movie total star" />
     <MESSAGE value="imdb icon on movie page" />
     <MESSAGE value="sidebar image size and indents" />
-    <option name="LAST_COMMIT_MESSAGE" value="sidebar image size and indents" />
+    <MESSAGE value="posts image margin" />
+    <option name="LAST_COMMIT_MESSAGE" value="posts image margin" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1352,14 +1358,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/tlayout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.96" vertical-offset="2883" max-vertical-offset="4245">
-          <caret line="242" column="61" selection-start-line="242" selection-start-column="61" selection-end-line="242" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/accounts/templates/masoud.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="570">
@@ -1370,8 +1368,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/posts/templates/post.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14610389" vertical-offset="0" max-vertical-offset="1095">
+        <state vertical-scroll-proportion="-0.6" vertical-offset="0" max-vertical-offset="1095">
           <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/tlayout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6720779" vertical-offset="1218" max-vertical-offset="4245">
+          <caret line="95" column="46" selection-start-line="95" selection-start-column="46" selection-end-line="95" selection-end-column="46" />
           <folding />
         </state>
       </provider>
