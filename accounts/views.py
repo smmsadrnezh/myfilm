@@ -33,7 +33,7 @@ def register(request):
 
 def masoud(request):
     title = "Masoud"
-    t = get_template('post.html')
+    t = get_template('../social/templates/post.html')
     pageHtml = t.render()
     t = get_template('masoud.html')
     pageHtml = t.render(Context({'userPosts': pageHtml}))

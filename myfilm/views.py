@@ -14,7 +14,7 @@ def home(request):
 
 def timelinehome(request):
     title = "Myfilm - Timeline"
-    t = get_template('post.html')
+    t = get_template('../social/templates/post.html')
     pageHtml = t.render()
     t = get_template('timeline.html')
     pageHtml = t.render(Context({'pageBody': pageHtml}))
