@@ -1,7 +1,5 @@
 from django.db import models
 
-
-# Create your models here.
 class User:
     username = models.CharField(primary_key=True)
     email = models.EmailField()
@@ -10,6 +8,13 @@ class User:
     birth_date = models.DateField()
     password = models.CharField()
 
+    def __str__(self):
+        return "%s" % (self.username)
+
 class Follow:
     follower = models.ForeignKey('User',primary_key=True)
     following = models.ForeignKey('User',primary_key=True)
+    time = models.TimeField()
+
+    def __str__(self):
+        return "%s %s" % (self.follower,self.following)
