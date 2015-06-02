@@ -39,7 +39,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'accounts',
     'chat',
-    'movies',
     'search',
     'social'
 )
