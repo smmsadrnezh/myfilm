@@ -11,11 +11,13 @@ class CustomUser(User):
     image_path = models.FilePathField()
     birth_date = models.DateField()
 
-
-class Follow:
-    follower = models.ForeignKey('User', primary_key=True)
-    following = models.ForeignKey('User', primary_key=True)
+class Follow(models.Model):
+    follower = models.ForeignKey('CustomUser',  related_name='+')
+    following = models.ForeignKey('CustomUser',  related_name='+')
     time = models.TimeField()
+
+    class Meta:
+        unique_together = (("follower", "following"),)
 
     def __str__(self):
         return "%s %s" % (self.follower, self.following)
