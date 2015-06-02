@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User, UserManager
+from django.contrib.auth.models import User
+
 
 class CustomUser(User):
     """Consider that this class inherit django user class.
@@ -10,10 +11,11 @@ class CustomUser(User):
     image_path = models.FilePathField()
     birth_date = models.DateField()
 
+
 class Follow:
-    follower = models.ForeignKey('User',primary_key=True)
-    following = models.ForeignKey('User',primary_key=True)
+    follower = models.ForeignKey('User', primary_key=True)
+    following = models.ForeignKey('User', primary_key=True)
     time = models.TimeField()
 
     def __str__(self):
-        return "%s %s" % (self.follower,self.following)
+        return "%s %s" % (self.follower, self.following)

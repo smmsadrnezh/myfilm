@@ -12,7 +12,6 @@ def home(request):
     return HttpResponse(html)
 
 
-
 def movie(request):
     title = "Leon the Professional"
     t = get_template('movie.html')

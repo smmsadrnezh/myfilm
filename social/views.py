@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.template import Context
@@ -12,6 +11,7 @@ def post(request):
     html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
     return HttpResponse(html)
 
+
 def timeline_home(request):
     title = "Myfilm - Timeline"
     t = get_template('../social/templates/post.html')
@@ -21,6 +21,7 @@ def timeline_home(request):
     t = get_template('tlayout.html')
     html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
     return HttpResponse(html)
+
 
 def notifications(request):
     title = "Notifications"

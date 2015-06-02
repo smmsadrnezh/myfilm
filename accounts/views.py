@@ -50,6 +50,7 @@ def forget_password(request):
     html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
     return HttpResponse(html)
 
+
 def edit_profile(request):
     title = "Settings"
     t = get_template('settings.html')

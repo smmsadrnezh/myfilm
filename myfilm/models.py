@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Movie:
     movie_id = models.IntegerField(primary_key=True)
     title = models.CharField()
@@ -11,6 +12,7 @@ class Movie:
     def __str__(self):
         return "%s" % (self.title)
 
+
 class Artist:
     name = models.CharField(primary_key=True)
     image_path = models.FilePathField()
@@ -21,10 +23,11 @@ class Artist:
     def __str__(self):
         return "%s" % (self.name)
 
+
 class Movie_Artist:
-    artist_name = models.ForeignKey(Artist,primary_key=True)
-    movie_id = models.ForeignKey(Movie,primary_key=True)
+    artist_name = models.ForeignKey(Artist, primary_key=True)
+    movie_id = models.ForeignKey(Movie, primary_key=True)
     role = models.CharField()
 
     def __str__(self):
-        return "%s %s" % (self.artist_name , self.role)
+        return "%s %s" % (self.artist_name, self.role)

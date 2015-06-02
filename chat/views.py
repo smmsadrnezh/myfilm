@@ -5,5 +5,6 @@ from django.http import HttpResponse
 def history(request):
     return HttpResponse()
 
+
 def messages(request):
     return HttpResponse()
