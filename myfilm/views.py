@@ -12,16 +12,6 @@ def home(request):
     return HttpResponse(html)
 
 
-def timelinehome(request):
-    title = "Myfilm - Timeline"
-    t = get_template('../social/templates/post.html')
-    pageHtml = t.render()
-    t = get_template('timeline.html')
-    pageHtml = t.render(Context({'pageBody': pageHtml}))
-    t = get_template('tlayout.html')
-    html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
-    return HttpResponse(html)
-
 
 def movie(request):
     title = "Leon the Professional"

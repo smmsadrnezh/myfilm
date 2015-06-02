@@ -13,7 +13,7 @@ def login(request):
     return HttpResponse(html)
 
 
-def users(request):
+def accounts_lists(request):
     title = "Users"
     template = get_template('users.html')
     pageHtml = template.render()
@@ -31,7 +31,7 @@ def register(request):
     return HttpResponse(html)
 
 
-def masoud(request):
+def profile(request):
     title = "Masoud"
     t = get_template('../social/templates/post.html')
     pageHtml = t.render()
@@ -42,7 +42,7 @@ def masoud(request):
     return HttpResponse(html)
 
 
-def forget(request):
+def forget_password(request):
     title = "Forget"
     t = get_template('forget.html')
     pageHtml = t.render()
@@ -50,17 +50,7 @@ def forget(request):
     html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
     return HttpResponse(html)
 
-
-def notifs(request):
-    title = "Notifications"
-    t = get_template('notifications.html')
-    pageHtml = t.render()
-    t = get_template('tlayout.html')
-    html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
-    return HttpResponse(html)
-
-
-def settings(request):
+def edit_profile(request):
     title = "Settings"
     t = get_template('settings.html')
     pageHtml = t.render()
@@ -69,7 +59,7 @@ def settings(request):
     return HttpResponse(html)
 
 
-def changepass(request):
+def change_password(request):
     title = "Change Password"
     t = get_template('changepass.html')
     pageHtml = t.render()
