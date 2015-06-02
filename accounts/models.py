@@ -11,9 +11,10 @@ class CustomUser(User):
     image_path = models.FilePathField()
     birth_date = models.DateField()
 
+
 class Follow(models.Model):
-    follower = models.ForeignKey('CustomUser',  related_name='+')
-    following = models.ForeignKey('CustomUser',  related_name='+')
+    follower = models.ForeignKey('CustomUser', related_name='+')
+    following = models.ForeignKey('CustomUser', related_name='+')
     time = models.TimeField()
 
     class Meta:

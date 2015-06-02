@@ -13,7 +13,7 @@ class Movie(models.Model):
 
 
 class Artist(models.Model):
-    name = models.CharField(primary_key=True,max_length=100)
+    name = models.CharField(primary_key=True, max_length=100)
     image_path = models.FilePathField()
     birth_date = models.DateField()
     biography = models.TextField()

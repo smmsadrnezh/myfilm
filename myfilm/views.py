@@ -11,6 +11,7 @@ def home(request):
     html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
     return HttpResponse(html)
 
+
 def movie(request):
     title = "Leon the Professional"
     t = get_template('movie.html')
@@ -19,8 +20,10 @@ def movie(request):
     html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
     return HttpResponse(html)
 
+
 def movies_list(request):
     return HttpResponse()
+
 
 def artists_list(request):
     title = "Artists"
