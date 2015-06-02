@@ -43,6 +43,11 @@ INSTALLED_APPS = (
     'social'
 )
 
+AUTHENTICATION_BACKENDS = (
+    'myfilm.auth_backends.CustomUserModelBackend',
+)
+CUSTOM_USER_MODEL = 'accounts.CustomUser'
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

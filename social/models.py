@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Post:
     title = models.CharField()
     username = models.ForeignKey('accounts.User')
