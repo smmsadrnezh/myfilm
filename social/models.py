@@ -12,7 +12,7 @@ class Post:
 
 class Comment:
     username = models.ForeignKey('accounts.User',primary_key=True)
-    post_id = models.ForeignKey('social.Post', primary_key=True)
+    post_id = models.ForeignKey('Post', primary_key=True)
     body = models.TextField()
     time = models.TimeField()
 
@@ -21,7 +21,7 @@ class Comment:
 
 class Like:
     username = models.ForeignKey('accounts.User',primary_key=True)
-    post_id = models.ForeignKey('social.Post',primary_key=True)
+    post_id = models.ForeignKey('Post',primary_key=True)
     time = models.TimeField()
 
     def __str__(self):
