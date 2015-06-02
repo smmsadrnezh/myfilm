@@ -14,3 +14,8 @@ class Artist:
     birth_date = models.DateField()
     biography = models.TextField()
     birth_place = models.CharField()
+
+class Movie_Artist:
+    artist_name = models.ForeignKey(Artist,primary_key=True)
+    movie_id = models.ForeignKey(Movie,primary_key=True)
+    role = models.CharField()

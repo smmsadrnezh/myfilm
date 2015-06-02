@@ -9,3 +9,7 @@ class User:
     image_path = models.FilePathField()
     birth_date = models.DateField()
     password = models.CharField()
+
+class Follow:
+    follower = models.ForeignKey('User',primary_key=True)
+    following = models.ForeignKey('User',primary_key=True)
