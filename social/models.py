@@ -19,7 +19,7 @@ class Comment(models.Model):
     time = models.TimeField()
 
     class Meta:
-        unique_together = (("username", "post_id"),)
+        unique_together = (("username", "post"),)
 
     def __str__(self):
         return "%s" % (self.body)
@@ -31,7 +31,7 @@ class Like(models.Model):
     time = models.TimeField()
 
     class Meta:
-        unique_together = (("username", "post_id"),)
+        unique_together = (("username", "post"),)
 
     def __str__(self):
         return "%s" % (self.time)
