@@ -7,9 +7,8 @@ class CustomUser(User):
     user class fields:  username, email, password, is_staff, is_active, date_joined and much more.
     More help on this: http://scottbarnham.com/blog/2008/08/21/extending-the-django-user-model-with-inheritance """
 
-    image_path = models.FilePathField()
-    birth_date = models.DateField()
-
+    image_path = models.FilePathField(null=True)
+    birth_date = models.DateField(null=True)
 
 class Follow(models.Model):
     follower = models.ForeignKey('CustomUser', related_name='+')
