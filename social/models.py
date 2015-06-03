@@ -14,7 +14,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     username = models.ForeignKey('accounts.CustomUser')
-    post_id = models.ForeignKey('Post')
+    post = models.ForeignKey('Post')
     body = models.TextField()
     time = models.TimeField()
 
@@ -27,7 +27,7 @@ class Comment(models.Model):
 
 class Like(models.Model):
     username = models.ForeignKey('accounts.CustomUser')
-    post_id = models.ForeignKey('Post')
+    post = models.ForeignKey('Post')
     time = models.TimeField()
 
     class Meta:
