@@ -31,9 +31,9 @@ def register(request):
     return HttpResponse(html)
 
 
-def profile(request):
+def profile(request, userid):
     title = "Masoud"
-    t = get_template('../social/templates/post.html')
+    t = get_template('post.html')
     pageHtml = t.render()
     t = get_template('masoud.html')
     pageHtml = t.render(Context({'userPosts': pageHtml}))
@@ -51,7 +51,7 @@ def forget_password(request):
     return HttpResponse(html)
 
 
-def edit_profile(request):
+def edit_profile(request,userid):
     title = "Settings"
     t = get_template('settings.html')
     pageHtml = t.render()
