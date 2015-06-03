@@ -98,11 +98,11 @@
                 </li>
 
                 <li>
-                    <img alt="profile picture" src="{% static "images/example.jpg" %}" width="50px"
+                    <img alt="profile picture" src="{% static user.image_path %}" width="50px"
                          height="50px"/>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">S. M. Masoud Sadrnezhaad<strong
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.firstname }} {{ user.lastname }}<strong
                             class="caret"></strong></a>
                     <ul class="dropdown-menu">
                         <li>
@@ -154,103 +154,64 @@
                             <div class="row clearfix">
                                 <div class="col-md-12 column">
                                     <h2>Recommended for you</h2>
+                                    {% for movie in recom_movies %}
+                                        <div class="row clearfix">
+                                            <div class="col-md-2 column">
+                                                <img width="50px" height="50px" alt="140x140"
+                                                     src="{% static movie.image_path %}"/>
+                                            </div>
+                                            <div class="col-md-10 column">
+                                                <strong>
+                                                    {{ movie.title }} {{ movie.year }}
+                                                </strong>
 
-                                    <div class="row clearfix">
-                                        <div class="col-md-2 column">
-                                            <img width="50px" height="50px" alt="140x140"
-                                                 src="{% static "img/covers/thumb/gloomy-sunday.jpg" %}"/>
+                                                <p>
+                                                    <a class="btn" href="#">View details »</a>
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div class="col-md-10 column">
-                                            <strong>
-                                                Gloomy Sunday (1999)
-                                            </strong>
-
-                                            <p>
-                                                <a class="btn" href="#">View details »</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row clearfix">
-                                        <div class="col-md-2 column">
-                                            <img alt="140x140" width="50" height="50"
-                                                 src="{% static "img/covers/thumb/schindlers-list.jpg" %}"/>
-                                        </div>
-                                        <div class="col-md-10 column">
-                                            <strong>
-                                                Schindler's List (1993)
-                                            </strong>
-
-                                            <p>
-                                                <a class="btn" href="#">View details »</a>
-                                            </p>
-                                        </div>
+                                    {% endfor %}
                                     </div>
                                 </div>
                                 <div class="col-md-12 column">
                                     <h2>Who to follow</h2>
+                                    {% for user in following_users %}
+                                        <div class="row clearfix">
+                                            <div class="col-md-2 column">
+                                                <img alt="140x140" src="{{ user.image_path }}"/>
+                                            </div>
+                                            <div class="col-md-10 column">
+                                                <strong>
+                                                    {{ user.firstname }} {{ user.lastname }}
+                                                </strong>
 
-                                    <div class="row clearfix">
-                                        <div class="col-md-2 column">
-                                            <img alt="140x140" src="http://lorempixel.com/50/50/"/>
+                                                <p>
+                                                    <a class="btn" href="#">Follow »</a>
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div class="col-md-10 column">
-                                            <strong>
-                                                Arman Naeimian
-                                            </strong>
-
-                                            <p>
-                                                <a class="btn" href="#">Follow »</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row clearfix">
-                                        <div class="col-md-2 column">
-                                            <img alt="140x140" src="http://lorempixel.com/50/50"/>
-                                        </div>
-                                        <div class="col-md-10 column">
-                                            <strong>
-                                                Sadjad Fouladi
-                                            </strong>
-
-                                            <p>
-                                                <a class="btn" href="#">Follow »</a>
-                                            </p>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
                                 </div>
                                 <div class="col-md-12 column">
                                     <h2>Popular on MyFilm</h2>
+                                    {% for movie in popular_movies %}
+                                        <div class="row clearfix">
+                                            <div class="col-md-2 column">
+                                                <img width="50px" height="50px" alt="140x140"
+                                                     src="{% static  movie.image_path  %}"/>
+                                            </div>
+                                            <div class="col-md-10 column">
+                                                <strong>
+                                                    {{ movie.title }} {{ movie.year }}
+                                                </strong>
 
-                                    <div class="row clearfix">
-                                        <div class="col-md-2 column">
-                                            <img width="50px" height="50px" alt="140x140"
-                                                 src="{% static "img/covers/thumb/gloomy-sunday.jpg" %}"/>
+                                                <p>
+                                                    <a class="btn" href="#">View details »</a>
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div class="col-md-10 column">
-                                            <strong>
-                                                Gloomy Sunday (1999)
-                                            </strong>
+                                    {% endfor %}
 
-                                            <p>
-                                                <a class="btn" href="#">View details »</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row clearfix">
-                                        <div class="col-md-2 column">
-                                            <img width="50px" height="50px" alt="140x140"
-                                                 src="{% static "img/covers/thumb/gloomy-sunday.jpg" %}"/>
-                                        </div>
-                                        <div class="col-md-10 column">
-                                            <strong>
-                                                Gloomy Sunday (1999)
-                                            </strong>
-
-                                            <p>
-                                                <a class="btn" href="#">View details »</a>
-                                            </p>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
