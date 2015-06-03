@@ -1,5 +1,6 @@
 {% load staticfiles %}
-
+{% extends "tlayout.html" %}
+{% block pageBody %}
 <div class="row clearfix">
     <div class="col-lg-6">
         <div class="input-group">
@@ -69,3 +70,4 @@
     $('a[href="#people"]').tab('show')
     $('a[href="#movies"]').tab('show')
 </script>
+{% endblock %}

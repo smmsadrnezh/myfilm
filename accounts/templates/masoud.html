@@ -1,5 +1,6 @@
 {% load staticfiles %}
-
+{% extends "tlayout.html" %}
+{% block pageBody %}
 <div class="row clearfix">
     <div class="col-md-2 column">
         <img class="img-thumbnail" src="{% static "images/example.jpg" %}"/>
@@ -31,3 +32,4 @@
 <section id="posts">
     {{ userPosts }}
 </section>
+{% endblock %}
