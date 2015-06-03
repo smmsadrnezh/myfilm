@@ -5,22 +5,24 @@ from django.db import models, migrations
 
 
 class Migration(migrations.Migration):
+
     dependencies = [
-        ('accounts', '0002_auto_20150602_1933'),
+        ('accounts', '0005_auto_20150603_0758'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Chat_Message',
+            name='ChatMessage',
             fields=[
-                ('time', models.TimeField(serialize=False, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('time', models.TimeField()),
                 ('message', models.TextField()),
                 ('from_user', models.ForeignKey(related_name='+', to='accounts.CustomUser')),
                 ('to_user', models.ForeignKey(related_name='+', to='accounts.CustomUser')),
             ],
         ),
         migrations.AlterUniqueTogether(
-            name='chat_message',
-            unique_together=set([('from_user', 'to_user')]),
+            name='chatmessage',
+            unique_together=set([('time', 'from_user', 'to_user')]),
         ),
     ]
