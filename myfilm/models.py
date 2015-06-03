@@ -29,7 +29,7 @@ class MovieArtist(models.Model):
     role = models.CharField(max_length=30)
 
     class Meta:
-        unique_together = (("artist_name", "movie_id"),)
+        unique_together = (("artist_name", "movie"),)
 
     def __str__(self):
         return "%s %s" % (self.artist_name, self.role)
