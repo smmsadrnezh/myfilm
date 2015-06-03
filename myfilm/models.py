@@ -23,7 +23,7 @@ class Artist(models.Model):
         return "%s" % (self.name)
 
 
-class Movie_Artist(models.Model):
+class MovieArtist(models.Model):
     artist_name = models.ForeignKey(Artist)
     movie_id = models.ForeignKey(Movie)
     role = models.CharField(max_length=30)

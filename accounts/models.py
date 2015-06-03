@@ -10,6 +10,7 @@ class CustomUser(User):
     image_path = models.FilePathField(null=True)
     birth_date = models.DateField(null=True)
 
+
 class Follow(models.Model):
     follower = models.ForeignKey('CustomUser', related_name='+')
     following = models.ForeignKey('CustomUser', related_name='+')

@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Chat_Message(models.Model):
+class ChatMessage(models.Model):
     from_user = models.ForeignKey('accounts.CustomUser', related_name='+')
     to_user = models.ForeignKey('accounts.CustomUser', related_name='+')
     time = models.TimeField(primary_key=True)

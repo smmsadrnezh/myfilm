@@ -37,7 +37,7 @@ class Like(models.Model):
         return "%s" % (self.time)
 
 
-class Movie_Rating(models.Model):
+class MovieRating(models.Model):
     username = models.ForeignKey('accounts.CustomUser')
     movie = models.ForeignKey('myfilm.Movie')
     rate = models.IntegerField()
