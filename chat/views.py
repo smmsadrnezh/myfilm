@@ -1,10 +1,9 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
 # Create your views here.
 
 def history(request):
-    return HttpResponse()
-
+    return render(request, 'login.html')
 
 def messages(request):
-    return HttpResponse()
+    return render(request, 'login.html')

@@ -1,43 +1,29 @@
-from django.template import Context
-from django.http import HttpResponse
-from django.template.loader import get_template
-# Create your views here.
+from django.shortcuts import render
+
 
 def home(request):
-    title = "Myfilm - Home"
-    t = get_template('home.html')
-    pageHtml = t.render()
-    t = get_template('layout.html')
-    html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
-    return HttpResponse(html)
+    return render(request, 'home.html', {
+    'PageTitle': "Myfilm - Home",
+    })
 
 
 def movie(request):
-    title = "Leon the Professional"
-    t = get_template('movie.html')
-    pageHtml = t.render()
-    t = get_template('tlayout.html')
-    html = t.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
-    return HttpResponse(html)
+    return render(request, 'movie.html', {
+    'PageTitle': "Leon the Professional",
+    })
 
 
 def movies_list(request):
-    return HttpResponse()
+    return render(request, 'movie.html')
 
 
 def artists_list(request):
-    title = "Artists"
-    template = get_template('artists.html')
-    pageHtml = template.render()
-    template = get_template('tlayout.html')
-    html = template.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
-    return HttpResponse(html)
+    return render(request, 'artists.html', {
+    'PageTitle': "Artists",
+    })
 
 
 def artist(request, artistid):
-    title = "Tom Hanks"
-    template = get_template('artist.html')
-    pageHtml = template.render()
-    template = get_template('tlayout.html')
-    html = template.render(Context({'pageBody': pageHtml, 'PageTitle': title}))
-    return HttpResponse(html)
+    return render(request, 'artist.html', {
+    'PageTitle': "Tom Hanks",
+    })
