@@ -14,7 +14,7 @@ def movie(request):
 
 
 def movies_list(request):
-    return render(request, 'movie.html')
+    return render(request, 'movies.html')
 
 
 def artists_list(request):

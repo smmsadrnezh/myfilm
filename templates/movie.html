@@ -7,7 +7,7 @@
                 <div class="star"> 8.6</div>
             </div>
             <div class="col-md-10 column">
-                <h1>Léon: The Professional (1994)</h1>
+                <h1>{{ movie.title }}</h1>
             </div>
         </div>
         <p>
@@ -15,7 +15,7 @@
         </p>
 
         <p>
-            <img src="{% static "img/covers/thumb/leon-the-professional.jpg" %}" alt="Léon: The Professional (1994)"/>
+            <img src="{% static movie.image_path %}" alt="{{ movie.title }}"/>
         </p>
         <img id="rating"/>
 
@@ -34,7 +34,7 @@
 
         <h2>Full Cast</h2>
 
-        <div class="tab-pane fade in active" id="people">
+      <!--  <div class="tab-pane fade in active" id="people">
             <ul class="nav">
 
                 <li class="active"><a href="#">
@@ -52,33 +52,9 @@
                 </li>
             </ul>
         </div>
-
+-->
         <form class="form-horizontal" role="form">
             <div class="form-group">
-
-                <h3>
-                    Comment 1
-                </h3>
-
-                <p>
-                    I love Natalie Portman. -- Masoud
-                </p>
-
-                <p>
-                    <a class="btn" href="#">Like</a>
-                </p>
-
-                <h3>
-                    Comment 2
-                </h3>
-
-                <p>
-                    This post is not very chert. --Sadjad
-                </p>
-
-                <p>
-                    <a class="btn" href="#">Like</a>
-                </p>
 
                 <label for="input" class="col-sm-2 control-label">Write a new comment</label>
 
