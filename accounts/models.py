@@ -7,7 +7,6 @@ class CustomUser(User):
     user class fields:  username, email, password, is_staff, is_active, date_joined and much more.
     More help on this: http://scottbarnham.com/blog/2008/08/21/extending-the-django-user-model-with-inheritance """
 
-    real_name = models.CharField(max_length=100)
     image_path = models.FilePathField()
     birth_date = models.DateField()
 
