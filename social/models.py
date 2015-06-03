@@ -9,7 +9,7 @@ class Post(models.Model):
     created_time = models.TimeField()
 
     def __str__(self):
-        return "%s" % (self.title)
+        return "%s" % self.title
 
 
 class Comment(models.Model):
@@ -22,7 +22,7 @@ class Comment(models.Model):
         unique_together = (("username", "post"),)
 
     def __str__(self):
-        return "%s" % (self.body)
+        return "%s" % self.body
 
 
 class Like(models.Model):
@@ -34,7 +34,7 @@ class Like(models.Model):
         unique_together = (("username", "post"),)
 
     def __str__(self):
-        return "%s" % (self.time)
+        return "%s" % self.time
 
 
 class MovieRating(models.Model):

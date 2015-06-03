@@ -9,7 +9,7 @@ class Movie(models.Model):
     imdb_url = models.URLField()
 
     def __str__(self):
-        return "%s" % (self.title)
+        return "%s" % self.title
 
 
 class Artist(models.Model):
@@ -20,7 +20,7 @@ class Artist(models.Model):
     birth_place = models.CharField(max_length=30)
 
     def __str__(self):
-        return "%s" % (self.name)
+        return "%s" % self.name
 
 
 class MovieArtist(models.Model):
