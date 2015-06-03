@@ -34,7 +34,7 @@ def artists_list(request):
     return HttpResponse(html)
 
 
-def artist(request):
+def artist(request, artistid):
     title = "Tom Hanks"
     template = get_template('artist.html')
     pageHtml = template.render()
