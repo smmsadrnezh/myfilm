@@ -1,378 +1,394 @@
-{% load staticfiles %}
 {% extends "layout.html" %}
+{% load staticfiles %}
 {% block pageBody %}
-<body>
-<!--[if lt IE 7]>
+    <body>
+    <!--[if lt IE 7]>
 		<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 		<![endif]-->
-<!-- open/close -->
-<header>
-    <section class="hero">
-        <div class="texture-overlay"></div>
-        <div class="container">
-            <div class="row nav-wrapper">
-                <div class="col-md-6 col-sm-6 col-xs-6 text-left">
-                    <a href="#"><img src="{% static "img/logo-white.png" %}" alt="Myfilm Logo"></a>
+    <!-- open/close -->
+    <header>
+        <section class="hero">
+            <div class="texture-overlay"></div>
+            <div class="container">
+                <div class="row nav-wrapper">
+                    <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                        <a href="#"><img src="{% static "img/logo-white.png" %}" alt="Myfilm Logo"></a>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 text-right navicon">
+                        <p>MENU</p><a id="trigger-overlay" class="nav_slide_button nav-toggle"
+                                      href="#"><span></span></a>
+                    </div>
                 </div>
-                <div class="col-md-6 col-sm-6 col-xs-6 text-right navicon">
-                    <p>MENU</p><a id="trigger-overlay" class="nav_slide_button nav-toggle" href="#"><span></span></a>
+                <div class="row hero-content">
+                    <div class="col-md-12">
+                        <h1 class="animated fadeInDown">Get On Myfilm. It's free and always will be.</h1>
+                        <a href="login" class="use-btn animated fadeInUp youtube-media">Sign in</a>
+                        <a href="#about" class="learn-btn animated fadeInUp">Learn more <i class="fa fa-arrow-down"></i></a>
+                    </div>
                 </div>
             </div>
-            <div class="row hero-content">
-                <div class="col-md-12">
-                    <h1 class="animated fadeInDown">Get On Myfilm. It's free and always will be.</h1>
-                    <a href="login" class="use-btn animated fadeInUp youtube-media">Sign in</a>
-                    <a href="#about" class="learn-btn animated fadeInUp">Learn more <i class="fa fa-arrow-down"></i></a>
+        </section>
+    </header>
+    <section class="video" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1><a href="timeline"><i class="fa fa-play-circle-o"></i> Stay connected</a></h1>
                 </div>
             </div>
         </div>
     </section>
-</header>
-<section class="video" id="about">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <h1><a href="timeline"><i class="fa fa-play-circle-o"></i> Stay connected</a></h1>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="features-intro">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6 nopadding features-intro-img">
-                <div class="features-bg">
-                    <div class="texture-overlay"></div>
-                    <div class="features-img wp1">
-                        <img src="{% static "img/logo-white@2x.png" %}" alt="HTML5 Logo">
+    <section class="features-intro">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 nopadding features-intro-img">
+                    <div class="features-bg">
+                        <div class="texture-overlay"></div>
+                        <div class="features-img wp1">
+                            <img src="{% static "img/logo-white@2x.png" %}" alt="HTML5 Logo">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 nopadding">
-                <div class="features-slider">
-                    <ul class="slides" id="featuresSlider">
-                        <li>
-                            <h1>Post Title One &amp; Two</h1>
+                <div class="col-md-6 nopadding">
+                    <div class="features-slider">
+                        <ul class="slides" id="featuresSlider">
+                            <li>
+                                <h1>Post Title One &amp; Two</h1>
 
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum
-                                consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum
-                                primis in faucibus.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque
+                                    interdum
+                                    consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante
+                                    ipsum
+                                    primis in faucibus.</p>
 
-                            <p><a href="search" class="arrow-btn">Read more! <i
-                                    class="fa fa-long-arrow-right"></i></a></p>
-                        </li>
-                        <li>
-                            <h1>Post two</h1>
+                                <p><a href="search" class="arrow-btn">Read more! <i
+                                        class="fa fa-long-arrow-right"></i></a></p>
+                            </li>
+                            <li>
+                                <h1>Post two</h1>
 
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum
-                                consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum
-                                primis in faucibus.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque
+                                    interdum
+                                    consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante
+                                    ipsum
+                                    primis in faucibus.</p>
 
-                            <p><a href="timeline" class="arrow-btn">Read more! <i
-                                    class="fa fa-long-arrow-right"></i></a></p>
-                        </li>
-                        <li>
-                            <h1>Post Three</h1>
+                                <p><a href="timeline" class="arrow-btn">Read more! <i
+                                        class="fa fa-long-arrow-right"></i></a></p>
+                            </li>
+                            <li>
+                                <h1>Post Three</h1>
 
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum
-                                consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum
-                                primis in faucibus.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque
+                                    interdum
+                                    consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante
+                                    ipsum
+                                    primis in faucibus.</p>
 
-                            <p><a href="posts" class="arrow-btn">Read more! <i class="fa fa-long-arrow-right"></i></a>
-                            </p>
-                        </li>
-                    </ul>
+                                <p><a href="posts" class="arrow-btn">Read more! <i
+                                        class="fa fa-long-arrow-right"></i></a>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<section class="features-list" id="features">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-
-                <div class="col-md-4 feature-1 wp2">
-                    <div class="feature-icon">
-                        <i class="fa fa-desktop"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h1>Creators</h1>
-
-                        <p>This site is created by Arman Naeimian and Masoud Sadrnezhaad for university web course
-                            project.</p>
-                        <a href="" class="read-more-btn">Read More <i
-                                class="fa fa-chevron-circle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-4 feature-2 wp2 delay-05s">
-                    <div class="feature-icon">
-                        <i class="fa fa-flash"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h1>For Film Enthusiasts</h1>
-
-                        <p>Perfect if you are film enthusiast. MyFilm can showcase your comments
-                            and connect with your friends.</p>
-                        <a href="search" class="read-more-btn">Read More <i
-                                class="fa fa-chevron-circle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-4 feature-3 wp2 delay-1s">
-                    <div class="feature-icon">
-                        <i class="fa fa-heart"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h1>Absolutely Free</h1>
-
-                        <p>As aways, use MyFilm for free If you love MyFilm and want to
-                            thank us, simply <a href="blog/donate">Donate this site</a>. </p>
-                        <a href="accounts/users" class="read-more-btn">Read More <i
-                                class="fa fa-chevron-circle-right"></i></a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</section>
-<section class="showcase">
-    <div class="showcase-wrap">
-        <div class="texture-overlay"></div>
+    </section>
+    <section class="features-list" id="features">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <div>
+                <div class="col-md-12">
+
+                    <div class="col-md-4 feature-1 wp2">
+                        <div class="feature-icon">
+                            <i class="fa fa-desktop"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h1>Creators</h1>
+
+                            <p>This site is created by Arman Naeimian and Masoud Sadrnezhaad for university web course
+                                project.</p>
+                            <a href="" class="read-more-btn">Read More <i
+                                    class="fa fa-chevron-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 feature-2 wp2 delay-05s">
+                        <div class="feature-icon">
+                            <i class="fa fa-flash"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h1>For Film Enthusiasts</h1>
+
+                            <p>Perfect if you are film enthusiast. MyFilm can showcase your comments
+                                and connect with your friends.</p>
+                            <a href="search" class="read-more-btn">Read More <i
+                                    class="fa fa-chevron-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 feature-3 wp2 delay-1s">
+                        <div class="feature-icon">
+                            <i class="fa fa-heart"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h1>Absolutely Free</h1>
+
+                            <p>As aways, use MyFilm for free If you love MyFilm and want to
+                                thank us, simply <a href="blog/donate">Donate this site</a>. </p>
+                            <a href="accounts/users" class="read-more-btn">Read More <i
+                                    class="fa fa-chevron-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="showcase">
+        <div class="showcase-wrap">
+            <div class="texture-overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h1>Join MyFilm Community and Spread your word.</h1>
+
+                        <p>Recent timeline posts on MyFilm:</p>
+                        <blockquote class="team-quote">
+                            <div class="avatar"><img src="{% static "img/avatar.png" %}" alt="User Avatar"></div>
+                            <p>"I Hate Folan Film" - Masoud Sadrnezhaad</p>
+
+                        </blockquote>
+                        <blockquote class="team-quote">
+
+                            <div class="avatar"><img src="{% static "img/avatar.png" %}" alt="User Avatar"></div>
+                            <p>"I love Folan Film" - Arman Naeimian</p>
+                        </blockquote>
+
+                        <a href="login" class="download-btn youtube-media">Join Community <i
+                                class="fa fa-download"></i></a>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <h1>Join MyFilm Community and Spread your word.</h1>
+            </div>
+        </div>
+    </section>
 
-                    <p>Recent timeline posts on MyFilm:</p>
-                    <blockquote class="team-quote">
-                        <div class="avatar"><img src="{% static "img/avatar.png" %}" alt="User Avatar"></div>
-                        <p>"I Hate Folan Film" - Masoud Sadrnezhaad</p>
+    <section class="screenshots-intro">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Ron Howard shares first look at Tom Hanks in Inferno</h1>
 
-                    </blockquote>
-                    <blockquote class="team-quote">
+                    <p>After The Da Vinci Code and Angels & Demons, director Ron Howard once again re-teams with Tom
+                        Hanks
+                        for the latest thrilling chapter in the life of Harvard symbologist Robert Langdon in
+                        Inferno.</p>
 
-                        <div class="avatar"><img src="{% static "img/avatar.png" %}" alt="User Avatar"></div>
-                        <p>"I love Folan Film" - Arman Naeimian</p>
-                    </blockquote>
+                    <p>It’s been six years since we last say Hanks as Langdon on the big screen in Angels & Demons, the
+                        sequel to the enormously popular The Da Vinci Code. Once again based on Dan Brown’s best-selling
+                        novel, Inferno picks up with a confused Robert Langdon waking up in an Italian hospital room
+                        with no
+                        recollection of the events of the past few days. Along for the ride is Dr. Sienna Brooks
+                        (Felicity
+                        Jones) who joins forces with Langdon to help recover his memory and stop a madman from releasing
+                        a
+                        global plague with ties to Dante’s Inferno.</p>
 
-                    <a href="login" class="download-btn youtube-media">Join Community <i
+                    <p>Chronologically, Inferno is the fourth book in Dan Brown’s Langdon series, with Universal
+                        Pictures
+                        opting to develop this »</p>
+
+                    - Rachel West</p>
+
+                    <p><a href="artists/tomhanks" class="arrow-btn">See the full blog post!</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="screenshots" id="screenshots">
+        <div class="container-fluid">
+            <div class="row">
+                <ul class="grid">
+                    <li>
+                        <figure>
+                            <img src="{% static "img/covers/thumb/gloomy-sunday.jpg" %}" alt="Gloomy Sunday (1999)">
+                            <figcaption>
+                                <div class="caption-content">
+                                    <a href="{% static "img/covers/large/gloomy-sunday.jpg" %}" class="single_image">
+                                        <i class="fa fa-search"></i><br>
+
+                                        <p>Gloomy Sunday (1999)</p>
+                                    </a>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="{% static "img/covers/thumb/schindlers-list.jpg" %}"
+                                 alt="Schindler's List (1993)">
+                            <figcaption>
+                                <div class="caption-content">
+                                    <a href="{% static "img/covers/large/schindlers-list.jpg" %}" class="single_image">
+                                        <i class="fa fa-search"></i><br>
+
+                                        <p>Schindler's List (1993)</p>
+                                    </a>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="{% static "img/covers/thumb/goodfellas.jpg" %}" alt="Goodfellas (1990)">
+                            <figcaption>
+                                <div class="caption-content">
+                                    <a href="{% static "img/covers/large/goodfellas.jpg" %}" class="single_image">
+                                        <i class="fa fa-search"></i><br>
+
+                                        <p>Goodfellas (1990)</p>
+                                    </a>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="{% static "img/covers/thumb/the-dark-knight.jpg" %}" alt="The Dark Knight (2008)">
+                            <figcaption>
+                                <div class="caption-content">
+                                    <a href="{% static "img/covers/large/the-dark-knight.jpg" %}" class="single_image">
+                                        <i class="fa fa-search"></i><br>
+
+                                        <p>The Dark Knight (2008)</p>
+                                    </a>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="{% static "img/covers/thumb/django-unchained.jpg" %}"
+                                 alt="Django Unchained (2012)">
+                            <figcaption>
+                                <div class="caption-content">
+                                    <a href="{% static "img/covers/large/django-unchained.jpg" %}" class="single_image">
+                                        <i class="fa fa-search"></i><br>
+
+                                        <p>Django Unchained (2012)</p>
+                                    </a>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="{% static "img/covers/thumb/leon-the-professional.jpg" %}"
+                                 alt="Léon: The Professional (1994)">
+                            <figcaption>
+                                <div class="caption-content">
+                                    <a href="{% static "img/covers/large/leon-the-professional.jpg" %}"
+                                       class="single_image">
+                                        <i class="fa fa-search"></i><br>
+
+                                        <p>Léon: The Professional (1994)</p>
+                                    </a>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="{% static "img/covers/thumb/one-flew-over-the-cuckoos-nest.jpg" %}"
+                                 alt="One Flew Over the Cuckoo's Nest (1975)">
+                            <figcaption>
+                                <div class="caption-content">
+                                    <a href="{% static "img/covers/large/one-flew-over-the-cuckoos-nest.jpg" %}"
+                                       class="single_image">
+                                        <i class="fa fa-search"></i><br>
+
+                                        <p>One Flew Over the Cuckoo's Nest (1975)</p>
+                                    </a>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="{% static "img/covers/thumb/fight-club.jpg" %}" alt="Fight Club (1999)">
+                            <figcaption>
+                                <div class="caption-content">
+                                    <a href="{% static "img/covers/large/fight-club.jpg" %}" class="single_image">
+                                        <i class="fa fa-search"></i><br>
+
+                                        <p>Fight Club (1999)</p>
+                                    </a>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                </ul>
+            </div>
+            <div class="row">
+                <ul class="grid">
+                    <li>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="download" id="download">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center wp4">
+                    <h1>Seen Enough?</h1>
+                    <a href="register" class="download-btn youtube-media">Sign Up <i
                             class="fa fa-download"></i></a>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <h1 class="footer-logo">
+                        <img src="{% static "img/logo-blue.png" %}" alt="Footer Logo Blue">
+                    </h1>
 
-<section class="screenshots-intro">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Ron Howard shares first look at Tom Hanks in Inferno</h1>
+                    <p>© Myfilm 2015 - Designed &amp;
+                        Developed by <a href="http://sadrnezhaad.ir/smm">S. M. Masoud Sadrnezhaad</a> &amp;
+                        <a href="http://ce.sharif.edu/~armannaeimian/">Arman Naeimian</a></p>
 
-                <p>After The Da Vinci Code and Angels & Demons, director Ron Howard once again re-teams with Tom Hanks
-                    for the latest thrilling chapter in the life of Harvard symbologist Robert Langdon in Inferno.</p>
-
-                <p>It’s been six years since we last say Hanks as Langdon on the big screen in Angels & Demons, the
-                    sequel to the enormously popular The Da Vinci Code. Once again based on Dan Brown’s best-selling
-                    novel, Inferno picks up with a confused Robert Langdon waking up in an Italian hospital room with no
-                    recollection of the events of the past few days. Along for the ride is Dr. Sienna Brooks (Felicity
-                    Jones) who joins forces with Langdon to help recover his memory and stop a madman from releasing a
-                    global plague with ties to Dante’s Inferno.</p>
-
-                <p>Chronologically, Inferno is the fourth book in Dan Brown’s Langdon series, with Universal Pictures
-                    opting to develop this »</p>
-
-                - Rachel West</p>
-
-                <p><a href="artists/tomhanks" class="arrow-btn">See the full blog post!</a>
-                </p>
+                </div>
+                <div class="col-md-7">
+                    <ul class="footer-nav">
+                        <li><a href="#about">Timeline</a></li>
+                        <li><a href="#features">About</a></li>
+                        <li><a href="#screenshots">Movie Covers</a></li>
+                        <li><a href="#download">Sign Up</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-<section class="screenshots" id="screenshots">
-    <div class="container-fluid">
-        <div class="row">
-            <ul class="grid">
-                <li>
-                    <figure>
-                        <img src="{% static "img/covers/thumb/gloomy-sunday.jpg" %}" alt="Gloomy Sunday (1999)">
-                        <figcaption>
-                            <div class="caption-content">
-                                <a href="{% static "img/covers/large/gloomy-sunday.jpg" %}" class="single_image">
-                                    <i class="fa fa-search"></i><br>
-
-                                    <p>Gloomy Sunday (1999)</p>
-                                </a>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li>
-                    <figure>
-                        <img src="{% static "img/covers/thumb/schindlers-list.jpg" %}" alt="Schindler's List (1993)">
-                        <figcaption>
-                            <div class="caption-content">
-                                <a href="{% static "img/covers/large/schindlers-list.jpg" %}" class="single_image">
-                                    <i class="fa fa-search"></i><br>
-
-                                    <p>Schindler's List (1993)</p>
-                                </a>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li>
-                    <figure>
-                        <img src="{% static "img/covers/thumb/goodfellas.jpg" %}" alt="Goodfellas (1990)">
-                        <figcaption>
-                            <div class="caption-content">
-                                <a href="{% static "img/covers/large/goodfellas.jpg" %}" class="single_image">
-                                    <i class="fa fa-search"></i><br>
-
-                                    <p>Goodfellas (1990)</p>
-                                </a>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li>
-                    <figure>
-                        <img src="{% static "img/covers/thumb/the-dark-knight.jpg" %}" alt="The Dark Knight (2008)">
-                        <figcaption>
-                            <div class="caption-content">
-                                <a href="{% static "img/covers/large/the-dark-knight.jpg" %}" class="single_image">
-                                    <i class="fa fa-search"></i><br>
-
-                                    <p>The Dark Knight (2008)</p>
-                                </a>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li>
-                    <figure>
-                        <img src="{% static "img/covers/thumb/django-unchained.jpg" %}" alt="Django Unchained (2012)">
-                        <figcaption>
-                            <div class="caption-content">
-                                <a href="{% static "img/covers/large/django-unchained.jpg" %}" class="single_image">
-                                    <i class="fa fa-search"></i><br>
-
-                                    <p>Django Unchained (2012)</p>
-                                </a>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li>
-                    <figure>
-                        <img src="{% static "img/covers/thumb/leon-the-professional.jpg" %}"
-                             alt="Léon: The Professional (1994)">
-                        <figcaption>
-                            <div class="caption-content">
-                                <a href="{% static "img/covers/large/leon-the-professional.jpg" %}"
-                                   class="single_image">
-                                    <i class="fa fa-search"></i><br>
-
-                                    <p>Léon: The Professional (1994)</p>
-                                </a>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li>
-                    <figure>
-                        <img src="{% static "img/covers/thumb/one-flew-over-the-cuckoos-nest.jpg" %}"
-                             alt="One Flew Over the Cuckoo's Nest (1975)">
-                        <figcaption>
-                            <div class="caption-content">
-                                <a href="{% static "img/covers/large/one-flew-over-the-cuckoos-nest.jpg" %}"
-                                   class="single_image">
-                                    <i class="fa fa-search"></i><br>
-
-                                    <p>One Flew Over the Cuckoo's Nest (1975)</p>
-                                </a>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li>
-                    <figure>
-                        <img src="{% static "img/covers/thumb/fight-club.jpg" %}" alt="Fight Club (1999)">
-                        <figcaption>
-                            <div class="caption-content">
-                                <a href="{% static "img/covers/large/fight-club.jpg" %}" class="single_image">
-                                    <i class="fa fa-search"></i><br>
-
-                                    <p>Fight Club (1999)</p>
-                                </a>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </li>
+    </footer>
+    <div class="overlay overlay-boxify">
+        <nav>
+            <ul>
+                <li><a href="#about"><i class="fa fa-heart"></i>Stay Connected</a></li>
+                <li><a href="#features"><i class="fa fa-flash"></i>About</a></li>
             </ul>
-        </div>
-        <div class="row">
-            <ul class="grid">
-                <li>
-
-                </li>
+            <ul>
+                <li><a href="#screenshots"><i class="fa fa-desktop"></i>Movie Covers</a></li>
+                <li><a href="#download"><i class="fa fa-download"></i>Sign Up</a></li>
             </ul>
-        </div>
+        </nav>
     </div>
-</section>
-<section class="download" id="download">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 text-center wp4">
-                <h1>Seen Enough?</h1>
-                <a href="register" class="download-btn youtube-media">Sign Up <i
-                        class="fa fa-download"></i></a>
-            </div>
-        </div>
-    </div>
-</section>
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-5">
-                <h1 class="footer-logo">
-                    <img src="{% static "img/logo-blue.png" %}" alt="Footer Logo Blue">
-                </h1>
 
-                <p>© Myfilm 2015 - Designed &amp;
-                    Developed by <a href="http://sadrnezhaad.ir/smm">S. M. Masoud Sadrnezhaad</a> &amp;
-                    <a href="http://ce.sharif.edu/~armannaeimian/">Arman Naeimian</a></p>
-
-            </div>
-            <div class="col-md-7">
-                <ul class="footer-nav">
-                    <li><a href="#about">Timeline</a></li>
-                    <li><a href="#features">About</a></li>
-                    <li><a href="#screenshots">Movie Covers</a></li>
-                    <li><a href="#download">Sign Up</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
-<div class="overlay overlay-boxify">
-    <nav>
-        <ul>
-            <li><a href="#about"><i class="fa fa-heart"></i>Stay Connected</a></li>
-            <li><a href="#features"><i class="fa fa-flash"></i>About</a></li>
-        </ul>
-        <ul>
-            <li><a href="#screenshots"><i class="fa fa-desktop"></i>Movie Covers</a></li>
-            <li><a href="#download"><i class="fa fa-download"></i>Sign Up</a></li>
-        </ul>
-    </nav>
-</div>
-
-</body>
+    </body>
 {% endblock %}

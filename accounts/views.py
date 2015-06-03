@@ -3,47 +3,47 @@ from django.shortcuts import render
 
 def login(request):
     return render(request, 'login.html', {
-    'PageTitle': "Login",
+        'PageTitle': "Login",
     })
 
 
 def accounts_lists(request):
     return render(request, 'users.html', {
-    'PageTitle': "Users",
+        'PageTitle': "Users",
     })
 
 
 def register(request):
     return render(request, 'register.html', {
-    'PageTitle': "Register",
+        'PageTitle': "Register",
     })
 
 
 def profile(request, userid):
     return render(request, 'masoud.html', {
-    'PageTitle': "Masoud - Profile",
+        'PageTitle': "Masoud - Profile",
     })
 
 
 def forget_password(request):
     return render(request, 'forget.html', {
-    'PageTitle': "Forget",
+        'PageTitle': "Forget",
     })
 
 
 def edit_profile(request, userid):
     return render(request, 'settings.html', {
-    'PageTitle': "Settings",
+        'PageTitle': "Settings",
     })
 
 
 def change_password(request):
     return render(request, 'changepass.html', {
-    'PageTitle': "Change Password",
+        'PageTitle': "Change Password",
     })
 
 
 def lists(request):
     return render(request, 'lists.html', {
-    'PageTitle': "List",
+        'PageTitle': "List",
     })

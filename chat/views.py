@@ -5,5 +5,6 @@ from django.shortcuts import render
 def history(request):
     return render(request, 'login.html')
 
+
 def messages(request):
     return render(request, 'login.html')

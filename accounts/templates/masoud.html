@@ -1,35 +1,35 @@
-{% load staticfiles %}
 {% extends "tlayout.html" %}
+{% load staticfiles %}
 {% block pageBody %}
-<div class="row clearfix">
-    <div class="col-md-2 column">
-        <img class="img-thumbnail" src="{% static "images/example.jpg" %}"/>
+    <div class="row clearfix">
+        <div class="col-md-2 column">
+            <img class="img-thumbnail" src="{% static "images/example.jpg" %}"/>
+        </div>
+        <div class="col-md-10 column">
+            <h1>S. M. Masoud Sadrnezhaad</h1>
+
+            <h2>@Masoud</h2>
+        </div>
     </div>
-    <div class="col-md-10 column">
-        <h1>S. M. Masoud Sadrnezhaad</h1>
 
-        <h2>@Masoud</h2>
-    </div>
-</div>
+    <h3>followers (2)</h3>
+    <img class="img-circle" src="http://lorempixel.com/40/40/">
+    <img class="img-circle" src="http://lorempixel.com/40/40/">
 
-<h3>followers (2)</h3>
-<img class="img-circle" src="http://lorempixel.com/40/40/">
-<img class="img-circle" src="http://lorempixel.com/40/40/">
+    <p></p>
 
-<p></p>
+    <h3>following (3)</h3>
+    <img class="img-circle" src="http://lorempixel.com/40/40/">
+    <img class="img-circle" src="http://lorempixel.com/40/40/">
 
-<h3>following (3)</h3>
-<img class="img-circle" src="http://lorempixel.com/40/40/">
-<img class="img-circle" src="http://lorempixel.com/40/40/">
-
-<img class="img-circle" src="http://lorempixel.com/40/40/">
+    <img class="img-circle" src="http://lorempixel.com/40/40/">
 
 
-<p></p>
+    <p></p>
 
-<h3>User Posts</h3>
+    <h3>User Posts</h3>
 
-<section id="posts">
-    {{ userPosts }}
-</section>
+    <section id="posts">
+        {{ userPosts }}
+    </section>
 {% endblock %}

@@ -1,19 +1,19 @@
-{% load staticfiles %}
 {% extends "tlayout.html" %}
+{% load staticfiles %}
 {% block pageBody %}
-<article>
-    <div class="row clearfix">
-        <div class="col-md-2 column">
-            <div class="star"> {{ movie.rate }}</div>
+    <article>
+        <div class="row clearfix">
+            <div class="col-md-2 column">
+                <div class="star"> {{ movie.rate }}</div>
+            </div>
+            <div class="col-md-10 column">
+                <h1>{{ movie.title }} {{ movie.year }}</h1>
+            </div>
         </div>
-        <div class="col-md-10 column">
-            <h1>{{ movie.title }} {{ movie.year }}</h1>
-        </div>
-    </div>
 
-    <p>
-        <img src="{% static movie.image_path %}" alt="{{ movie.title }}"/>
-    </p>
+        <p>
+            <img src="{% static movie.image_path %}" alt="{{ movie.title }}"/>
+        </p>
 
-</article>
+    </article>
 {% endblock %}

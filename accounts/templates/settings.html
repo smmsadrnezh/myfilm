@@ -1,68 +1,69 @@
-
-{% load static %}
 {% extends "tlayout.html" %}
+{% load static %}
 {% block pageBody %}
-<div class="container">
-    <div class="row">
-        <form role="form">
-            <div class="col-lg-6">
+    <div class="container">
+        <div class="row">
+            <form role="form">
+                <div class="col-lg-6">
 
-                <div class="form-group">
+                    <div class="form-group">
 
-                    <button>Choose Photo</button>
-                    <img width="100px" height="100px" src={% static "images/example.jpg" %}>
+                        <button>Choose Photo</button>
+                        <img width="100px" height="100px" src={% static "images/example.jpg" %}>
 
-                </div>
-                <div class="form-group">
-                    <label for="InputName">User Name</label>
-
-                    <div class="input-group">
-                        <input type="text" class="form-control gray" name="InputName" id="InputName"
-                               value="Masoud" size="35" required>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="ShowingName">Showing Name</label>
+                    <div class="form-group">
+                        <label for="InputName">User Name</label>
 
-                    <div class="input-group">
-                        <input type="text" class="form-control gray " name="ShowingName" id="ShowingName"
-                               value="S. M. Masoud Sadrnezhaad" size="35" required>
+                        <div class="input-group">
+                            <input type="text" class="form-control gray" name="InputName" id="InputName"
+                                   value="Masoud" size="35" required>
+                        </div>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="ShowingName">Showing Name</label>
 
-                <div class="form-group">
-                    <label for="InputEmail">Email</label>
-
-                    <div class="input-group">
-                        <input type="email" class="form-control gray input-width" id="InputEmailFirst" name="InputEmail"
-                               value="smmsadrnezh@gmail.com" size="35" required>
+                        <div class="input-group">
+                            <input type="text" class="form-control gray " name="ShowingName" id="ShowingName"
+                                   value="S. M. Masoud Sadrnezhaad" size="35" required>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="date">Birth Date</label>
 
-                    <div class="input-group">
-                        <input type="date" class="form-control gray input-width" id="date" name="date"
-                               value="1995-01-01" required>
+                    <div class="form-group">
+                        <label for="InputEmail">Email</label>
+
+                        <div class="input-group">
+                            <input type="email" class="form-control gray input-width" id="InputEmailFirst"
+                                   name="InputEmail"
+                                   value="smmsadrnezh@gmail.com" size="35" required>
+                        </div>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="date">Birth Date</label>
 
-                <input type="submit" name="submit" id="submit" value="Save" class="btn btn-info btn-margin">
-                <input type="button" name="submit" id="submit" value="Change Password" class="btn btn-info btn-margin"
-                       onclick="window.location.href='/accounts/masoud/settings/changepassword'">
-            </div>
-        </form>
-        <div class="col-lg-5 col-md-push-1">
-            <div class="col-md-12" style="display: none;">
-                <div class="alert alert-success">
-                    <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
+                        <div class="input-group">
+                            <input type="date" class="form-control gray input-width" id="date" name="date"
+                                   value="1995-01-01" required>
+                        </div>
+                    </div>
+
+                    <input type="submit" name="submit" id="submit" value="Save" class="btn btn-info btn-margin">
+                    <input type="button" name="submit" id="submit" value="Change Password"
+                           class="btn btn-info btn-margin"
+                           onclick="window.location.href='/accounts/masoud/settings/changepassword'">
                 </div>
-                <div class="alert alert-danger">
-                    <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page
-                    inputs.</strong>
+            </form>
+            <div class="col-lg-5 col-md-push-1">
+                <div class="col-md-12" style="display: none;">
+                    <div class="alert alert-success">
+                        <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
+                    </div>
+                    <div class="alert alert-danger">
+                        <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page
+                        inputs.</strong>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}

@@ -1,90 +1,90 @@
-{% load staticfiles %}
 {% extends "tlayout.html" %}
+{% load staticfiles %}
 {% block pageBody %}
-<div class="col-lg-6">
-    <div class="input-group">
-        <input type="text" class="form-control" placeholder="Enter user or movie ...">
+    <div class="col-lg-6">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Enter user or movie ...">
       <span class="input-group-btn">
         <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"
                                                             aria-hidden="true"></span></button>
       </span>
+        </div>
     </div>
-</div>
 
-<br/>
-<br/>
-<br/>
-<div class="container">
-    <ul class="nav nav-tabs">
-        <li class="nav active"><a href="#people" data-toggle="tab">Users</a></li>
-        <li class="nav"><a href="#movies" data-toggle="tab">Movies</a></li>
-    </ul>
-
-    <!-- Tab panes -->
     <br/>
+    <br/>
+    <br/>
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li class="nav active"><a href="#people" data-toggle="tab">Users</a></li>
+            <li class="nav"><a href="#movies" data-toggle="tab">Movies</a></li>
+        </ul>
 
-    <div class="tab-content">
-        <div class="tab-pane fade in active" id="people">
-            <h2>Following folani</h2>
+        <!-- Tab panes -->
+        <br/>
 
-            <div id="img1">
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="people">
+                <h2>Following folani</h2>
+
+                <div id="img1">
+                    {% load staticfiles %}
+                    <img width="50px" height="50px" src="{% static "images/cat.png" %}"/>
+                </div>
+
+                <div id="info1">
+                    <h4>Showing Name: Gorbe</h4>
+                    <h4>Age: 5</h4>
+                </div>
+
+                <div id="img2">
+                    <img width="50px" height="50px" src="{% static "images/cat.png" %}">
+                </div>
+
+                <div id="info2">
+                    <h4>Showing Name: Gorbe</h4>
+                    <h4>Age: 5</h4>
+                </div>
+
+                <h2>Followed by folani</h2>
+
+                <div id="img1">
+                    {% load staticfiles %}
+                    <img width="50px" height="50px" src="{% static "images/cat.png" %}"/>
+                </div>
+
+                <div id="info1">
+                    <h4>Showing Name: Gorbe</h4>
+                    <h4>Age: 5</h4>
+                </div>
+
+                <div id="img2">
+                    <img width="50px" height="50px" src="{% static "images/cat.png" %}">
+                </div>
+
+                <div id="info2">
+                    <h4>Showing Name: Gorbe</h4>
+                    <h4>Age: 5</h4>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="movies">
                 {% load staticfiles %}
-                <img width="50px" height="50px" src="{% static "images/cat.png" %}"/>
-            </div>
-
-            <div id="info1">
-                <h4>Showing Name: Gorbe</h4>
-                <h4>Age: 5</h4>
-            </div>
-
-            <div id="img2">
-                <img width="50px" height="50px" src="{% static "images/cat.png" %}">
-            </div>
-
-            <div id="info2">
-                <h4>Showing Name: Gorbe</h4>
-                <h4>Age: 5</h4>
-            </div>
-
-            <h2>Followed by folani</h2>
-
-            <div id="img1">
-                {% load staticfiles %}
-                <img width="50px" height="50px" src="{% static "images/cat.png" %}"/>
-            </div>
-
-            <div id="info1">
-                <h4>Showing Name: Gorbe</h4>
-                <h4>Age: 5</h4>
-            </div>
-
-            <div id="img2">
-                <img width="50px" height="50px" src="{% static "images/cat.png" %}">
-            </div>
-
-            <div id="info2">
-                <h4>Showing Name: Gorbe</h4>
-                <h4>Age: 5</h4>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="movies">
-            {% load staticfiles %}
-            <div id="movie_img">
-                <img width="185px" height="278px" src="{% static "images/ForrestGump.jpg" %}">
-            </div>
-            <div id="movie_info">
-                <h3>Forrest Gump (1994)</h3>
-                <h4>Rating: 7.8/10</h4>
-                <!--<input id="rating-system" type="number" class="rating" min="1" max="5" step="1">-->
-                <h4>Direcror: Robert Zemeckis</h4>
+                <div id="movie_img">
+                    <img width="185px" height="278px" src="{% static "images/ForrestGump.jpg" %}">
+                </div>
+                <div id="movie_info">
+                    <h3>Forrest Gump (1994)</h3>
+                    <h4>Rating: 7.8/10</h4>
+                    <!--<input id="rating-system" type="number" class="rating" min="1" max="5" step="1">-->
+                    <h4>Direcror: Robert Zemeckis</h4>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
-<script type="text/javascript">
-    $('a[href="#people"]').tab('show')
-    $('a[href="#movies"]').tab('show')
-</script>
+    <script type="text/javascript">
+        $('a[href="#people"]').tab('show')
+        $('a[href="#movies"]').tab('show')
+    </script>
 {% endblock %}
