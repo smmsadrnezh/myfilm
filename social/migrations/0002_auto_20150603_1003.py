@@ -5,7 +5,6 @@ from django.db import models, migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('myfilm', '__first__'),
         ('accounts', '0005_auto_20150603_0758'),

@@ -1,6 +1,6 @@
+from django.template import Context
 from django.http import HttpResponse
 from django.template.loader import get_template
-from django.template import Context
 
 # Create your views here.
 
@@ -51,7 +51,7 @@ def forget_password(request):
     return HttpResponse(html)
 
 
-def edit_profile(request,userid):
+def edit_profile(request, userid):
     title = "Settings"
     t = get_template('settings.html')
     pageHtml = t.render()
