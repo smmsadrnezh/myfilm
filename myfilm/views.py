@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from myfilm.models import Artist
 
 def home(request):
     return render(request, 'home.html', {
@@ -18,12 +18,15 @@ def movies_list(request):
 
 
 def artists_list(request):
+    artists = Artist.objects.all()
     return render(request, 'artists.html', {
-        'PageTitle': "Artists",
+        'artists':artists
     })
 
 
 def artist(request, artistid):
+
     return render(request, 'artist.html', {
         'PageTitle': "Tom Hanks",
     })
+
