@@ -24,9 +24,9 @@ def artists_list(request):
     })
 
 
-def artist(request, artistid):
-
+def artist(request,artistname):
+    artist = Artist.objects.filter(name=artistname)[0]
     return render(request, 'artist.html', {
-        'PageTitle': "Tom Hanks",
+        'artist': artist,
     })
 

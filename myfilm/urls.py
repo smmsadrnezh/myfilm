@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^movies$', 'myfilm.views.movies_list'),
     url(r'^movies/(?P<movieid>\d+)/$', 'myfilm.views.movie'),
     url(r'^artists/$', 'myfilm.views.artists_list'),
-    url(r'^artists/(?P<artistid>\d+)/$', 'myfilm.views.artist'),
+    url(r'^artists/(?P<artistname>[1-9 a-z A-Z %]+)$', 'myfilm.views.artist'),
 
     # search app urls
     url(r'^search/$', 'search.views.search'),
