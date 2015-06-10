@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from myfilm.models import Artist
+from myfilm.models import Movie
 
 def home(request):
     return render(request, 'home.html', {
@@ -14,7 +15,10 @@ def movie(request):
 
 
 def movies_list(request):
-    return render(request, 'movies.html')
+    movies = Movie.objects.all()
+    return render(request, 'movies.html',{
+        'movies': movies,
+    })
 
 
 def artists_list(request):
