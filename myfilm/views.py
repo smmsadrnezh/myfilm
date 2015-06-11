@@ -26,8 +26,12 @@ def movie(request,movietitle):
 
     ### fetch movie artists
 
-    director = MovieArtist.objects.filter(movie_id=cur_movie.id,role='director')[0]
-    writer = MovieArtist.objects.filter(movie_id=cur_movie.id,role='writer')[0]
+    director = MovieArtist.objects.filter(movie_id=cur_movie.id,role='director')
+    if len(director)>0:
+        director = director[0]
+    writer = MovieArtist.objects.filter(movie_id=cur_movie.id,role='writer')
+    if len(writer)>0:
+        writer = writer[0]
     stars = MovieArtist.objects.filter(movie_id=cur_movie.id,role='actor')
     ### end fetching artists
 

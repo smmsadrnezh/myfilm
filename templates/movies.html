@@ -8,7 +8,7 @@
                     <div class="star"> {{ movie.rate }}</div>
                 </div>
                 <div class="col-md-10 column">
-                    <a href="/movies/{{ movie.title }}"><h1>{{ movie.title }} {{ movie.year }}</h1></a>
+                    <a href="/movies/{{ movie.title }}"><h1>{{ movie.title }} ({{ movie.year }})</h1></a>
                 </div>
             </div>
 
@@ -18,3 +18,4 @@
         {% endfor %}
     </article>
 {% endblock %}
+
