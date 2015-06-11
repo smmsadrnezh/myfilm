@@ -1,8 +1,7 @@
 {% extends "tlayout.html" %}
 {% block pageBody %}
     <article>
-        {% load staticfiles %}
-        <img src=" {% static artist.image_path %}">
+        <img src="/media/artists/{{ artist.image_path }}">
 
         <h3>{{ artist.name }}</h3>
 
