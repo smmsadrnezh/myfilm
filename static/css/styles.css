@@ -260,7 +260,7 @@ menu, ol, ul {
 }
 
 /*
-* Corrects list images handled incorrectly in IE 7.
+* Corrects list img handled incorrectly in IE 7.
 */
 nav ul, nav ol {
     list-style: none;

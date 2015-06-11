@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 
-def post(request,postid):
+def post(request, postid):
     return render(request, 'post.html', {
         'PageTitle': "Post",
     })

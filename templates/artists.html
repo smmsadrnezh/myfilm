@@ -1,7 +1,7 @@
 {% extends "tlayout.html" %}
 {% block pageBody %}
     <ul>
-        {%  for artist in artists %}
+        {% for artist in artists %}
             <li><a href="/artists/{{ artist.name }}">{{ artist.name }}</a></li>
         {% endfor %}
     </ul>
