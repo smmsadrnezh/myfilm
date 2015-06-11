@@ -2,7 +2,10 @@
 {% block pageBody %}
     <ul>
         {% for artist in artists %}
-            <li><a href="/artists/{{ artist.name }}">{{ artist.name }}</a></li>
+            <div class="row clearfix">
+                <h1><a href="/artists/{{ artist.name }}">{{ artist.name }}</a></h1>
+                <img src="/media/artists/{{ artist.image_path }}" alt="{{ artist.title }}"/>
+            </div>
         {% endfor %}
     </ul>
 {% endblock %}

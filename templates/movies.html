@@ -1,20 +1,18 @@
 {% extends "tlayout.html" %}
-{% load staticfiles %}
 {% block pageBody %}
     <article>
         {% for movie in movies %}
             <div class="row clearfix">
-                <div class="col-md-2 column">
-                    <div class="star"> {{ movie.rate }}</div>
+                <div class="col-md-3 column">
+                    <img src="/media/movies/{{ movie.image_path }}" alt="{{ movie.title }}"/>
                 </div>
-                <div class="col-md-10 column">
+                <div class="col-md-9 column">
                     <a href="/movies/{{ movie.title }}"><h1>{{ movie.title }} ({{ movie.year }})</h1></a>
+                    <p class="star"> {{ movie.rate }}</p><p>{{ movie.description }}</p>
+
                 </div>
             </div>
-
-            <p>
-                <img src="{% static movie.image_path %}" alt="{{ movie.title }}"/>
-            </p>
+        <br \>
         {% endfor %}
     </article>
 {% endblock %}
