@@ -4,7 +4,7 @@
         {% for artist in artists %}
             <div class="row clearfix">
                 <h1><a href="/artists/{{ artist.name }}">{{ artist.name }}</a></h1>
-                <img src="/media/artists/{{ artist.image_path }}" alt="{{ artist.title }}"/>
+                <img class="img-thumbnail" src="/media/artists/{{ artist.image_path }}" alt="{{ artist.title }}"/>
             </div>
         {% endfor %}
     </ul>

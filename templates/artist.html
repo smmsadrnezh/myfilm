@@ -1,9 +1,9 @@
 {% extends "tlayout.html" %}
 {% block pageBody %}
     <article>
-        <img src="/media/artists/{{ artist.image_path }}">
+        <img class="img-thumbnail" src="/media/artists/{{ artist.image_path }}">
 
-        <h3>{{ artist.name }}</h3>
+        <h1>{{ artist.name }}</h1>
 
         <p>
             {{ artist.biography }}

@@ -4,7 +4,7 @@
         {% for movie in movies %}
             <div class="row clearfix">
                 <div class="col-md-3 column">
-                    <img src="/media/movies/{{ movie.image_path }}" alt="{{ movie.title }}"/>
+                    <img class="img-thumbnail" src="/media/movies/{{ movie.image_path }}" alt="{{ movie.title }}"/>
                 </div>
                 <div class="col-md-9 column">
                     <a href="/movies/{{ movie.title }}"><h1>{{ movie.title }} ({{ movie.year }})</h1></a>
