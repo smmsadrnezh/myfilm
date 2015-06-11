@@ -98,12 +98,12 @@
                 </li>
 
                 <li>
-                    <img alt="profile picture" src="{% static user.image_path %}" width="50px"
+                    <img alt="profile picture" src="/media/users/{{ current_user.image_path }}" width="50px"
                          height="50px"/>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle"
-                       data-toggle="dropdown">{{ user.firstname }} {{ user.lastname }}<strong
+                       data-toggle="dropdown">{{ current_user.firstname }} {{ current_user.lastname }}<strong
                             class="caret"></strong></a>
                     <ul class="dropdown-menu">
                         <li>
