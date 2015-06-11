@@ -6,7 +6,7 @@ urlpatterns = [
     # myfilm app urls
     url(r'^$', 'myfilm.views.home'),
     url(r'^movies$', 'myfilm.views.movies_list'),
-    url(r'^movies/(?P<movieid>\d+)/$', 'myfilm.views.movie'),
+    url(r'^movies/(?P<movietitle>[1-9 a-z A-Z %]+)$', 'myfilm.views.movie'),
     url(r'^artists/$', 'myfilm.views.artists_list'),
     url(r'^artists/(?P<artistname>[1-9 a-z A-Z %]+)$', 'myfilm.views.artist'),
 

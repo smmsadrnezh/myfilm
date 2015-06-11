@@ -4,10 +4,10 @@
     <article>
         <div class="row clearfix">
             <div class="col-md-2 column">
-                <div class="star"> 8.6</div>
+                <div class="star"> {{ rate }}</div>
             </div>
             <div class="col-md-10 column">
-                <h1>{{ movie.title }}</h1>
+                <h1>{{ movie.title }}({{ movie.year }})</h1>
             </div>
         </div>
         <p>
@@ -19,13 +19,9 @@
         </p>
         <img id="rating"/>
 
-        <p id="description">Mathilda, a 12-year-old girl, is reluctantly taken in by Léon, a professional assassin,
-            after
-            her family is murdered. Léon and Mathilda form an unusual relationship, as she becomes his protégée and
-            learns
-            the assassin's trade.</p>
+        <p id="description">{{ movie.description }}</p>
 
-        <a href="http://www.imdb.com/title/tt0110413/"><img src="{% static "img/imdb.png" %}"></a>
+        <a href="{{ movie.imdb_url }}"><img src="{% static "img/imdb.png" %}"></a>
 
         <h4 class="inline">Director:</h4> <a href="#">Luc Besson</a>
         <h4 class="inline">Writer:</h4> <a href="#">Luc Besson</a>
