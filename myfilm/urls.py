@@ -19,8 +19,8 @@ urlpatterns = [
                   url(r'^chpass$', 'accounts.views.change_password'),
                   url(r'^login/$', 'accounts.views.login'),
                   url(r'^logout/$', 'accounts.views.logout'),
-                  url(r'^profile/(?P<userid>\d+)/$', 'accounts.views.profile'),
-                  url(r'^profile/(?P<userid>\d+)/edit$', 'accounts.views.edit_profile'),
+                  url(r'^profile/(?P<username>[1-9 a-z A-Z %\':.]+)/$', 'accounts.views.profile'),
+                  url(r'^profile/(?P<username>[1-9 a-z A-Z %\':.]+)/edit$', 'accounts.views.edit_profile'),
                   url(r'^register/$', 'accounts.views.register'),
                   url(r'^forget/$', 'accounts.views.forget_password'),
                   url(r'^accounts/$', 'accounts.views.accounts_lists'),
@@ -28,7 +28,7 @@ urlpatterns = [
 
                   # chat app urls
                   url(r'^messages/$', 'chat.views.history'),
-                  url(r'^messages/(?P<userid>\d+)/$', 'chat.views.messages'),
+                  url(r'^messages/(?P<username>[1-9 a-z A-Z %\':.]+)/$', 'chat.views.messages'),
 
                   # social app urls
                   url(r'^timeline/$', 'social.views.timeline_home'),

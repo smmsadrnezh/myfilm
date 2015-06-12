@@ -55,13 +55,13 @@ def register(request):
     return render(request, 'register.html', dict(args, **{'PageTitle': "Login"}))
 
 
-def profile(request, userid):
+def profile(request, username):
     if request.user.id == None:
         return HttpResponseRedirect('/login')
     else:
-        profile_user = CustomUser.objects.filter(id=userid)[0]
-        followers = Follow.objects.filter(following_id=userid)
-        following = Follow.objects.filter(follower_id=userid)
+        profile_user = CustomUser.objects.filter(username=username)[0]
+        followers = Follow.objects.filter(following_id=profile_user.id)
+        following = Follow.objects.filter(follower_id=profile_user.id)
         print(followers)
         return render(request, 'profile.html', {
             'PageTitle': "Myfilm - " + profile_user.first_name + " " + profile_user.last_name + " Profile",
@@ -78,7 +78,7 @@ def forget_password(request):
     })
 
 
-def edit_profile(request, userid):
+def edit_profile(request, username):
     if request.user.id == None:
         return HttpResponseRedirect('/login')
     else:
