@@ -36,7 +36,7 @@ def movie(request, movietitle):
     ### end fetching artists
 
     return render(request, 'movie.html', {
-        'PageTitle': "Myfilm - " + cur_movie,
+        'PageTitle': "Myfilm - " + cur_movie.title,
         'rate': total_rate,
         'movie': cur_movie,
         'director': director,
