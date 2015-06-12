@@ -14,8 +14,8 @@ def search(request):
         users = User.objects.filter(username=title)
         # movies = "fight club"
         return render(request, 'search.html', {
-            'movie': movies, 'user': users , 'current_user': request.user
+            'movie': movies, 'user': users, 'current_user': request.user
         })
     form = SearchForm()
-    return render(request, 'search.html', {'form': form , 'current_user': request.user
+    return render(request, 'search.html', {'form': form, 'current_user': request.user
     })

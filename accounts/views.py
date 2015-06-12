@@ -34,10 +34,13 @@ def logout(request):
 
 
 def accounts_lists(request):
-    return render(request, 'users.html', {
-        'PageTitle': "Users",
-        'current_user': request.user,
-    })
+    if request.user.id == None:
+        return HttpResponseRedirect('/login')
+    else:
+        return render(request, 'users.html', {
+            'PageTitle': "Users",
+            'current_user': request.user,
+        })
 
 
 def register(request):
@@ -53,42 +56,53 @@ def register(request):
 
 
 def profile(request, userid):
-    profile_user = CustomUser.objects.filter(id=userid)[0]
-    followers = Follow.objects.filter(following_id=userid)
-    following = Follow.objects.filter(follower_id=userid)
-    print(followers)
-    return render(request, 'profile.html', {
-        'PageTitle': "Myfilm - " + profile_user.first_name + " " + profile_user.last_name + " Profile",
-        'profile_user': profile_user,
-        'followers': followers,
-        'current_user': request.user,
-        'following': following
-    })
+    if request.user.id == None:
+        return HttpResponseRedirect('/login')
+    else:
+        profile_user = CustomUser.objects.filter(id=userid)[0]
+        followers = Follow.objects.filter(following_id=userid)
+        following = Follow.objects.filter(follower_id=userid)
+        print(followers)
+        return render(request, 'profile.html', {
+            'PageTitle': "Myfilm - " + profile_user.first_name + " " + profile_user.last_name + " Profile",
+            'profile_user': profile_user,
+            'followers': followers,
+            'current_user': request.user,
+            'following': following
+        })
 
 
 def forget_password(request):
     return render(request, 'forget.html', {
         'PageTitle': "Forget",
-        'current_user': request.user,
     })
 
 
 def edit_profile(request, userid):
-    return render(request, 'settings.html', {
-        'PageTitle': "Settings",
-        'current_user': request.user,
-    })
+    if request.user.id == None:
+        return HttpResponseRedirect('/login')
+    else:
+        return render(request, 'settings.html', {
+            'PageTitle': "Settings",
+            'current_user': request.user,
+        })
 
 
 def change_password(request):
-    return render(request, 'changepass.html', {
-        'PageTitle': "Change Password",
-        'current_user': request.user,
-    })
+    if request.user.id == None:
+        return HttpResponseRedirect('/login')
+    else:
+        return render(request, 'changepass.html', {
+            'PageTitle': "Change Password",
+            'current_user': request.user,
+        })
 
 
 def lists(request):
-    return render(request, 'lists.html', {
-        'PageTitle': "List",
-        'current_user': request.user,
-    })
+    if request.user.id == None:
+        return HttpResponseRedirect('/login')
+    else:
+        return render(request, 'lists.html', {
+            'PageTitle': "List",
+            'current_user': request.user,
+        })
