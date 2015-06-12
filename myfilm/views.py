@@ -36,27 +36,32 @@ def movie(request, movietitle):
     ### end fetching artists
 
     return render(request, 'movie.html', {
-        'rate': total_rate, 'movie': cur_movie, 'director': director, 'writer': writer, 'stars': stars
+        'PageTitle': "Myfilm - " + cur_movie,
+        'rate': total_rate,
+        'movie': cur_movie,
+        'director': director,
+        'writer': writer,
+        'stars': stars
     })
 
 
 def movies_list(request):
-    movies = Movie.objects.all()
     return render(request, 'movies.html', {
-        'movies': movies,
+        'PageTitle': "Myfilm - All Movies",
+        'movies': Movie.objects.all(),
     })
 
 
 def artists_list(request):
-    artists = Artist.objects.all()
     return render(request, 'artists.html', {
-        'artists': artists
+        'PageTitle': "Myfilm - All Artists",
+        'artists': Artist.objects.all()
     })
 
 
 def artist(request, artistname):
-    artist = Artist.objects.filter(name=artistname)[0]
     return render(request, 'artist.html', {
-        'artist': artist,
+        'PageTitle': "Myfilm - " + artistname,
+        'artist': Artist.objects.filter(name=artistname)[0],
     })
 
