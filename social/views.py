@@ -1,30 +1,29 @@
 from django.shortcuts import render
-
-from accounts.models import CustomUser
-from social.models import Comment
+from social.models import Post
 from accounts.models import User
 from myfilm.models import Movie
-from social.models import Post
 from social.models import Like
-
+from social.models import Comment
+from accounts.models import CustomUser
+from social.models import MovieRating
 
 def post(request, postid):
     post = Post.objects.filter(id=postid)
-    if len(post) > 0:
+    if len(post)>0:
         post = post[0]
 
     writer = User.objects.filter(id=post.username_id)
-    if len(writer) > 0:
+    if len(writer)>0:
         writer = writer[0]
-    cwriter = CustomUser.objects.filter(user_ptr_id=writer.id)[0]
+    cwriter = CustomUser.objects.filter(user_ptr_id = writer.id)[0]
 
     movie = Movie.objects.filter(id=post.movie_id)
-    if len(movie) > 0:
+    if len(movie)>0:
         movie = movie[0]
 
     likes = Like.objects.filter(post_id=postid)
     likers = []
-    if (len(likes) > 0):
+    if(len(likes)>0):
         for like in likes:
             likers.append(User.objects.filter(id=like.username_id)[0])
 
@@ -36,7 +35,7 @@ def post(request, postid):
 
     return render(request, 'post.html', {
         'PageTitle': "Post",
-        'cwriter': cwriter,
+        'cwriter':cwriter,
         'writer': writer,
         'post': post,
         'movie': movie,
@@ -56,14 +55,12 @@ def notifications(request):
         'PageTitle': "Notifications",
     })
 
-
 def movie_recommended(request):
     return
-
 
 def who_to_follw(request):
     return
 
-
 def popular_movies(request):
-    return
+    top_movies = MovieRating.objects.filter(rate__gte=4.8)
+    return top_movies
