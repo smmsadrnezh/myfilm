@@ -12,10 +12,9 @@ def post(request, postid):
     if len(post)>0:
         post = post[0]
 
-    writer = User.objects.filter(id=post.username_id)
-    if len(writer)>0:
-        writer = writer[0]
-    cwriter = CustomUser.objects.filter(user_ptr_id = writer.id)[0]
+    post_writer = CustomUser.objects.filter(id=post.username_id)
+    if len(post_writer)>0:
+        post_writer = post_writer[0]
 
     movie = Movie.objects.filter(id=post.movie_id)
     if len(movie)>0:
@@ -35,8 +34,7 @@ def post(request, postid):
 
     return render(request, 'post.html', {
         'PageTitle': "Post",
-        'cwriter':cwriter,
-        'writer': writer,
+        'writer': post_writer,
         'post': post,
         'movie': movie,
         'likers': likers,
