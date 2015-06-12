@@ -3,15 +3,16 @@
     <div class="row clearfix" xmlns="http://www.w3.org/1999/html">
         <div class="row clearfix">
             <div class="col-md-2 column">
-                <img class="img-thumbnail" alt="140x140" src="http://lorempixel.com/120/120/"/>
+                <img class="img-thumbnail" alt="140x140" src="{{ user.image_path }}"/>
             </div>
             <div class="col-md-10 column">
+                <h3>{{ post.title }}</h3>
+                <h4>{{ movie.title }}</h4>
                 <h4>
-                    Arman likes Gloomy Sunday (1999).
+                    {{ post.body }}
                 </h4>
-
                 <p>
-                    <a href="/posts/1">2015 May 2</a>
+                    <a href="/posts/{{ post.id }}">{{ post.created_time }}</a>
                 </p>
             </div>
         </div>
