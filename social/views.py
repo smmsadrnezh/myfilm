@@ -6,6 +6,7 @@ from social.models import Like
 from social.models import Comment
 from accounts.models import CustomUser
 from social.models import MovieRating
+from accounts.models import Follow
 
 def post(request, postid):
     post = Post.objects.filter(id=postid)
@@ -43,8 +44,19 @@ def post(request, postid):
 
 
 def timeline_home(request):
+    followings = Follow.objects.filter(follower_id=request.user.id)
+    all_posts=[]
+    for following in followings:
+        posts = Post.objects.filter(username_id=following.following_id)
+        writer = CustomUser.objects.filter(id=following.following_id)[0]
+        for post in posts:
+            movie = Movie.objects.filter(id = post.movie_id)[0]
+            all_posts.append((post,movie,writer))
+
+
     return render(request, 'timeline.html', {
         'PageTitle': "Myfilm - Timeline",
+        'posts': all_posts
     })
 
 

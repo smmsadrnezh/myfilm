@@ -4,22 +4,29 @@
     <database-info product="SQLite" version="3.8.7" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native"/>
     <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed"/>
     <schema name="" catalog=""/>
+    <table name="accounts_customuser" schema="" catalog="" type="TABLE">
+      <column name="user_ptr_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="birth_date" sqlType="DATE" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="image_path" sqlType="VARCHAR(100)" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <primary-key columns="user_ptr_id"/>
+      <foreign-key name="#FAKE_accounts_customuser_1" columns="user_ptr_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="#FAKE_accounts_follow_1" table="accounts_follow" schema="" catalog="" columns="following_id"/>
+      <exported-key name="#FAKE_accounts_follow_2" table="accounts_follow" schema="" catalog="" columns="follower_id"/>
+      <exported-key name="#FAKE_chat_chatmessage_1" table="chat_chatmessage" schema="" catalog="" columns="to_user_id"/>
+      <exported-key name="#FAKE_chat_chatmessage_2" table="chat_chatmessage" schema="" catalog="" columns="from_user_id"/>
+      <exported-key name="#FAKE_social_comment_1" table="social_comment" schema="" catalog="" columns="username_id"/>
+      <exported-key name="#FAKE_social_like_1" table="social_like" schema="" catalog="" columns="username_id"/>
+      <exported-key name="#FAKE_social_movierating_1" table="social_movierating" schema="" catalog="" columns="username_id"/>
+      <exported-key name="#FAKE_social_post_1" table="social_post" schema="" catalog="" columns="username_id"/>
+    </table>
     <table name="accounts_follow" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="time" sqlType="TIME" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <column name="follower_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="following_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <primary-key columns="id"/>
-      <foreign-key name="#FAKE_accounts_follow_1" columns="following_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="#FAKE_accounts_follow_2" columns="follower_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-    </table>
-    <table name="accounts_userprofile" schema="" catalog="" type="TABLE">
-      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="image_path" sqlType="VARCHAR(100)" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
-      <column name="birth_date" sqlType="DATE" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
-      <column name="user_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <primary-key columns="id"/>
-      <foreign-key name="#FAKE_accounts_userprofile_1" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_accounts_follow_1" columns="following_id" ref-table="accounts_customuser" ref-schema="" ref-catalog="" ref-columns="user_ptr_id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_accounts_follow_2" columns="follower_id" ref-table="accounts_customuser" ref-schema="" ref-catalog="" ref-columns="user_ptr_id" update-rule="3" delete-rule="3" deferrability="1"/>
     </table>
     <table name="auth_group" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
@@ -59,16 +66,10 @@
       <column name="date_joined" sqlType="DATETIME" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <column name="last_login" sqlType="DATETIME" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
       <primary-key columns="id"/>
-      <exported-key name="#FAKE_accounts_follow_1" table="accounts_follow" schema="" catalog="" columns="following_id"/>
-      <exported-key name="#FAKE_accounts_follow_2" table="accounts_follow" schema="" catalog="" columns="follower_id"/>
-      <exported-key name="#FAKE_accounts_userprofile_1" table="accounts_userprofile" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_accounts_customuser_1" table="accounts_customuser" schema="" catalog="" columns="user_ptr_id"/>
       <exported-key name="#FAKE_auth_user_groups_2" table="auth_user_groups" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_auth_user_user_permissions_2" table="auth_user_user_permissions" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_django_admin_log_1" table="django_admin_log" schema="" catalog="" columns="user_id"/>
-      <exported-key name="#FAKE_social_comment_1" table="social_comment" schema="" catalog="" columns="username_id"/>
-      <exported-key name="#FAKE_social_like_1" table="social_like" schema="" catalog="" columns="username_id"/>
-      <exported-key name="#FAKE_social_movierating_1" table="social_movierating" schema="" catalog="" columns="username_id"/>
-      <exported-key name="#FAKE_social_post_1" table="social_post" schema="" catalog="" columns="username_id"/>
     </table>
     <table name="auth_user_groups" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
@@ -85,6 +86,16 @@
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_auth_user_user_permissions_1" columns="permission_id" ref-table="auth_permission" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="#FAKE_auth_user_user_permissions_2" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+    </table>
+    <table name="chat_chatmessage" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="from_user_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="to_user_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="time" sqlType="TIME" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
+      <column name="message" sqlType="TEXT" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
+      <primary-key columns="id"/>
+      <foreign-key name="#FAKE_chat_chatmessage_1" columns="to_user_id" ref-table="accounts_customuser" ref-schema="" ref-catalog="" ref-columns="user_ptr_id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_chat_chatmessage_2" columns="from_user_id" ref-table="accounts_customuser" ref-schema="" ref-catalog="" ref-columns="user_ptr_id" update-rule="3" delete-rule="3" deferrability="1"/>
     </table>
     <table name="django_admin_log" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
@@ -157,7 +168,7 @@
       <column name="post_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="username_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <primary-key columns="id"/>
-      <foreign-key name="#FAKE_social_comment_1" columns="username_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_social_comment_1" columns="username_id" ref-table="accounts_customuser" ref-schema="" ref-catalog="" ref-columns="user_ptr_id" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="#FAKE_social_comment_2" columns="post_id" ref-table="social_post" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
     </table>
     <table name="social_like" schema="" catalog="" type="TABLE">
@@ -166,7 +177,7 @@
       <column name="post_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="username_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <primary-key columns="id"/>
-      <foreign-key name="#FAKE_social_like_1" columns="username_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_social_like_1" columns="username_id" ref-table="accounts_customuser" ref-schema="" ref-catalog="" ref-columns="user_ptr_id" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="#FAKE_social_like_2" columns="post_id" ref-table="social_post" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
     </table>
     <table name="social_movierating" schema="" catalog="" type="TABLE">
@@ -175,7 +186,7 @@
       <column name="movie_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="username_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <primary-key columns="id"/>
-      <foreign-key name="#FAKE_social_movierating_1" columns="username_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_social_movierating_1" columns="username_id" ref-table="accounts_customuser" ref-schema="" ref-catalog="" ref-columns="user_ptr_id" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="#FAKE_social_movierating_2" columns="movie_id" ref-table="myfilm_movie" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
     </table>
     <table name="social_post" schema="" catalog="" type="TABLE">
@@ -186,7 +197,7 @@
       <column name="movie_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="username_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <primary-key columns="id"/>
-      <foreign-key name="#FAKE_social_post_1" columns="username_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_social_post_1" columns="username_id" ref-table="accounts_customuser" ref-schema="" ref-catalog="" ref-columns="user_ptr_id" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="#FAKE_social_post_2" columns="movie_id" ref-table="myfilm_movie" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <exported-key name="#FAKE_social_comment_2" table="social_comment" schema="" catalog="" columns="post_id"/>
       <exported-key name="#FAKE_social_like_2" table="social_like" schema="" catalog="" columns="post_id"/>
