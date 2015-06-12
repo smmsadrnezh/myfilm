@@ -42,7 +42,8 @@ def movie(request, movietitle):
         'movie': cur_movie,
         'director': director,
         'writer': writer,
-        'stars': stars
+        'stars': stars,
+        'current_user': request.user
     })
 
 
@@ -50,13 +51,15 @@ def movies_list(request):
     return render(request, 'movies.html', {
         'PageTitle': "Myfilm - All Movies",
         'movies': Movie.objects.all(),
+        'current_user': request.user
     })
 
 
 def artists_list(request):
     return render(request, 'artists.html', {
         'PageTitle': "Myfilm - All Artists",
-        'artists': Artist.objects.all()
+        'artists': Artist.objects.all(),
+        'current_user': request.user
     })
 
 
@@ -64,5 +67,6 @@ def artist(request, artistname):
     return render(request, 'artist.html', {
         'PageTitle': "Myfilm - " + artistname,
         'artist': Artist.objects.filter(name=artistname)[0],
+        'current_user': request.user
     })
 

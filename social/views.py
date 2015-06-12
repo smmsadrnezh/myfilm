@@ -1,12 +1,13 @@
-from django.shortcuts import render
-from social.models import Post
-from accounts.models import User
-from myfilm.models import Movie
-from social.models import Like
-from social.models import Comment
+from django.http import HttpResponseRedirect
 from accounts.models import CustomUser
 from social.models import MovieRating
+from django.shortcuts import render
 from accounts.models import Follow
+from social.models import Comment
+from accounts.models import User
+from myfilm.models import Movie
+from social.models import Post
+from social.models import Like
 
 def post(request, postid):
     post = Post.objects.filter(id=postid)
@@ -39,11 +40,14 @@ def post(request, postid):
         'post': post,
         'movie': movie,
         'likers': likers,
-        'comments': comments_dic
+        'comments': comments_dic,
+        'current_user': request.user
     })
 
 
 def timeline_home(request):
+    if request.user == "":
+        return HttpResponseRedirect('/login')
     followings = Follow.objects.filter(follower_id=request.user.id)
     all_posts=[]
     for following in followings:
@@ -56,13 +60,15 @@ def timeline_home(request):
 
     return render(request, 'timeline.html', {
         'PageTitle': "Myfilm - Timeline",
-        'posts': all_posts
+        'posts': all_posts,
+        'current_user': request.user
     })
 
 
 def notifications(request):
     return render(request, 'notifications.html', {
         'PageTitle': "Notifications",
+        'current_user': request.user
     })
 
 def movie_recommended(request):

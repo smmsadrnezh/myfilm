@@ -103,18 +103,18 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle"
-                       data-toggle="dropdown">{{ current_user.firstname }} {{ current_user.lastname }}<strong
+                       data-toggle="dropdown">{{ current_user.first_name }} {{ current_user.last_name }}<strong
                             class="caret"></strong></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="/profile/1">Profile</a>
+                            <a href="/profile/{{ current_user.id }}">Profile</a>
                             <!--????-->
                         </li>
                         <li>
-                            <a href="#">Friends</a>
+                            <a href="/accounts/">Friends</a>
                         </li>
                         <li>
-                            <a href="/profile/1/edit">Settings</a>
+                            <a href="/profile/{{ current_user.id }}/edit">Settings</a>
                             <!--????-->
                         </li>
                         <li class="divider">
