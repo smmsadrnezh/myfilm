@@ -5,6 +5,8 @@ from myfilm.models import Movie
 from social.models import Like
 from social.models import Comment
 from accounts.models import CustomUser
+from social.models import MovieRating
+
 def post(request, postid):
     post = Post.objects.filter(id=postid)
     if len(post)>0:
@@ -30,10 +32,7 @@ def post(request, postid):
     for comment in comments:
         writer = User.objects.filter(id=comment.username_id)[0]
         comments_dic[comment] = writer
-        # print(comment)
-        #comments_dic.update(comment)
 
-    print(comments_dic)
     return render(request, 'post.html', {
         'PageTitle': "Post",
         'cwriter':cwriter,
@@ -63,5 +62,6 @@ def who_to_follw(request):
     return
 
 def popular_movies(request):
-    return
+    top_movies = MovieRating.objects.filter(rate__gte=4.8)
+    return top_movies
 
