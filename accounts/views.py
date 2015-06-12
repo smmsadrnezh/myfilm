@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import auth
 
-from forms import CustomRegistration
+from .forms import CustomRegistration
 from accounts.models import Follow
 
 
