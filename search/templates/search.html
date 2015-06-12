@@ -1,4 +1,4 @@
-{% extendsc "tlayout.html" %}
+{% extends "tlayout.html" %}
 {% load staticfiles %}
 {% block pageBody %}
     <form method="post" action="/search/">{% csrf_token %}
