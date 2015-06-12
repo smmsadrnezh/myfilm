@@ -1,5 +1,4 @@
 {% extends "tlayout.html" %}
-{% load static %}
 {% block pageBody %}
     <div class="container">
         <div class="row">
@@ -9,7 +8,7 @@
                     <div class="form-group">
 
                         <button>Choose Photo</button>
-                        <img width="100px" height="100px" src={% static "search/img/example.jpg" %}>
+                        <img width="100px" height="100px" src="/media/users/{{ current_user.image_path }}">
 
                     </div>
                     <div class="form-group">
