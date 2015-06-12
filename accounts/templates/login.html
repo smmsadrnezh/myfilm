@@ -13,8 +13,8 @@
                 <div class="row hero-content">
                     <div class="col-md-12">
                         <h1 class="animated fadeInDown">Please sign in...</h1>
-
-                        <form action="/auth/" method="POST" class="form-horizontal" role="form">{% csrf_token %}
+                        {{ invalid_html }}
+                        <form action="/login/" method="POST" class="form-horizontal" role="form">{% csrf_token %}
                             <div class="form-group">
                                 <label for="inputUsername" class="col-sm-2 control-label">Username</label>
 
@@ -36,17 +36,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                    </div>
-                                </div>
-                                <div class="alert alert-danger hide" id="error">
-                                    <span class="glyphicon glyphicon-remove "></span>
-                                    <strong> Error! Please enter correct password.</strong>
-                                </div>
-                            </div>
-                            <input type="submit" value="Sign in" class="use-btn animated fadeInUp" onsubmit="isvalid();">
+                            <input type="submit" value="Sign in" class="use-btn animated fadeInUp">
                             <a href="/forget" class="learn-btn fadeInUp youtube-media">Forgot Password <i class="fa fa-arrow-down"></i></a>
                         </form>
                     </div>

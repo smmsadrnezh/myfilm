@@ -1,0 +1,33 @@
+{% extends "tlayout.html" %}
+{% load staticfiles %}
+{% block pageBody %}
+    <div class="row clearfix">
+        <div class="col-md-2 column">
+            <img class="img-thumbnail" src="/media/users/{{ current_user.image_path }}"/>
+        </div>
+        <div class="col-md-10 column">
+            <h1>{{ current_user.first_name }} {{ current_user.last_name }}</h1>
+
+            <h2>@{{ current_user.username }}</h2>
+        </div>
+    </div>
+
+    <h3>followers (2)</h3>
+    {% for follower in followers %}
+    <img class="img-circle" src="/media/users/{{ following.image_path }}">
+    {% endfor %}
+    <br \>
+    <h3>following (3)</h3>
+    {% for following in following %}
+    <img class="img-circle" src="/media/users/{{ following.image_path }}">
+    {% endfor %}
+
+
+    <p></p>
+
+    <h3>User Posts</h3>
+
+    <section id="posts">
+        {{ userPosts }}
+    </section>
+{% endblock %}

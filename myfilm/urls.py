@@ -18,7 +18,6 @@ urlpatterns = [
     # accounts app urls
     url(r'^chpass$', 'accounts.views.change_password'),
     url(r'^login/$', 'accounts.views.login'),
-    url(r'^auth/$', 'accounts.views.auth_view'),
     url(r'^logout/$', 'accounts.views.logout'),
     url(r'^profile/(?P<userid>\d+)/$', 'accounts.views.profile'),
     url(r'^profile/(?P<userid>\d+)/edit$', 'accounts.views.edit_profile'),
