@@ -1,9 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class ChatMessage(models.Model):
-    from_user = models.ForeignKey('accounts.CustomUser', related_name='+')
-    to_user = models.ForeignKey('accounts.CustomUser', related_name='+')
+    from_user = models.ForeignKey(User, related_name='+')
+    to_user = models.ForeignKey(User, related_name='+')
     time = models.TimeField()
     message = models.TextField()
 

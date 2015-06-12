@@ -44,7 +44,8 @@ INSTALLED_APPS = (
     'social'
 )
 
-CUSTOM_USER_MODEL = 'accounts.CustomUser'
+AUTH_PROFILE_MODULE = 'accounts.UserProfile'
+CUSTOM_USER_MODEL = 'accounts.UserProfile'
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
