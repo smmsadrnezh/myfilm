@@ -2,81 +2,10 @@
 {% block pageBody %}
     <div class="container">
         <div class="row">
-            <form role="form">
-                <div class="col-lg-6">
-                    <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required
-                        Field</strong></div>
-                    <div class="form-group">
-                        <label for="InputName">User Name</label>
-
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="InputName" id="InputName"
-                                   placeholder="Enter User Name" required>
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="ShowingName">Showing Name</label>
-
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="ShowingName" id="ShowingName"
-                                   placeholder="Enter Showing Name" required>
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="Password">Password</label>
-
-                        <div class="input-group">
-                            <input type="password" class="form-control" name="Password" id="password"
-                                   placeholder="Enter Password" required>
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="Password">Confirm Password</label>
-
-                        <div class="input-group">
-                            <input type="password" class="form-control" name="Password" id="conf_password"
-                                   placeholder="Enter Password Again" required>
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="InputEmail">Enter Email</label>
-
-                        <div class="input-group">
-                            <input type="email" class="form-control" id="InputEmailFirst" name="InputEmail"
-                                   placeholder="Enter Email" required>
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Enter Date</label>
-
-                        <div class="input-group">
-                            <input type="date" class="form-control" id="date" name="date" placeholder="" required>
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                        </div>
-                    </div>
-
-                    <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
-                    <input type="submit" name="submit" id="submit" value="Login Page" class="btn btn-info pull-right"
-                           onclick="window.location.href='../login'">
-                </div>
+            <form action="/register/" method="post" role="form">{%  csrf_token %}
+                    {{ form }}
+                    <input type="submit" name="submit" value="Submit" class="btn btn-info pull-right">
             </form>
-            <div class="col-lg-5 col-md-push-1">
-                <div class="col-md-12" style="display: none;">
-                    <div class="alert alert-success">
-                        <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
-                    </div>
-                    <div class="alert alert-danger">
-                        <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page
-                        inputs.</strong>
-                        <button id="btn" onclick="test();">check</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 {% endblock %}

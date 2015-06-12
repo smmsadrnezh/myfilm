@@ -1,0 +1,61 @@
+    <div class="row clearfix" xmlns="http://www.w3.org/1999/html">
+        <div class="row clearfix">
+            <div class="col-md-2 column">
+                <img class="img-thumbnail" alt="140x140" src="/media/users/{{ cwriter.image_path }}"/>
+            </div>
+            <div class="col-md-10 column">
+                <h3>{{ post.title }}</h3>
+                <h4>{{ writer.username }}</h4>
+                <h4>{{ movie.title }}</h4>
+                <P>
+                    {{ post.body }}
+                </P>
+                <p>
+                    <a href="/posts/{{ post.id }}">{{ post.created_time }}</a>
+                </p>
+            </div>
+        </div>
+        <br \>
+
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <button type="button" class="btn btn-default">Like</button>
+                <p>
+                    {% for liker in likers %}
+                        {{ liker.username }} and
+                    {% endfor %}
+                    like this post.
+                </p>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                {% for comment,writer in comments.items %}
+                    <h3>
+                        comment {{ comment.id }}
+                    </h3>
+
+                    <p>
+                        {{ comment.body }} -- {{ writer.username }}
+                    </p>
+                    <p>{{ comment.time }}</p>
+                {% endfor %}
+
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="input" class="col-sm-2 control-label">Comment</label>
+
+                        <div class="col-sm-10">
+                            <textarea class="form-control" id="commentBody"
+                                      placeholder="Enter text here..."/></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

@@ -5,6 +5,8 @@ from myfilm.models import Movie
 from social.models import Like
 from social.models import Comment
 from accounts.models import CustomUser
+from django.template.loader import get_template
+
 def post(request, postid):
     post = Post.objects.filter(id=postid)
     if len(post)>0:
@@ -30,8 +32,8 @@ def post(request, postid):
     for comment in comments:
         writer = User.objects.filter(id=comment.username_id)[0]
         comments_dic[comment] = writer
-        # print(comment)
-        #comments_dic.update(comment)
+
+    post_content = get_template('post_content.html').render()
 
     print(comments_dic)
     return render(request, 'post.html', {
@@ -41,13 +43,18 @@ def post(request, postid):
         'post': post,
         'movie': movie,
         'likers': likers,
-        'comments': comments_dic
+        'comments': comments_dic,
+        'post_content':post_content
     })
 
 
 def timeline_home(request):
+
+    post_content = get_template('post_content.html').render()
+
     return render(request, 'timeline.html', {
         'PageTitle': "Myfilm - Timeline",
+        'post_content':post_content
     })
 
 

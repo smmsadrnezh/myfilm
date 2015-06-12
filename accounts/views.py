@@ -1,10 +1,10 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
-from django.contrib import auth
+from forms import CustomRegistration
 from django.core.context_processors import csrf
-from accounts.models import Follow
 from django.template.loader import get_template
-from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from accounts.models import Follow
+from django.contrib import auth
 
 def login(request):
     invalid_html = ""
@@ -35,11 +35,15 @@ def accounts_lists(request):
 
 
 def register(request):
-    # if request.method == 'POST':
-
-    return render(request, 'register.html', {
-        'PageTitle': "Register",
-    })
+    if request.method == 'POST':
+        form = CustomRegistration(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/login')
+    args = {}
+    args.update(csrf(request))
+    args['form'] = CustomRegistration()
+    return render(request, 'register.html', dict(args, **{'PageTitle': "Login"}))
 
 
 def profile(request, userid):
