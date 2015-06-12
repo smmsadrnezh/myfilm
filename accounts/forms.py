@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from accounts.models import CustomUser
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
@@ -9,16 +9,19 @@ class CustomRegistration(UserCreationForm):
     last_name = forms.CharField()
 
     class Meta:
-        model = User
-        fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
+        model = CustomUser
+        fields = ('username', 'email', 'first_name', 'last_name', 'birth_date' , 'password1', 'password2')
 
     def save(self, commit=True):
-        user = super(UserCreationForm, self).save(commit=False)
-        user.email = self.cleaned_data['email']
-        user.first_name = self.cleaned_data['first_name']
-        user.last_name = self.cleaned_data['last_name']
+        CustomUser = super(UserCreationForm, self).save(commit=False)
+        CustomUser.email = self.cleaned_data['email']
+        CustomUser.first_name = self.cleaned_data['first_name']
+        CustomUser.last_name = self.cleaned_data['last_name']
+        CustomUser.birth_date = self.cleaned_data['birth_date']
+        CustomUser.image_path = self.cleaned_data['username']+".jpg"
+        CustomUser.password = self.clean_password2()
 
         if commit:
-            user.save()
+            CustomUser.save()
 
-        return user
+        return CustomUser
