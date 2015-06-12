@@ -1,10 +1,12 @@
-from forms import CustomRegistration
 from django.core.context_processors import csrf
 from django.template.loader import get_template
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from accounts.models import Follow
 from django.contrib import auth
+
+from forms import CustomRegistration
+from accounts.models import Follow
+
 
 def login(request):
     invalid_html = ""
@@ -12,7 +14,7 @@ def login(request):
     if request.method == "POST":
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
-        user = auth.authenticate(username=username,password=password)
+        user = auth.authenticate(username=username, password=password)
 
         if user is not None:
             auth.login(request, user)
@@ -22,11 +24,13 @@ def login(request):
 
     c = {}
     c.update(csrf(request))
-    return render(request,'login.html', dict(c, **{'PageTitle': "Login" , 'invalid_html' : invalid_html}))
+    return render(request, 'login.html', dict(c, **{'PageTitle': "Login", 'invalid_html': invalid_html}))
+
 
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect('/')
+
 
 def accounts_lists(request):
     return render(request, 'users.html', {
@@ -53,8 +57,8 @@ def profile(request, userid):
     return render(request, 'profile.html', {
         'PageTitle': "Masoud - Profile",
         'current_user': request.user,
-        'followers' : followers,
-        'following' : following
+        'followers': followers,
+        'following': following
     })
 
 

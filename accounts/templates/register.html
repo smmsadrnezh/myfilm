@@ -2,9 +2,9 @@
 {% block pageBody %}
     <div class="container">
         <div class="row">
-            <form action="/register/" method="post" role="form">{%  csrf_token %}
-                    {{ form }}
-                    <input type="submit" name="submit" value="Submit" class="btn btn-info pull-right">
+            <form action="/register/" method="post" role="form">{% csrf_token %}
+                {{ form }}
+                <input type="submit" name="submit" value="Submit" class="btn btn-info pull-right">
             </form>
         </div>
     </div>

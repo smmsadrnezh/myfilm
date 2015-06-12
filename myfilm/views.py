@@ -1,4 +1,5 @@
 from django.shortcuts import render
+
 from myfilm.models import Artist
 from myfilm.models import Movie
 from social.models import MovieRating
