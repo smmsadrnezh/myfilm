@@ -11,10 +11,10 @@ def search(request):
             title = form.cleaned_data['title']
         movies = Movie.objects.filter(title=title)
         users = User.objects.filter(username=title)
-        movies = "fight club"
+        #movies = "fight club"
         return render(request, 'search.html', {
             'movie': movies, 'user': users
         })
-    return render(request, 'search.html', {
-
+    form = SearchForm()
+    return render(request, 'search.html', {'form': form
     })

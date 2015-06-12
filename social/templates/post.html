@@ -3,14 +3,15 @@
     <div class="row clearfix" xmlns="http://www.w3.org/1999/html">
         <div class="row clearfix">
             <div class="col-md-2 column">
-                <img class="img-thumbnail" alt="140x140" src="{{ user.image_path }}"/>
+                <img class="img-thumbnail" alt="140x140" src="/media/users/{{ cwriter.image_path }}"/>
             </div>
             <div class="col-md-10 column">
                 <h3>{{ post.title }}</h3>
+                <h4>{{ writer.username }}</h4>
                 <h4>{{ movie.title }}</h4>
-                <h4>
+                <P>
                     {{ post.body }}
-                </h4>
+                </P>
                 <p>
                     <a href="/posts/{{ post.id }}">{{ post.created_time }}</a>
                 </p>
@@ -22,35 +23,28 @@
             <div class="col-md-12 column">
                 <button type="button" class="btn btn-default">Like</button>
                 <p>
-                    Folani and Folani likes this post.
+                    {% for liker in likers %}
+                        {{ liker.username }} and
+                    {% endfor %}
+                    like this post.
                 </p>
             </div>
         </div>
         <div class="row clearfix">
             <div class="col-md-12 column">
-                <h3>
-                    Comment 1
-                </h3>
+                {% for comment,writer in comments %}
+                    <h3>
+                        comment {{ comment.id }}
+                    </h3>
 
-                <p>
-                    This post is very chert. -- Masoud
-                </p>
+                    <p>
+                        {{ comment.body }} -- {{ writer.username }}
+                    </p>
 
-                <p>
-                    <a class="btn" href="#">Like</a>
-                </p>
-
-                <h3>
-                    Comment 2
-                </h3>
-
-                <p>
-                    This post is not very chert. --Sadjad
-                </p>
-
-                <p>
-                    <a class="btn" href="#">Like</a>
-                </p>
+                    <p>
+                        <a class="btn" href="#">Like</a>
+                    </p>
+                {% endfor %}
 
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
