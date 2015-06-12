@@ -32,17 +32,13 @@
         </div>
         <div class="row clearfix">
             <div class="col-md-12 column">
-                {% for comment,writer in comments %}
+                {% for key,value in comments.items %}
                     <h3>
-                        comment {{ comment.id }}
+                        comment {{ key }}
                     </h3>
 
                     <p>
-                        {{ comment.body }} -- {{ writer.username }}
-                    </p>
-
-                    <p>
-                        <a class="btn" href="#">Like</a>
+                        {{ value }} -- {{ value }}
                     </p>
                 {% endfor %}
 

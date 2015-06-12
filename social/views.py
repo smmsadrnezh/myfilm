@@ -28,11 +28,11 @@ def post(request, postid):
     comments = Comment.objects.filter(post_id=postid)
     comments_dic = {}
     for comment in comments:
-        comment_writer = User.objects.filter(id=comment.username_id)[0]
-        comment = {'comment' : comment, 'writer' : comment_writer}
-        comments_dic = dict(comments_dic, **comment)
+        comment = {'id' : comment.id , 'body' : comment.body, 'writer' : User.objects.filter(id=comment.username_id)[0].username}
+        # print(comment)
+        comments_dic.update(comment)
 
-
+    print(comments_dic)
     return render(request, 'post.html', {
         'PageTitle': "Post",
         'cwriter':cwriter,
