@@ -1,10 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
 
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
-    username = models.ForeignKey(User)
+    username = models.ForeignKey('accounts.CustomUser')
     movie = models.ForeignKey('myfilm.Movie')
     body = models.TextField()
     created_time = models.TimeField()
@@ -14,7 +13,7 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    username = models.ForeignKey(User)
+    username = models.ForeignKey('accounts.CustomUser')
     post = models.ForeignKey('Post')
     body = models.TextField()
     time = models.TimeField()
@@ -27,7 +26,7 @@ class Comment(models.Model):
 
 
 class Like(models.Model):
-    username = models.ForeignKey(User)
+    username = models.ForeignKey('accounts.CustomUser')
     post = models.ForeignKey('Post')
     time = models.TimeField()
 
@@ -39,7 +38,7 @@ class Like(models.Model):
 
 
 class MovieRating(models.Model):
-    username = models.ForeignKey(User)
+    username = models.ForeignKey('accounts.CustomUser')
     movie = models.ForeignKey('myfilm.Movie')
     rate = models.IntegerField()
 
