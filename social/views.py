@@ -7,6 +7,7 @@ from social.models import Comment
 from accounts.models import CustomUser
 from django.template.loader import get_template
 
+
 def post(request, postid):
     post = Post.objects.filter(id=postid)
     if len(post)>0:
