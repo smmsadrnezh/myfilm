@@ -622,6 +622,10 @@ Hero
     color: #fff;
 }
 
+#login-hero {
+    position: fixed;
+}
+
 .hero h1 {
     margin: 200px 0 45px 0;
     font-weight: 300;

@@ -24,7 +24,7 @@ def auth_view(request):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect('/home')
+    return HttpResponseRedirect('/')
 
 def accounts_lists(request):
     return render(request, 'users.html', {

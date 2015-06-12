@@ -1,50 +1,58 @@
 {% extends "layout.html" %}
+{% load staticfiles %}
 {% block pageBody %}
-    <div class="container">
-        <h2 class="form-signin-heading">Please sign in</h2>
-
-        <div class="row clearfix">
-            <div class="col-md-12 column">
-                <form action="/auth/" method="POST" class="form-horizontal" role="form">{% csrf_token  %}
-                    <div class="form-group">
-                        <label for="inputUsername" class="col-sm-2 control-label">Username</label>
-
-                        <div class="col-sm-10">
-                            <input class="form-control" name="username" type="text"/>
-                        </div>
+    <header>
+        <section class="hero" id="login-hero">
+            <div class="texture-overlay"></div>
+            <div class="container">
+                <div class="row nav-wrapper">
+                    <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                        <a href="/"><img src="{% static "img/logo-white.png" %}" alt="Myfilm Logo"></a>
                     </div>
-                    <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                </div>
+                <div class="row hero-content">
+                    <div class="col-md-12">
+                        <h1 class="animated fadeInDown">Please sign in...</h1>
 
-                        <div class="col-sm-10">
-                            <input class="form-control" name="password" type="password"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <div class="checkbox">
-                                <label><input name="re
-                                member" type="checkbox"/> Remember me</label>
+                        <form action="/auth/" method="POST" class="form-horizontal" role="form">{% csrf_token %}
+                            <div class="form-group">
+                                <label for="inputUsername" class="col-sm-2 control-label">Username</label>
+
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="username" type="text"/>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <a href="/forget">Forget Password</a>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <input type="submit" value="Sign in" class="btn btn-default" onsubmit="isvalid();">
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="password" type="password"/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="alert alert-danger hide" id="error">
-                            <span class="glyphicon glyphicon-remove "></span>
-                            <strong> Error! Please enter correct password.</strong>
-                        </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <div class="checkbox">
+                                        <label><input name="remember" type="checkbox"/> Remember me</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                    </div>
+                                </div>
+                                <div class="alert alert-danger hide" id="error">
+                                    <span class="glyphicon glyphicon-remove "></span>
+                                    <strong> Error! Please enter correct password.</strong>
+                                </div>
+                            </div>
+                            <input type="submit" value="Sign in" class="use-btn animated fadeInUp" onsubmit="isvalid();">
+                            <a href="/forget" class="learn-btn fadeInUp youtube-media">Forgot Password <i class="fa fa-arrow-down"></i></a>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
+    </header>
 
 {% endblock %}
