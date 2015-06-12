@@ -32,14 +32,15 @@
         </div>
         <div class="row clearfix">
             <div class="col-md-12 column">
-                {% for key,value in comments.items %}
+                {% for comment,writer in comments.items %}
                     <h3>
-                        comment {{ key }}
+                        comment {{ comment.id }}
                     </h3>
 
                     <p>
-                        {{ value }} -- {{ value }}
+                        {{ comment.body }} -- {{ writer.username }}
                     </p>
+                    <p>{{ comment.time }}</p>
                 {% endfor %}
 
                 <form class="form-horizontal" role="form">

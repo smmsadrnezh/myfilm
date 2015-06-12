@@ -28,9 +28,10 @@ def post(request, postid):
     comments = Comment.objects.filter(post_id=postid)
     comments_dic = {}
     for comment in comments:
-        comment = {'id' : comment.id , 'body' : comment.body, 'writer' : User.objects.filter(id=comment.username_id)[0].username}
+        writer = User.objects.filter(id=comment.username_id)[0]
+        comments_dic[comment] = writer
         # print(comment)
-        comments_dic.update(comment)
+        #comments_dic.update(comment)
 
     print(comments_dic)
     return render(request, 'post.html', {
