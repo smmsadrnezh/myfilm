@@ -59,11 +59,13 @@ def profile(request, username):
     if request.user.id == None:
         return HttpResponseRedirect('/login')
     else:
+        followings = []
+        followers = []
         profile_user = CustomUser.objects.filter(username=username)[0]
         for follower in Follow.objects.filter(following_id=profile_user.id):
-            followers = CustomUser.objects.filter(id=follower.follower_id)
+            followers += CustomUser.objects.filter(id=follower.follower_id)
         for following in Follow.objects.filter(follower_id=profile_user.id):
-            followings = CustomUser.objects.filter(id=following.following_id)
+            followings += CustomUser.objects.filter(id=following.following_id)
         return render(request, 'profile.html', {
             'PageTitle': "Myfilm - " + profile_user.first_name + " " + profile_user.last_name + " Profile",
             'profile_user': profile_user,
