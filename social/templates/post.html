@@ -3,23 +3,22 @@
     <div class="row clearfix" xmlns="http://www.w3.org/1999/html">
         <div class="row clearfix">
             <div class="col-md-2 column">
+                <h4>{{ writer.username }}</h4>
                 <img class="img-thumbnail" alt="140x140" src="/media/users/{{ writer.image_path }}"/>
             </div>
             <div class="col-md-10 column">
                 <h3>{{ post.title }}</h3>
-                <h4>{{ writer.username }}</h4>
-                <h4>{{ movie.title }}</h4>
+                <p>
+                    <a href="/posts/{{ post.id }}">{{ post.created_time }}</a>
+                </p>
+                <h4>Movie Title: {{ movie.title }}</h4>
 
                 <P>
                     {{ post.body }}
                 </P>
 
-                <p>
-                    <a href="/posts/{{ post.id }}">{{ post.created_time }}</a>
-                </p>
             </div>
         </div>
-        <br \>
 
         <div class="row clearfix">
             <div class="col-md-12 column">
@@ -32,6 +31,9 @@
                 </p>
             </div>
         </div>
+
+        <hr class="featurette-divider">
+
         <div class="row clearfix">
             <div class="col-md-12 column">
                 {% for comment,writer in comments.items %}
@@ -43,6 +45,7 @@
                         {{ comment.body }} -- {{ writer.username }}
                     </p>
                     <p>{{ comment.time }}</p>
+                    <hr class="featurette-divider">
                 {% endfor %}
 
                 <form class="form-horizontal" role="form">
