@@ -1,33 +1,58 @@
 {% extends "tlayout.html" %}
 {% load staticfiles %}
 {% block pageBody %}
-    <div class="row clearfix">
-        <div class="col-md-2 column">
-            <img class="img-thumbnail" src="/media/users/{{ profile_user.image_path }}"/>
-        </div>
-        <div class="col-md-10 column">
-            <h2>{{ profile_user.first_name }} {{ profile_user.last_name }}</h2>
-
-            <strong>@{{ profile_user.username }}</strong>
-        </div>
+<div class="row clearfix">
+    <div class="col-md-2 column">
+        <img class="img-thumbnail" src="/media/users/{{ profile_user.image_path }}"/>
     </div>
+    <div class="col-md-10 column">
+        <h2>{{ profile_user.first_name }} {{ profile_user.last_name }}</h2>
 
-    <h3>followers (2)</h3>
-    {% for follower in followers %}
-        <img class="img-circle" src="/media/users/{{ follower.image_path }}">
-    {% endfor %}
+        <strong>@{{ profile_user.username }}</strong>
+    </div>
+</div>
+
+
+<div class="tab-pane fade in active" id="people">
+    <h3>followers ({{ followers_count }})</h3>
+    <ul class="nav">
+
+        {% for follower in followers %}
+
+            <li class="active"><a href="/profile/{{ follower.username }}">
+
+                <div class="col-md-1 column">
+                    <img width="20px" height="20px" class="img-circle" src="/media/users/{{ follower.image_path }}">
+                </div>
+                {{ follower.first_name }} {{ follower.last_name }} ({{ follower.username }})
+            </a>
+            </li>
+        {% endfor %}
+    </ul>
     <br \>
-    <h3>following (3)</h3>
-    {% for following in following %}
-        <img class="img-circle" src="/media/users/{{ following.image_path }}">
-    {% endfor %}
 
+    <h3>following ({{ following_count }})</h3>
+    <ul class="nav">
 
-    <p></p>
+        {% for following in following %}
 
-    <h3>User Posts</h3>
+            <li class="active"><a href="/profile/{{ following.username }}">
 
-    <section id="posts">
-        {{ userPosts }}
-    </section>
+                <div class="col-md-1 column">
+                    <img width="20px" height="20px" class="img-circle" src="/media/users/{{ following.image_path }}">
+                </div>
+                {{ following.first_name }} {{ following.last_name }} ({{ following.username }})
+            </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<p></p>
+
+<h3>User Posts</h3>
+
+<section id="posts">
+    {{ userPosts }}
+</section>
 {% endblock %}

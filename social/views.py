@@ -57,7 +57,7 @@ def timeline_home(request):
         followings = Follow.objects.filter(follower_id=request.user.id)
         all_posts = []
         for following in followings:
-            posts = Post.objects.filter(username_id=following.following_id)
+            posts = Post.objects.filter(username_id=following.following_id).order_by('created_time')
             writer = CustomUser.objects.filter(id=following.following_id)[0]
             for post in posts:
                 movie = Movie.objects.filter(id=post.movie_id)[0]

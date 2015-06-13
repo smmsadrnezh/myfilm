@@ -50,7 +50,7 @@ def movie(request, movietitle):
 def movies_list(request):
     return render(request, 'movies.html', {
         'PageTitle': "Myfilm - All Movies",
-        'movies': Movie.objects.all(),
+        'movies': Movie.objects.all().order_by('year'),
         'current_user': request.user
     })
 
@@ -58,7 +58,7 @@ def movies_list(request):
 def artists_list(request):
     return render(request, 'artists.html', {
         'PageTitle': "Myfilm - All Artists",
-        'artists': Artist.objects.all(),
+        'artists': Artist.objects.all().order_by('name'),
         'current_user': request.user
     })
 
