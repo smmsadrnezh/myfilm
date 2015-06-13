@@ -38,8 +38,10 @@ def post(request, postid):
         for comment in comments:
             writer = User.objects.filter(id=comment.username_id)[0]
             comments_dic[comment] = writer
-        #recommended_movies = movies_recommended(request)
+        recommended_movies = movies_recommended(request)
         top_movies = popular_movies(request)
+        #following_recom = who_to_follw(request)
+
         for top_movie in top_movies:
             print(top_movie.title)
 
@@ -51,7 +53,8 @@ def post(request, postid):
             'likers': likers,
             'comments': comments_dic,
             'current_user': request.user,
-            #'recom_movies': recommended_movies,
+            #'following_users':following_recom,
+            'recom_movies': recommended_movies,
             'popular_movies': top_movies
         })
 
@@ -88,26 +91,33 @@ def notifications(request):
 
 def movies_recommended(request):
     recommended_movies = []
-    top_movies = Movie.objects.filter(MovieRating__rate__gte=4.5,MovieRating__username_id=request.user.id)
+    top_movies = Movie.objects.filter(movierating__rate__gte=4.5,movierating__username_id=request.user.id)
+
     for top_movie in top_movies:
-        top_voters = CustomUser.objects.filter(MovieRating__rate__gte=4.5)
+        top_voters = CustomUser.objects.filter(movierating__rate__gte=4.5)
         for top_voter in top_voters:
-            voters_top_movies = Movie.objects.filter(MovieRating__rate__gte=4.5,MovieRating__username_id=top_voter.id)
+            voters_top_movies = Movie.objects.filter(movierating__rate__gte=4.5,movierating__username_id=top_voter.id)
             for voters_top_movie in voters_top_movies:
-                recommended_movies.append(voters_top_movie)
+                if not recommended_movies.__contains__(voters_top_movie):
+                    recommended_movies.append(voters_top_movie)
     return recommended_movies
 
 
 def who_to_follw(request):
     recommended_followings = []
-    followings = User.objects.filter(Follow__follower_id=request.user.id)
+    followings = CustomUser.objects.filter(follow__follower_id=request.user.id)
     for following in followings:
-        f_followings = User.objects.filter(Follow_follower_id = following.id)
+        f_followings = CustomUser.objects.filter(follow__follower_id = following.id)
         for f_following in f_followings:
             recommended_followings.append(f_following)
     return recommended_followings
 
 
 def popular_movies(request):
-    top_movies = Movie.objects.filter(movierating__rate__gte=4.8)
+    top_movies=[]
+    repetitive_top_movies = Movie.objects.filter(movierating__rate__gte=4.8)
+    for repetitive_top_movie in repetitive_top_movies:
+        if not top_movies.__contains__(repetitive_top_movie):
+            top_movies.append(repetitive_top_movie)
+
     return top_movies
