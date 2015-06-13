@@ -40,7 +40,7 @@ def post(request, postid):
             comments_dic[comment] = writer
         recommended_movies = movies_recommended(request)
         top_movies = popular_movies(request)
-        #following_recom = who_to_follw(request)
+        following_recom = who_to_follw(request)
 
         for top_movie in top_movies:
             print(top_movie.title)
@@ -53,7 +53,7 @@ def post(request, postid):
             'likers': likers,
             'comments': comments_dic,
             'current_user': request.user,
-            #'following_users':following_recom,
+            'following_users':following_recom,
             'recom_movies': recommended_movies,
             'popular_movies': top_movies
         })
@@ -105,11 +105,17 @@ def movies_recommended(request):
 
 def who_to_follw(request):
     recommended_followings = []
-    followings = CustomUser.objects.filter(follow__follower_id=request.user.id)
+    followings = []
+    #followings = CustomUser.objects.filter(follow__follower_id=request.user.id)
+
+    for following in Follow.objects.filter(follower_id=request.user.id):
+        followings += CustomUser.objects.filter(id=following.following_id)
     for following in followings:
-        f_followings = CustomUser.objects.filter(follow__follower_id = following.id)
+        f_followings = Follow.objects.filter(follower_id = following.id)
         for f_following in f_followings:
-            recommended_followings.append(f_following)
+            if not recommended_followings.__contains__(CustomUser.objects.filter(id=f_following.following_id)[0]):
+                recommended_followings.append(CustomUser.objects.filter(id=f_following.following_id)[0])
+
     return recommended_followings
 
 
