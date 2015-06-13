@@ -1,9 +1,9 @@
 {% extends "tlayout.html" %}
 {% block pageBody %}
-    <article>
         {% for movie in movies %}
             <div class="row clearfix">
                 <div class="col-md-3 column">
+                    <h1></h1>
                     <img class="img-thumbnail" src="/media/movies/{{ movie.image_path }}" alt="{{ movie.title }}"/>
                 </div>
                 <div class="col-md-9 column">
@@ -15,8 +15,6 @@
 
                 </div>
             </div>
-            <br \>
         {% endfor %}
-    </article>
 {% endblock %}
 
