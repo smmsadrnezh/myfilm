@@ -42,8 +42,7 @@ def post(request, postid):
         top_movies = popular_movies(request)
         following_recom = who_to_follw(request)
 
-        for top_movie in top_movies:
-            print(top_movie.title)
+
 
         return render(request, 'post.html', {
             'PageTitle': "Post",
@@ -106,7 +105,6 @@ def movies_recommended(request):
 def who_to_follw(request):
     recommended_followings = []
     followings = []
-    #followings = CustomUser.objects.filter(follow__follower_id=request.user.id)
 
     for following in Follow.objects.filter(follower_id=request.user.id):
         followings += CustomUser.objects.filter(id=following.following_id)
