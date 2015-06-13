@@ -38,6 +38,10 @@ def post(request, postid):
         for comment in comments:
             writer = User.objects.filter(id=comment.username_id)[0]
             comments_dic[comment] = writer
+        #recommended_movies = movies_recommended(request)
+        top_movies = popular_movies(request)
+        for top_movie in top_movies:
+            print(top_movie.title)
 
         return render(request, 'post.html', {
             'PageTitle': "Post",
@@ -46,7 +50,9 @@ def post(request, postid):
             'movie': movie,
             'likers': likers,
             'comments': comments_dic,
-            'current_user': request.user
+            'current_user': request.user,
+            #'recom_movies': recommended_movies,
+            'popular_movies': top_movies
         })
 
 
@@ -80,14 +86,28 @@ def notifications(request):
         })
 
 
-def movie_recommended(request):
-    return
+def movies_recommended(request):
+    recommended_movies = []
+    top_movies = Movie.objects.filter(MovieRating__rate__gte=4.5,MovieRating__username_id=request.user.id)
+    for top_movie in top_movies:
+        top_voters = CustomUser.objects.filter(MovieRating__rate__gte=4.5)
+        for top_voter in top_voters:
+            voters_top_movies = Movie.objects.filter(MovieRating__rate__gte=4.5,MovieRating__username_id=top_voter.id)
+            for voters_top_movie in voters_top_movies:
+                recommended_movies.append(voters_top_movie)
+    return recommended_movies
 
 
 def who_to_follw(request):
-    return
+    recommended_followings = []
+    followings = User.objects.filter(Follow__follower_id=request.user.id)
+    for following in followings:
+        f_followings = User.objects.filter(Follow_follower_id = following.id)
+        for f_following in f_followings:
+            recommended_followings.append(f_following)
+    return recommended_followings
 
 
 def popular_movies(request):
-    top_movies = MovieRating.objects.filter(rate__gte=4.8)
+    top_movies = Movie.objects.filter(movierating__rate__gte=4.8)
     return top_movies
