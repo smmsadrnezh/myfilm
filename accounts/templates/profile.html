@@ -12,7 +12,7 @@
     </div>
 </div>
 
-
+<br \>
 <div class="tab-pane fade in active" id="people">
     <h3>followers ({{ followers_count }})</h3>
     <ul class="nav">
@@ -49,8 +49,32 @@
 </div>
 
 <p></p>
-
+<hr class="featurette-divider">
 <h3>User Posts</h3>
+
+        {% for post,movie,writer in posts %}
+        <div class="row clearfix" xmlns="http://www.w3.org/1999/html">
+            <div class="row clearfix">
+                <div class="col-md-2 column">
+                    <h4>{{ writer.username }}</h4>
+                    <img class="img-thumbnail" alt="140x140" src="/media/users/{{ writer.image_path }}"/>
+                </div>
+                <div class="col-md-10 column">
+                    <h3>{{ post.title }}</h3>
+                    <p>
+                        <a href="/posts/{{ post.id }}">{{ post.created_time }}</a>
+                    </p>
+                    <h4>Movie Title: {{ movie.title }}</h4>
+
+                    <P>
+                        {{ post.body }}
+                    </P>
+
+                </div>
+            </div>
+        </div>
+    <br \>
+    {% endfor %}
 
 <section id="posts">
     {{ userPosts }}
