@@ -151,12 +151,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 column">
-                    <div class="row clearfix">
+                <div class="col-md-4 column absolute">
+                    <div class="row clearfix right-module-fixed">
                         <div class="col-md-12 column">
 
                             <div class="row clearfix">
-                                <div class="col-md-12 column">
                                     <h2>Recommended for you</h2>
                                     {% for movie in recom_movies %}
                                         <div class="row clearfix">
@@ -175,9 +174,8 @@
                                             </div>
                                         </div>
                                     {% endfor %}
-                                </div>
                             </div>
-                            <div class="col-md-12 column">
+                            <div class="row clearfix">
                                 <h2>Who to follow</h2>
                                 {% for user in following_users %}
                                     <div class="row clearfix">
@@ -196,7 +194,7 @@
                                     </div>
                                 {% endfor %}
                             </div>
-                            <div class="col-md-12 column">
+                            <div class="row clearfix">
                                 <h2>Popular on MyFilm</h2>
                                 {% for movie in popular_movies %}
                                     <div class="row clearfix">

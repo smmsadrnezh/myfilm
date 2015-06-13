@@ -22,3 +22,12 @@
     right: 5px;
     top: 200px;
 }
+
+.absolute {
+    position: relative;
+}
+
+.right-module-fixed {
+    float: left;
+    position: fixed;
+}
