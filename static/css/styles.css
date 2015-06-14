@@ -614,29 +614,28 @@ Navigation
 Hero
 ========================================================================== */
 #layout-hero {
-    margin-top:-20px;
+    margin-top: -20px;
     position: relative;
-padding: 60px 0 60px 0;
-min-height: 800px;
-background: rgb(40, 70, 102) url('../img/bg_layout.jpg') no-repeat center center fixed;
-background-size: cover;
-color: #fff;
+    padding: 60px 0 60px 0;
+    min-height: 800px;
+    background: rgb(40, 70, 102) url('../img/bg_layout.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
 }
 
 .hero {
-position: relative;
-padding: 60px 0 60px 0;
-min-height: 800px;
-background: rgb(40, 70, 102) url('../img/bg.jpg') no-repeat center center;
-background-size: cover;
-color: #fff;
+    position: relative;
+    padding: 60px 0 60px 0;
+    min-height: 800px;
+    background: rgb(40, 70, 102) url('../img/bg.jpg') no-repeat center center;
+    background-size: cover;
+    color: #fff;
 }
 
 #login-hero {
-background-attachment: fixed;
-margin-top:-20px;
+    background-attachment: fixed;
+    margin-top: -20px;
 }
-
 
 .hero h1 {
     margin: 200px 0 45px 0;

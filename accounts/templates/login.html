@@ -1,47 +1,47 @@
 {% extends "layout.html" %}
 {% load staticfiles %}
 {% block pageBody %}
-        <section class="hero" id="login-hero">
-            <div class="texture-overlay"></div>
-            <div class="container">
-                <div class="row nav-wrapper">
-                    <div class="col-md-6 col-sm-6 col-xs-6 text-left">
-                        <a href="/"><img src="{% static "img/logo-white.png" %}" alt="Myfilm Logo"></a>
-                    </div>
-                </div>
-                <div class="row hero-content">
-                    <div class="col-md-12">
-                        <h1 class="animated fadeInDown">Please sign in...</h1>
-                        {{ invalid_html }}
-                        <form action="/login/" method="POST" class="form-horizontal" role="form">{% csrf_token %}
-                            <div class="form-group">
-                                <label for="inputUsername" class="col-sm-2 control-label">Username</label>
-
-                                <div class="col-sm-10">
-                                    <input class="form-control" name="username" type="text"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-
-                                <div class="col-sm-10">
-                                    <input class="form-control" name="password" type="password"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <div class="checkbox">
-                                        <label><input name="remember" type="checkbox"/> Remember me</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <input type="submit" value="Sign in" class="use-btn animated fadeInUp">
-                            <a href="/forget" class="learn-btn fadeInUp youtube-media">Forgot Password <i
-                                    class="fa fa-arrow-down"></i></a>
-                        </form>
-                    </div>
+    <section class="hero" id="login-hero">
+        <div class="texture-overlay"></div>
+        <div class="container">
+            <div class="row nav-wrapper">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                    <a href="/"><img src="{% static "img/logo-white.png" %}" alt="Myfilm Logo"></a>
                 </div>
             </div>
-        </section>
+            <div class="row hero-content">
+                <div class="col-md-12">
+                    <h1 class="animated fadeInDown">Please sign in...</h1>
+                    {{ invalid_html }}
+                    <form action="/login/" method="POST" class="form-horizontal" role="form">{% csrf_token %}
+                        <div class="form-group">
+                            <label for="inputUsername" class="col-sm-2 control-label">Username</label>
+
+                            <div class="col-sm-10">
+                                <input class="form-control" name="username" type="text"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+
+                            <div class="col-sm-10">
+                                <input class="form-control" name="password" type="password"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label><input name="remember" type="checkbox"/> Remember me</label>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="submit" value="Sign in" class="use-btn animated fadeInUp">
+                        <a href="/forget" class="learn-btn fadeInUp youtube-media">Forgot Password <i
+                                class="fa fa-arrow-down"></i></a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
 {% endblock %}

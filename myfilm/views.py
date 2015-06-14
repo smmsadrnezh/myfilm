@@ -1,9 +1,11 @@
+from social.views import who_to_follw, movies_recommended, popular_movies
+from django.http import HttpResponseRedirect
+from accounts.views import followings
+from myfilm.models import MovieArtist
+from social.models import MovieRating
 from django.shortcuts import render
-
 from myfilm.models import Artist
 from myfilm.models import Movie
-from social.models import MovieRating
-from myfilm.models import MovieArtist
 
 
 def home(request):
@@ -13,60 +15,88 @@ def home(request):
 
 
 def movie(request, movietitle):
-    ###calculating movie rate
+    if request.user.id == None:
+        return HttpResponseRedirect('/login')
+    else:
+        ###calculating movie rate
 
-    cur_movie = Movie.objects.filter(title=movietitle)[0]
-    cur_movie_voters = MovieRating.objects.filter(movie_id=cur_movie.id)
-    total_rate = 0
-    for voter in cur_movie_voters:
-        total_rate += voter.rate
-    if total_rate != 0:
-        total_rate /= len(cur_movie_voters)
+        cur_movie = Movie.objects.filter(title=movietitle)[0]
+        cur_movie_voters = MovieRating.objects.filter(movie_id=cur_movie.id)
+        total_rate = 0
+        for voter in cur_movie_voters:
+            total_rate += voter.rate
+        if total_rate != 0:
+            total_rate /= len(cur_movie_voters)
 
-    ### end of calculating movie rate
+        ### end of calculating movie rate
 
-    ### fetch movie artists
+        ### fetch movie artists
 
-    director = MovieArtist.objects.filter(movie_id=cur_movie.id, role='director')
-    if len(director) > 0:
-        director = director[0]
-    writer = MovieArtist.objects.filter(movie_id=cur_movie.id, role='writer')
-    if len(writer) > 0:
-        writer = writer[0]
-    stars = MovieArtist.objects.filter(movie_id=cur_movie.id, role='actor')
-    ### end fetching artists
+        director = MovieArtist.objects.filter(movie_id=cur_movie.id, role='director')
+        if len(director) > 0:
+            director = director[0]
+        writer = MovieArtist.objects.filter(movie_id=cur_movie.id, role='writer')
+        if len(writer) > 0:
+            writer = writer[0]
+        stars = MovieArtist.objects.filter(movie_id=cur_movie.id, role='actor')
+        ### end fetching artists
 
-    return render(request, 'movie.html', {
-        'PageTitle': "Myfilm - " + cur_movie.title,
-        'rate': total_rate,
-        'movie': cur_movie,
-        'director': director,
-        'writer': writer,
-        'stars': stars,
-        'current_user': request.user
-    })
+        return render(request, 'movie.html', {
+            'PageTitle': "Myfilm - " + cur_movie.title,
+            'rate': total_rate,
+            'movie': cur_movie,
+            'director': director,
+            'writer': writer,
+            'stars': stars,
+            'current_user': request.user,
+            'following_users': who_to_follw(request),
+            'recom_movies': movies_recommended(request),
+            'popular_movies': popular_movies(request),
+            'chat_users': followings(request.user)
+        })
 
 
 def movies_list(request):
-    return render(request, 'movies.html', {
-        'PageTitle': "Myfilm - All Movies",
-        'movies': Movie.objects.all().order_by('year'),
-        'current_user': request.user
-    })
+    if request.user.id == None:
+        return HttpResponseRedirect('/login')
+    else:
+        return render(request, 'movies.html', {
+            'PageTitle': "Myfilm - All Movies",
+            'movies': Movie.objects.all().order_by('year'),
+            'current_user': request.user,
+            'following_users': who_to_follw(request),
+            'recom_movies': movies_recommended(request),
+            'popular_movies': popular_movies(request),
+            'chat_users': followings(request.user)
+        })
 
 
 def artists_list(request):
-    return render(request, 'artists.html', {
-        'PageTitle': "Myfilm - All Artists",
-        'artists': Artist.objects.all().order_by('name'),
-        'current_user': request.user
-    })
+    if request.user.id == None:
+        return HttpResponseRedirect('/login')
+    else:
+        return render(request, 'artists.html', {
+            'PageTitle': "Myfilm - All Artists",
+            'artists': Artist.objects.all().order_by('name'),
+            'current_user': request.user,
+            'following_users': who_to_follw(request),
+            'recom_movies': movies_recommended(request),
+            'popular_movies': popular_movies(request),
+            'chat_users': followings(request.user)
+        })
 
 
 def artist(request, artistname):
-    return render(request, 'artist.html', {
-        'PageTitle': "Myfilm - " + artistname,
-        'artist': Artist.objects.filter(name=artistname)[0],
-        'current_user': request.user
-    })
+    if request.user.id == None:
+        return HttpResponseRedirect('/login')
+    else:
+        return render(request, 'artist.html', {
+            'PageTitle': "Myfilm - " + artistname,
+            'artist': Artist.objects.filter(name=artistname)[0],
+            'current_user': request.user,
+            'following_users': who_to_follw(request),
+            'recom_movies': movies_recommended(request),
+            'popular_movies': popular_movies(request),
+            'chat_users': followings(request.user)
+        })
 

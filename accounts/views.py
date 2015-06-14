@@ -1,14 +1,15 @@
+from social.views import who_to_follw, movies_recommended, popular_movies
 from django.core.context_processors import csrf
 from django.template.loader import get_template
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import auth
 
+from accounts.models import CustomUser
 from .forms import CustomRegistration
 from accounts.models import Follow
-from accounts.models import CustomUser
-from social.models import Post
 from myfilm.models import Movie
+from social.models import Post
 
 
 def login(request):
@@ -42,6 +43,10 @@ def accounts_lists(request):
         return render(request, 'users.html', {
             'PageTitle': "Users",
             'current_user': request.user,
+            'following_users': who_to_follw(request),
+            'recom_movies': movies_recommended(request),
+            'popular_movies': popular_movies(request),
+            'chat_users': followings(request.user)
         })
 
 
@@ -57,24 +62,31 @@ def register(request):
     return render(request, 'register.html', dict(args, **{'PageTitle': "Login"}))
 
 
+def followings(user):
+    followings = []
+    for following in Follow.objects.filter(follower_id=user.id):
+        followings += CustomUser.objects.filter(id=following.following_id)
+    return followings
+
+
+def followers(user):
+    followers = []
+    for follower in Follow.objects.filter(following_id=user.id):
+        followers += CustomUser.objects.filter(id=follower.follower_id)
+    return followers
+
+
 def profile(request, username):
     if request.user.id == None:
         return HttpResponseRedirect('/login')
     else:
 
         # finding profile user followers and followings
-
-        followings = []
-        followers = []
         profile_user = CustomUser.objects.filter(username=username)[0]
-        for follower in Follow.objects.filter(following_id=profile_user.id):
-            followers += CustomUser.objects.filter(id=follower.follower_id)
-        for following in Follow.objects.filter(follower_id=profile_user.id):
-            followings += CustomUser.objects.filter(id=following.following_id)
-
-        all_posts = []
         posts = Post.objects.filter(username_id=profile_user.id).order_by('created_time')
         writer = CustomUser.objects.filter(id=profile_user.id)[0]
+
+        all_posts = []
         for post in posts:
             movie = Movie.objects.filter(id=post.movie_id)[0]
             all_posts.append((post, movie, writer))
@@ -82,12 +94,16 @@ def profile(request, username):
         return render(request, 'profile.html', {
             'PageTitle': "Myfilm - " + profile_user.first_name + " " + profile_user.last_name + " Profile",
             'profile_user': profile_user,
-            'followers': followers,
+            'followers': followers(profile_user),
             'current_user': request.user,
-            'following': followings,
-            'following_count': len(followings),
-            'followers_count': len(followers),
-            'posts': all_posts
+            'following': followings(profile_user),
+            'following_count': len(followings(profile_user)),
+            'followers_count': len(followers(profile_user)),
+            'posts': all_posts,
+            'following_users': who_to_follw(request),
+            'recom_movies': movies_recommended(request),
+            'popular_movies': popular_movies(request),
+            'chat_users': followings(request.user)
         })
 
 
@@ -103,7 +119,10 @@ def edit_profile(request, username):
     else:
         return render(request, 'settings.html', {
             'PageTitle': "Settings",
-            'current_user': request.user
+            'current_user': request.user,
+            'following_users': who_to_follw(request),
+            'recom_movies': movies_recommended(request),
+            'popular_movies': popular_movies(request)
         })
 
 
@@ -113,7 +132,10 @@ def change_password(request):
     else:
         return render(request, 'changepass.html', {
             'PageTitle': "Change Password",
-            'current_user': request.user
+            'current_user': request.user,
+            'following_users': who_to_follw(request),
+            'recom_movies': movies_recommended(request),
+            'popular_movies': popular_movies(request)
         })
 
 
@@ -124,4 +146,7 @@ def lists(request):
         return render(request, 'lists.html', {
             'PageTitle': "List",
             'current_user': request.user,
+            'following_users': who_to_follw(request),
+            'recom_movies': movies_recommended(request),
+            'popular_movies': popular_movies(request)
         })

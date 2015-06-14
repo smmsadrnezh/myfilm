@@ -1,8 +1,7 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
-
 from accounts.models import CustomUser
-from social.models import MovieRating
+from accounts.views import followings
+from django.shortcuts import render
 from accounts.models import Follow
 from social.models import Comment
 from accounts.models import User
@@ -38,11 +37,6 @@ def post(request, postid):
         for comment in comments:
             writer = User.objects.filter(id=comment.username_id)[0]
             comments_dic[comment] = writer
-        recommended_movies = movies_recommended(request)
-        top_movies = popular_movies(request)
-        following_recom = who_to_follw(request)
-
-
 
         return render(request, 'post.html', {
             'PageTitle': "Post",
@@ -52,9 +46,10 @@ def post(request, postid):
             'likers': likers,
             'comments': comments_dic,
             'current_user': request.user,
-            'following_users':following_recom,
-            'recom_movies': recommended_movies,
-            'popular_movies': top_movies
+            'following_users': who_to_follw(request),
+            'recom_movies': movies_recommended(request),
+            'popular_movies': popular_movies(request),
+            'chat_users': followings(request.user)
         })
 
 
@@ -74,7 +69,11 @@ def timeline_home(request):
         return render(request, 'timeline.html', {
             'PageTitle': "Myfilm - Timeline",
             'posts': all_posts,
-            'current_user': request.user
+            'current_user': request.user,
+            'following_users': who_to_follw(request),
+            'recom_movies': movies_recommended(request),
+            'popular_movies': popular_movies(request),
+            'chat_users': followings(request.user)
         })
 
 
@@ -84,18 +83,21 @@ def notifications(request):
     else:
         return render(request, 'notifications.html', {
             'PageTitle': "Notifications",
-            'current_user': request.user
+            'current_user': request.user,
+            'following_users': who_to_follw(request),
+            'recom_movies': movies_recommended(request),
+            'popular_movies': popular_movies(request),
+            'chat_users': followings(request.user)
         })
 
 
 def movies_recommended(request):
     recommended_movies = []
-    top_movies = Movie.objects.filter(movierating__rate__gte=4.5,movierating__username_id=request.user.id)
 
-    for top_movie in top_movies:
+    for top_movie in Movie.objects.filter(movierating__rate__gte=4.5, movierating__username_id=request.user.id):
         top_voters = CustomUser.objects.filter(movierating__rate__gte=4.5)
         for top_voter in top_voters:
-            voters_top_movies = Movie.objects.filter(movierating__rate__gte=4.5,movierating__username_id=top_voter.id)
+            voters_top_movies = Movie.objects.filter(movierating__rate__gte=4.5, movierating__username_id=top_voter.id)
             for voters_top_movie in voters_top_movies:
                 if not recommended_movies.__contains__(voters_top_movie):
                     recommended_movies.append(voters_top_movie)
@@ -109,7 +111,7 @@ def who_to_follw(request):
     for following in Follow.objects.filter(follower_id=request.user.id):
         followings += CustomUser.objects.filter(id=following.following_id)
     for following in followings:
-        f_followings = Follow.objects.filter(follower_id = following.id)
+        f_followings = Follow.objects.filter(follower_id=following.id)
         for f_following in f_followings:
             if not recommended_followings.__contains__(CustomUser.objects.filter(id=f_following.following_id)[0]):
                 recommended_followings.append(CustomUser.objects.filter(id=f_following.following_id)[0])
@@ -118,9 +120,8 @@ def who_to_follw(request):
 
 
 def popular_movies(request):
-    top_movies=[]
-    repetitive_top_movies = Movie.objects.filter(movierating__rate__gte=4.8)
-    for repetitive_top_movie in repetitive_top_movies:
+    top_movies = []
+    for repetitive_top_movie in Movie.objects.filter(movierating__rate__gte=4.8):
         if not top_movies.__contains__(repetitive_top_movie):
             top_movies.append(repetitive_top_movie)
 

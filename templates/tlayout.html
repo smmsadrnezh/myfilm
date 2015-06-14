@@ -131,37 +131,37 @@
 
 </nav>
 <div id="layout-hero" class="hero">
-<div class="texture-overlay"></div>
-<div class="container">
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <div class="row clearfix">
-                <div class="col-md-8 column">
-                    <div class="row clearfix">
-                        <div class="col-md-12 column">
+    <div class="texture-overlay"></div>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="row clearfix">
+                    <div class="col-md-8 column">
+                        <div class="row clearfix">
+                            <div class="col-md-12 column">
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-md-12 column">
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-md-12 column">
+                                {% block pageBody %}{% endblock %}
+                            </div>
                         </div>
                     </div>
-                    <div class="row clearfix">
-                        <div class="col-md-12 column">
-                        </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-md-12 column">
-                            {% block pageBody %}{% endblock %}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 column absolute">
-                    <div class="row clearfix right-module-fixed">
-                        <div class="col-md-12 column">
+                    <div class="col-md-4 column absolute">
+                        <div class="row clearfix right-module-fixed">
+                            <div class="col-md-12 column">
 
-                            <div class="row clearfix">
+                                <div class="row clearfix">
                                     <h2>Recommended for you</h2>
                                     {% for movie in recom_movies %}
                                         <div class="row clearfix">
                                             <div class="col-md-2 column">
                                                 <img width="50px" height="50px" alt="140x140"
-                                                     src="/media/movies/{{  movie.image_path }}"/>
+                                                     src="/media/movies/{{ movie.image_path }}"/>
                                             </div>
                                             <div class="col-md-10 column">
                                                 <strong>
@@ -174,46 +174,47 @@
                                             </div>
                                         </div>
                                     {% endfor %}
-                            </div>
-                            <div class="row clearfix">
-                                <h2>Who to follow</h2>
-                                {% for user in following_users %}
-                                    <div class="row clearfix">
-                                        <div class="col-md-2 column">
-                                            <img alt="140x140" src="/media/users/{{ user.image_path }}"/>
-                                        </div>
-                                        <div class="col-md-10 column">
-                                            <strong>
-                                                {{ user.firstname }} {{ user.lastname }}
-                                            </strong>
+                                </div>
+                                <div class="row clearfix">
+                                    <h2>Who to follow</h2>
+                                    {% for user in following_users %}
+                                        <div class="row clearfix">
+                                            <div class="col-md-2 column">
+                                                <img alt="140x140" src="/media/users/{{ user.image_path }}"/>
+                                            </div>
+                                            <div class="col-md-10 column">
+                                                <strong>
+                                                    {{ user.firstname }} {{ user.lastname }}
+                                                </strong>
 
-                                            <p>
-                                                <a class="btn" href="#">Follow »</a>
-                                            </p>
+                                                <p>
+                                                    <a class="btn" href="#">Follow »</a>
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                            <div class="row clearfix">
-                                <h2>Popular on MyFilm</h2>
-                                {% for movie in popular_movies %}
-                                    <div class="row clearfix">
-                                        <div class="col-md-2 column">
-                                            <img width="50px" height="50px" alt="140x140"
-                                                 src="/media/movies/{{ movie.image_path }}"/>
-                                        </div>
-                                        <div class="col-md-10 column">
-                                            <strong>
-                                                {{ movie.title }} {{ movie.year }}
-                                            </strong>
+                                    {% endfor %}
+                                </div>
+                                <div class="row clearfix">
+                                    <h2>Popular on MyFilm</h2>
+                                    {% for movie in popular_movies %}
+                                        <div class="row clearfix">
+                                            <div class="col-md-2 column">
+                                                <img width="50px" height="50px" alt="140x140"
+                                                     src="/media/movies/{{ movie.image_path }}"/>
+                                            </div>
+                                            <div class="col-md-10 column">
+                                                <strong>
+                                                    {{ movie.title }} {{ movie.year }}
+                                                </strong>
 
-                                            <p>
-                                                <a class="btn" href="#">View details »</a>
-                                            </p>
+                                                <p>
+                                                    <a class="btn" href="#">View details »</a>
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                {% endfor %}
+                                    {% endfor %}
 
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -222,17 +223,12 @@
         </div>
     </div>
 </div>
-</div>
 <div class="small chat sidebar-nav-fixed">
     <ul class="nav">
-        <li class="active"><a href="#"><img class="img-circle" src="http://lorempixel.com/40/40/"></a>
-        </li>
-        <li><a href="#"><img class="img-circle" src="http://lorempixel.com/40/40/"></a>
-        </li>
-        <li><a href="#"><img class="img-circle" src="http://lorempixel.com/40/40/"></a>
-        </li>
-        <li><a href="#"><img class="img-circle" src="http://lorempixel.com/40/40/"></a>
-        </li>
+        {% for chat_user in chat_users %}
+            <li><a href="/profile/{{ chat_user.username }}"><img width="40" height="40" class="img-circle" src="/media/users/{{ chat_user.image_path }}"></a>
+            </li>
+        {% endfor %}
     </ul>
 </div>
 </body>
