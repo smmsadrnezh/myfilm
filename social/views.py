@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from accounts.models import CustomUser
-from accounts.views import followings
+import accounts.views
 from django.shortcuts import render
 from accounts.models import Follow
 from social.models import Comment
@@ -49,7 +49,7 @@ def post(request, postid):
             'following_users': who_to_follw(request),
             'recom_movies': movies_recommended(request),
             'popular_movies': popular_movies(request),
-            'chat_users': followings(request.user)
+            'chat_users': accounts.views.followings(request.user)
         })
 
 
@@ -73,7 +73,7 @@ def timeline_home(request):
             'following_users': who_to_follw(request),
             'recom_movies': movies_recommended(request),
             'popular_movies': popular_movies(request),
-            'chat_users': followings(request.user)
+            'chat_users': accounts.views.followings(request.user)
         })
 
 
@@ -87,7 +87,7 @@ def notifications(request):
             'following_users': who_to_follw(request),
             'recom_movies': movies_recommended(request),
             'popular_movies': popular_movies(request),
-            'chat_users': followings(request.user)
+            'chat_users': accounts.views.followings(request.user)
         })
 
 

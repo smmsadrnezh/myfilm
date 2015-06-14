@@ -1,4 +1,4 @@
-from social.views import who_to_follw, movies_recommended, popular_movies
+import social.views
 from django.core.context_processors import csrf
 from django.template.loader import get_template
 from django.http import HttpResponseRedirect
@@ -43,9 +43,9 @@ def accounts_lists(request):
         return render(request, 'users.html', {
             'PageTitle': "Users",
             'current_user': request.user,
-            'following_users': who_to_follw(request),
-            'recom_movies': movies_recommended(request),
-            'popular_movies': popular_movies(request),
+            'following_users': social.views.who_to_follw(request),
+            'recom_movies': social.views.movies_recommended(request),
+            'popular_movies': social.views.popular_movies(request),
             'chat_users': followings(request.user)
         })
 
@@ -100,9 +100,9 @@ def profile(request, username):
             'following_count': len(followings(profile_user)),
             'followers_count': len(followers(profile_user)),
             'posts': all_posts,
-            'following_users': who_to_follw(request),
-            'recom_movies': movies_recommended(request),
-            'popular_movies': popular_movies(request),
+            'following_users': social.views.who_to_follw(request),
+            'recom_movies': social.views.movies_recommended(request),
+            'popular_movies': social.views.popular_movies(request),
             'chat_users': followings(request.user)
         })
 
@@ -120,9 +120,9 @@ def edit_profile(request, username):
         return render(request, 'settings.html', {
             'PageTitle': "Settings",
             'current_user': request.user,
-            'following_users': who_to_follw(request),
-            'recom_movies': movies_recommended(request),
-            'popular_movies': popular_movies(request)
+            'following_users': social.views.who_to_follw(request),
+            'recom_movies': social.views.movies_recommended(request),
+            'popular_movies': social.views.popular_movies(request)
         })
 
 
@@ -133,9 +133,9 @@ def change_password(request):
         return render(request, 'changepass.html', {
             'PageTitle': "Change Password",
             'current_user': request.user,
-            'following_users': who_to_follw(request),
-            'recom_movies': movies_recommended(request),
-            'popular_movies': popular_movies(request)
+            'following_users': social.views.who_to_follw(request),
+            'recom_movies': social.views.movies_recommended(request),
+            'popular_movies': social.views.popular_movies(request)
         })
 
 
@@ -146,7 +146,7 @@ def lists(request):
         return render(request, 'lists.html', {
             'PageTitle': "List",
             'current_user': request.user,
-            'following_users': who_to_follw(request),
-            'recom_movies': movies_recommended(request),
-            'popular_movies': popular_movies(request)
+            'following_users': social.views.who_to_follw(request),
+            'recom_movies': social.views.movies_recommended(request),
+            'popular_movies': social.views.popular_movies(request)
         })
