@@ -113,8 +113,12 @@ def who_to_follow(request):
     for following in followings:
         f_followings = Follow.objects.filter(follower_id=following.id)
         for f_following in f_followings:
-            if not recommended_followings.__contains__(CustomUser.objects.filter(id=f_following.following_id)[0]):
-                recommended_followings.append(CustomUser.objects.filter(id=f_following.following_id)[0])
+            if f_following.following_id != request.user.id:
+                if not recommended_followings.__contains__(CustomUser.objects.filter(id=f_following.following_id)[0]):
+                    recommended_followings.append(CustomUser.objects.filter(id=f_following.following_id)[0])
+    for following in Follow.objects.filter(follower_id=request.user.id):
+        if recommended_followings.__contains__(CustomUser.objects.filter(id=following.following_id)[0]):
+            recommended_followings.remove(CustomUser.objects.filter(id=following.following_id)[0])
 
     return recommended_followings
 
