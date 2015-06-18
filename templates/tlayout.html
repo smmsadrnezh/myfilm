@@ -79,16 +79,16 @@
                          height="50px"/>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="/profile/1">Arman Naeimian likes your update.</a>
+                            <a href="/posts/1">Arman Naeimian likes your update.</a>
                         </li>
                         <li>
-                            <a href="#">Sadjad Fouladi commented on your update.</a>
+                            <a href="/posts/1">Sadjad Fouladi commented on your update.</a>
                         </li>
                         <li>
-                            <a href="#">Arman Nameimian commented on post you are following.</a>
+                            <a href="/posts/1">Arman Nameimian commented on post you are following.</a>
                         </li>
                         <li>
-                            <a href="#">Sadjad Fouladi started to following you.</a>
+                            <a href="/profile/fouladi">Sadjad Fouladi started to following you.</a>
                         </li>
                         <li class="divider">
                         </li>
@@ -160,38 +160,40 @@
                                     {% for movie in recom_movies %}
                                         <div class="row clearfix">
                                             <div class="col-md-2 column">
-                                                <img width="50px" height="50px" alt="140x140"
+                                                <img class="img-thumbnail" width="600px" alt="{{ movie.title }}"
                                                      src="/media/movies/{{ movie.image_path }}"/>
                                             </div>
                                             <div class="col-md-10 column">
                                                 <strong>
-                                                    {{ movie.title }} {{ movie.year }}
+                                                    {{ movie.title }} ({{ movie.year }})
                                                 </strong>
 
                                                 <p>
-                                                    <a class="btn" href="#">View details »</a>
+                                                    <a class="btn" href="/movies/{{ movie.title }}">View details »</a>
                                                 </p>
                                             </div>
                                         </div>
+                                        <br/>
                                     {% endfor %}
                                 </div>
                                 <div class="row clearfix">
                                     <h2>Who to follow</h2>
-                                    {% for user in following_users %}
+                                    {% for following_user in following_users %}
                                         <div class="row clearfix">
                                             <div class="col-md-2 column">
-                                                <img alt="140x140" src="/media/users/{{ user.image_path }}"/>
+                                                <img alt="{{ following_user.username }}" class="img-thumbnail" width="600px" src="/media/users/{{ following_user.image_path }}"/>
                                             </div>
                                             <div class="col-md-10 column">
                                                 <strong>
-                                                    {{ user.firstname }} {{ user.lastname }}
+                                                    {{ following_user.first_name }} {{ following_user.last_name }}
                                                 </strong>
 
                                                 <p>
-                                                    <a class="btn" href="#">Follow »</a>
+                                                    <a class="btn" href="/profile/{{ following_user.username }}">Follow »</a>
                                                 </p>
                                             </div>
                                         </div>
+                                        <br />
                                     {% endfor %}
                                 </div>
                                 <div class="row clearfix">
@@ -199,19 +201,20 @@
                                     {% for movie in popular_movies %}
                                         <div class="row clearfix">
                                             <div class="col-md-2 column">
-                                                <img width="50px" height="50px" alt="140x140"
+                                                <img class="img-thumbnail" width="600px" alt="{{ movie.title }}"
                                                      src="/media/movies/{{ movie.image_path }}"/>
                                             </div>
                                             <div class="col-md-10 column">
                                                 <strong>
-                                                    {{ movie.title }} {{ movie.year }}
+                                                    {{ movie.title }} ({{ movie.year }})
                                                 </strong>
 
                                                 <p>
-                                                    <a class="btn" href="#">View details »</a>
+                                                    <a class="btn" href="/movies/{{ movie.title }}">View details »</a>
                                                 </p>
                                             </div>
                                         </div>
+                                        <br/>
                                     {% endfor %}
 
                                 </div>
