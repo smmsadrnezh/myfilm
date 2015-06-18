@@ -1,6 +1,6 @@
 {% extends "tlayout.html" %}
 {% block pageBody %}
-    {% for movie in movies %}
+    {% for movie,rate in movies.items %}
         <div class="row clearfix">
             <div class="col-md-3 column">
                 <img class="img-thumbnail" src="/media/movies/{{ movie.image_path }}" alt="{{ movie.title }}"/>
@@ -8,7 +8,7 @@
             <div class="col-md-9 column">
                 <a href="/movies/{{ movie.title }}"><h2>{{ movie.title }} ({{ movie.year }})</h2></a>
 
-                <p class="star"> {{ movie.rate }}</p>
+                <div class="star"> {{rate }}</div>
 
                 <p>{{ movie.description }}</p>
                 <hr class="featurette-divider">
