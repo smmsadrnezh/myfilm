@@ -86,22 +86,32 @@ def profile(request, username):
     else:
         profile_user = CustomUser.objects.filter(username=username)[0]
         if request.method == "POST":
-            time = datetime.datetime.now()
-            follower_id = request.user.id
-            following_id = profile_user.id
-            if is_following(request.user,profile_user):
-                Follow.objects.filter(follower_id=follower_id,following_id=following_id).delete()
+            if request.POST.get('type', '') == "setting":
+                # edit user setting
+                CustomUser.objects.filter(id=request.user.id).update(
+                    username=request.POST.get('username', ''),
+                    first_name=request.POST.get('first_name', ''),
+                    last_name=request.POST.get('last_name', ''),
+                    email=request.POST.get('email', ''),
+                    birth_date=request.POST.get('birth_date', '')
+                )
             else:
-                Follow(time=time,follower_id=follower_id,following_id=following_id).save()
+                # add or remove follower
+                time = datetime.datetime.now()
+                follower_id = request.user.id
+                following_id = profile_user.id
+                if is_following(request.user,profile_user):
+                    Follow.objects.filter(follower_id=follower_id,following_id=following_id).delete()
+                else:
+                    Follow(time=time,follower_id=follower_id,following_id=following_id).save()
 
         posts = Post.objects.filter(username_id=profile_user.id).order_by('created_time')
         writer = CustomUser.objects.filter(id=profile_user.id)[0]
-
         all_posts = []
+
         for post in posts:
             movie = Movie.objects.filter(id=post.movie_id)[0]
             all_posts.append((post, movie, writer))
-        print csrf(request)
         return render(request, 'profile.html', {
             'PageTitle': "Myfilm - " + profile_user.first_name + " " + profile_user.last_name + " Profile",
             'profile_user': profile_user,

@@ -3,8 +3,8 @@
     <div class="container">
         <div class="row">
             <form role="form" action="/profile/{{ current_user.username }}/" method="post">{% csrf_token %}
+                <input type="hidden" value="setting" name="type">
                 <div class="col-lg-6">
-
                     <div class="form-group">
 
                         <img class="thumbnail" width="100px" height="100px" src="/media/users/{{ current_user.image_path }}">
@@ -15,16 +15,25 @@
                         <label for="InputName">User Name</label>
 
                         <div class="input-group">
-                            <input type="text" class="form-control gray" name="InputName" id="InputName"
-                                   value="Masoud" size="35" required>
+                            <input type="text" class="form-control gray" name="username" id="username"
+                                   value="{{ current_user.username }}" size="35" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="ShowingName">Showing Name</label>
+                        <label for="ShowingName">First Name</label>
 
                         <div class="input-group">
-                            <input type="text" class="form-control gray " name="ShowingName" id="ShowingName"
-                                   value="S. M. Masoud Sadrnezhaad" size="35" required>
+                            <input type="text" class="form-control gray " name="first_name" id="first_name"
+                                   value="{{ current_user.first_name }}" size="35" required>
+                        </div>
+                    </div>
+
+                                        <div class="form-group">
+                        <label for="ShowingName">Last Name</label>
+
+                        <div class="input-group">
+                            <input type="text" class="form-control gray " name="last_name" id="last_name"
+                                   value="{{ current_user.last_name }}" size="35" required>
                         </div>
                     </div>
 
@@ -32,17 +41,17 @@
                         <label for="InputEmail">Email</label>
 
                         <div class="input-group">
-                            <input type="email" class="form-control gray input-width" id="InputEmailFirst"
-                                   name="InputEmail"
-                                   value="smmsadrnezh@gmail.com" size="35" required>
+                            <input type="email" class="form-control gray input-width" id="email"
+                                   name="email"
+                                   value="{{ current_user.email }}" size="35" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="date">Birth Date</label>
 
                         <div class="input-group">
-                            <input type="date" class="form-control gray input-width" id="date" name="date"
-                                   value="1995-01-01" required>
+                            <input type="date" class="form-control gray input-width" id="birth_date" name="birth_date"
+                                   value="yyyy-mm-dd" required>
                         </div>
                     </div>
 
