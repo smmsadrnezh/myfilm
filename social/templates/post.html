@@ -1,6 +1,6 @@
 {% extends "tlayout.html" %}
 {% block pageBody %}
-    <div class="row clearfix" xmlns="http://www.w3.org/1999/html">
+    <div class="row clearfix">
         <div class="row clearfix">
             <div class="col-md-2 column">
                 <h4><a href="/profile/{{ writer.username }}">{{ writer.username }}</a></h4>
@@ -22,7 +22,7 @@
         </div>
 
         <div class="row clearfix">
-            <div class="col-md-12 column">
+            <div class="col-md-11 column">
                 <button type="button" class="btn btn-default">Like</button>
                 <p>
                     {% for liker in likers %}
@@ -30,13 +30,13 @@
                     {% endfor %}
                     like this post.
                 </p>
+                <hr class="featurette-divider">
             </div>
         </div>
 
-        <hr class="featurette-divider">
 
         <div class="row clearfix">
-            <div class="col-md-12 column">
+            <div class="col-md-11 column">
                 {% for comment,writer in comments.items %}
                     <h3>
                         comment {{ comment.id }}
