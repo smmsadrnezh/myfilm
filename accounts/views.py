@@ -44,10 +44,13 @@ def accounts_lists(request):
         return render(request, 'users.html', {
             'PageTitle': "Users",
             'current_user': request.user,
-            'following_users': social.views.who_to_follow(request),
+            'who_to_follows': social.views.who_to_follow(request),
             'recom_movies': social.views.movies_recommended(request),
             'popular_movies': social.views.popular_movies(request),
-            'chat_users': followings(request.user)
+            'chat_users': followings(request.user),
+            'followers': followers(CustomUser.objects.filter(username=request.user.username)[0]),
+            'following': followings(CustomUser.objects.filter(username=request.user.username)[0]),
+            'follow_text': "Follow / Unfollow"
         })
 
 
@@ -108,7 +111,7 @@ def profile(request, username):
             'following_count': len(followings(profile_user)),
             'followers_count': len(followers(profile_user)),
             'posts': all_posts,
-            'following_users': social.views.who_to_follow(request),
+            'who_to_follows': social.views.who_to_follow(request),
             'recom_movies': social.views.movies_recommended(request),
             'popular_movies': social.views.popular_movies(request),
             'chat_users': followings(request.user),
@@ -129,7 +132,7 @@ def edit_profile(request, username):
         return render(request, 'settings.html', {
             'PageTitle': "Settings",
             'current_user': request.user,
-            'following_users': social.views.who_to_follow(request),
+            'who_to_follows': social.views.who_to_follow(request),
             'recom_movies': social.views.movies_recommended(request),
             'popular_movies': social.views.popular_movies(request)
         })
@@ -142,7 +145,7 @@ def change_password(request):
         return render(request, 'changepass.html', {
             'PageTitle': "Change Password",
             'current_user': request.user,
-            'following_users': social.views.who_to_follow(request),
+            'who_to_follows': social.views.who_to_follow(request),
             'recom_movies': social.views.movies_recommended(request),
             'popular_movies': social.views.popular_movies(request)
         })
@@ -155,7 +158,7 @@ def lists(request):
         return render(request, 'lists.html', {
             'PageTitle': "List",
             'current_user': request.user,
-            'following_users': social.views.who_to_follow(request),
+            'who_to_follows': social.views.who_to_follow(request),
             'recom_movies': social.views.movies_recommended(request),
             'popular_movies': social.views.popular_movies(request)
         })

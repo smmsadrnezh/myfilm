@@ -47,7 +47,7 @@ def post(request, postid):
             'likers': likers,
             'comments': comments_dic,
             'current_user': request.user,
-            'following_users': who_to_follow(request),
+            'who_to_follows': who_to_follow(request),
             'recom_movies': movies_recommended(request),
             'popular_movies': popular_movies(request),
             'chat_users': accounts.views.followings(request.user)
@@ -71,7 +71,7 @@ def timeline_home(request):
             'PageTitle': "Myfilm - Timeline",
             'posts': all_posts,
             'current_user': request.user,
-            'following_users': who_to_follow(request),
+            'who_to_follows': who_to_follow(request),
             'recom_movies': movies_recommended(request),
             'popular_movies': popular_movies(request),
             'chat_users': accounts.views.followings(request.user)
@@ -85,7 +85,7 @@ def notifications(request):
         return render(request, 'notifications.html', {
             'PageTitle': "Notifications",
             'current_user': request.user,
-            'following_users': who_to_follow(request),
+            'who_to_follows': who_to_follow(request),
             'recom_movies': movies_recommended(request),
             'popular_movies': popular_movies(request),
             'chat_users': accounts.views.followings(request.user)

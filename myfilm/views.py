@@ -44,7 +44,7 @@ def movie(request, movietitle):
             'writer': writer,
             'stars': stars,
             'current_user': request.user,
-            'following_users': social.views.who_to_follow(request),
+            'who_to_follows': social.views.who_to_follow(request),
             'recom_movies': social.views.movies_recommended(request),
             'popular_movies': social.views.popular_movies(request),
             'chat_users': accounts.views.followings(request.user)
@@ -63,7 +63,7 @@ def movies_list(request):
             'PageTitle': "Myfilm - All Movies",
             'movies': movie_rate,
             'current_user': request.user,
-            'following_users': social.views.who_to_follow(request),
+            'who_to_follows': social.views.who_to_follow(request),
             'recom_movies': social.views.movies_recommended(request),
             'popular_movies': social.views.popular_movies(request),
             'chat_users': accounts.views.followings(request.user)
@@ -78,7 +78,7 @@ def artists_list(request):
             'PageTitle': "Myfilm - All Artists",
             'artists': Artist.objects.all().order_by('name'),
             'current_user': request.user,
-            'following_users': social.views.who_to_follow(request),
+            'who_to_follows': social.views.who_to_follow(request),
             'recom_movies': social.views.movies_recommended(request),
             'popular_movies': social.views.popular_movies(request),
             'chat_users': accounts.views.followings(request.user)
@@ -93,7 +93,7 @@ def artist(request, artistname):
             'PageTitle': "Myfilm - " + artistname,
             'artist': Artist.objects.filter(name=artistname)[0],
             'current_user': request.user,
-            'following_users': social.views.who_to_follow(request),
+            'who_to_follows': social.views.who_to_follow(request),
             'recom_movies': social.views.movies_recommended(request),
             'popular_movies': social.views.popular_movies(request),
             'chat_users': accounts.views.followings(request.user)
