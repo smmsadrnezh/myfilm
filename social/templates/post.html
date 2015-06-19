@@ -3,7 +3,7 @@
     <div class="row clearfix" xmlns="http://www.w3.org/1999/html">
         <div class="row clearfix">
             <div class="col-md-2 column">
-                <h4>{{ writer.username }}</h4>
+                <h4><a href="/profile/{{ writer.username }}">{{ writer.username }}</a></h4>
                 <img class="img-thumbnail" alt="140x140" src="/media/users/{{ writer.image_path }}"/>
             </div>
             <div class="col-md-10 column">
@@ -12,7 +12,7 @@
                 <p>
                     <a href="/posts/{{ post.id }}">{{ post.created_time }}</a>
                 </p>
-                <h4>Movie Title: {{ movie.title }}</h4>
+                <h4>Movie Title: <a href="/movies/{{ movie.title }}">{{ movie.title }}</a></h4>
 
                 <P>
                     {{ post.body }}
@@ -26,7 +26,7 @@
                 <button type="button" class="btn btn-default">Like</button>
                 <p>
                     {% for liker in likers %}
-                        {{ liker.username }} and
+                        <a href="/profile/{{ liker.username }}">{{ liker.username }}</a> and
                     {% endfor %}
                     like this post.
                 </p>
@@ -43,7 +43,7 @@
                     </h3>
 
                     <p>
-                        {{ comment.body }} -- {{ writer.username }}
+                        {{ comment.body }} --  <a href="/profile/{{ writer.username }}">{{ writer.username }}</a>
                     </p>
                     <p>{{ comment.time }}</p>
                     <hr class="featurette-divider">

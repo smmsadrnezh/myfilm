@@ -13,7 +13,7 @@ def search(request):
         return HttpResponseRedirect('/login')
     else:
         form = SearchForm(request.POST)
-        # if request.method == 'Post':
+        # if request.met hod == 'Post':
         if form.is_valid():
             title = form.cleaned_data['title']
         movies = Movie.objects.filter(title=title)

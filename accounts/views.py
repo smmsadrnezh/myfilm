@@ -11,7 +11,7 @@ from .forms import CustomRegistration
 from accounts.models import Follow
 from myfilm.models import Movie
 from social.models import Post
-
+import datetime
 
 def login(request):
     invalid_html = ""
@@ -81,9 +81,16 @@ def profile(request, username):
     if request.user.id == None:
         return HttpResponseRedirect('/login')
     else:
-
-        # finding profile user followers and followings
         profile_user = CustomUser.objects.filter(username=username)[0]
+        if request.method == "POST":
+            time = datetime.datetime.now()
+            follower_id = request.user.id
+            following_id = profile_user.id
+            if is_following(request.user,profile_user):
+                Follow.objects.filter(follower_id=follower_id,following_id=following_id).delete()
+            else:
+                Follow(time=time,follower_id=follower_id,following_id=following_id).save()
+
         posts = Post.objects.filter(username_id=profile_user.id).order_by('created_time')
         writer = CustomUser.objects.filter(id=profile_user.id)[0]
 
@@ -91,7 +98,7 @@ def profile(request, username):
         for post in posts:
             movie = Movie.objects.filter(id=post.movie_id)[0]
             all_posts.append((post, movie, writer))
-
+        print csrf(request)
         return render(request, 'profile.html', {
             'PageTitle': "Myfilm - " + profile_user.first_name + " " + profile_user.last_name + " Profile",
             'profile_user': profile_user,
@@ -105,7 +112,7 @@ def profile(request, username):
             'recom_movies': social.views.movies_recommended(request),
             'popular_movies': social.views.popular_movies(request),
             'chat_users': followings(request.user),
-            'follow_key': follow_key(request.user, profile_user)
+            'follow_key': follow_key(request.user, profile_user, request)
         })
 
 
@@ -154,12 +161,19 @@ def lists(request):
         })
 
 
-def follow_key(user, profile_user):
+def follow_key(user, profile_user, request):
     follow_html = ""
     button_text = "Follow"
     if user != profile_user:
-        for following in followings(user):
-            if following == profile_user:
-                button_text = "Unfollow"
-        follow_html = get_template('follow_key.html').render(Context({'button_text': button_text}))
+        if is_following(user,profile_user):
+            button_text = "Unfollow"
+        c = {}
+        c.update(csrf(request))
+        follow_html = get_template('follow_key.html').render(Context(dict(c, **{'button_text': button_text})))
     return follow_html
+
+def is_following(user, profile_user):
+    for following in followings(user):
+        if following == profile_user:
+            return True
+    return False
