@@ -2,14 +2,15 @@
 {% block pageBody %}
     <div class="container">
         <div class="row">
-            <form role="form">
+                <form role="form" action="/profile/{{ request.user.username }}/" method="post">{% csrf_token %}
+                    <input type="hidden" value="change_password" name="type">
                 <div class="col-lg-6">
 
                     <div class="form-group">
                         <label for="Password">Password</label>
 
                         <div class="input-group">
-                            <input type="password" class="form-control" name="Password" id="password"
+                            <input type="password" class="form-control" name="password" id="password"
                                    placeholder="Enter New Password" size="30" required>
                         </div>
                     </div>
@@ -17,7 +18,7 @@
                         <label for="Password">Confirm Password</label>
 
                         <div class="input-group">
-                            <input type="password" class="form-control" name="Password" id="conf_password"
+                            <input type="password" class="form-control" name="conf_password" id="conf_password"
                                    placeholder="Enter New Password Again" size="30" required>
                         </div>
 

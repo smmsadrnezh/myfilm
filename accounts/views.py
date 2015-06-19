@@ -97,6 +97,13 @@ def profile(request, username):
                     birth_date=request.POST.get('birth_date', '')
                 )
                 profile_user = CustomUser.objects.filter(username=request.POST.get('username', ''))[0]
+            elif request.POST.get('type', '') == "change_password":
+                # change user password
+                if request.POST.get('password', '') == request.POST.get('conf_password', ''):
+                    request.user.set_password(request.POST.get('password', ''))
+                    request.user.save()
+                else:
+                    return HttpResponseRedirect('/chpass')
             else:
                 # add or remove follower
                 time = datetime.datetime.now()
