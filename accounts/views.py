@@ -1,18 +1,17 @@
-import datetime
-
 from django.core.context_processors import csrf
 from django.template.loader import get_template
 from django.http import HttpResponseRedirect
+from django.template import Context
 from django.shortcuts import render
 from django.contrib import auth
-from django.template import Context
 
-import social.views
 from accounts.models import CustomUser
 from .forms import CustomRegistration
 from accounts.models import Follow
 from myfilm.models import Movie
 from social.models import Post
+import social.views
+import datetime
 
 
 def login(request):
