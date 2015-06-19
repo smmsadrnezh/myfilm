@@ -26,46 +26,46 @@
     <h1>Following</h1>
     {% for following in following %}
         <div class="row clearfix">
-        <div class="col-md-2 column">
-            <img alt="{{ following.username }}" width="100px" height="100px" class="img-circle"
-                 src="/media/users/{{ following.image_path }}">
-        </div>
-        <div class="col-md-10 column">
-            <strong><a
-                    href="/profile/{{ following.username }}">{{ following.first_name }} {{ following.last_name }}
-            </a></strong>
+            <div class="col-md-2 column">
+                <img alt="{{ following.username }}" width="100px" height="100px" class="img-circle"
+                     src="/media/users/{{ following.image_path }}">
+            </div>
+            <div class="col-md-10 column">
+                <strong><a
+                        href="/profile/{{ following.username }}">{{ following.first_name }} {{ following.last_name }}
+                </a></strong>
 
-            <p>
+                <p>
 
-            <form action="/profile/{{ following.username }}/" method="POST" role="form">{% csrf_token %}
-                <button type="submit" class="btn btn-default    ">UnFollow</button>
-            </form>
-            </p>
-        </div>
+                <form action="/profile/{{ following.username }}/" method="POST" role="form">{% csrf_token %}
+                    <button type="submit" class="btn btn-default    ">UnFollow</button>
+                </form>
+                </p>
+            </div>
         </div>
         <br/>
     {% endfor %}
 
-<h1>Followed By</h1>
-{% for follower in followers %}
+    <h1>Followed By</h1>
+    {% for follower in followers %}
         <div class="row clearfix">
-        <div class="col-md-2 column">
-            <img alt="{{ follower.username }}" width="100px" height="100px" class="img-circle"
-                 src="/media/users/{{ follower.image_path }}">
-        </div>
-        <div class="col-md-10 column">
-            <strong><a
-                    href="/profile/{{ follower.username }}">{{ follower.first_name }} {{ follower.last_name }}
-            </a></strong>
+            <div class="col-md-2 column">
+                <img alt="{{ follower.username }}" width="100px" height="100px" class="img-circle"
+                     src="/media/users/{{ follower.image_path }}">
+            </div>
+            <div class="col-md-10 column">
+                <strong><a
+                        href="/profile/{{ follower.username }}">{{ follower.first_name }} {{ follower.last_name }}
+                </a></strong>
 
-            <p>
+                <p>
 
-            <form action="/profile/{{ follower.username }}/" method="POST" role="form">{% csrf_token %}
-                <button type="submit" class="btn btn-default    ">{{ follow_text }}</button>
-            </form>
-            </p>
-        </div>
+                <form action="/profile/{{ follower.username }}/" method="POST" role="form">{% csrf_token %}
+                    <button type="submit" class="btn btn-default    ">{{ follow_text }}</button>
+                </form>
+                </p>
+            </div>
         </div>
         <br/>
-{% endfor %}
+    {% endfor %}
 {% endblock %}

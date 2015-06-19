@@ -43,7 +43,6 @@ def movie(request, movietitle):
             'director': director,
             'writer': writer,
             'stars': stars,
-            'current_user': request.user,
             'who_to_follows': social.views.who_to_follow(request),
             'recom_movies': social.views.movies_recommended(request),
             'popular_movies': social.views.popular_movies(request),
@@ -62,7 +61,6 @@ def movies_list(request):
         return render(request, 'movies.html', {
             'PageTitle': "Myfilm - All Movies",
             'movies': movie_rate,
-            'current_user': request.user,
             'who_to_follows': social.views.who_to_follow(request),
             'recom_movies': social.views.movies_recommended(request),
             'popular_movies': social.views.popular_movies(request),
@@ -77,7 +75,6 @@ def artists_list(request):
         return render(request, 'artists.html', {
             'PageTitle': "Myfilm - All Artists",
             'artists': Artist.objects.all().order_by('name'),
-            'current_user': request.user,
             'who_to_follows': social.views.who_to_follow(request),
             'recom_movies': social.views.movies_recommended(request),
             'popular_movies': social.views.popular_movies(request),
@@ -92,7 +89,6 @@ def artist(request, artistname):
         return render(request, 'artist.html', {
             'PageTitle': "Myfilm - " + artistname,
             'artist': Artist.objects.filter(name=artistname)[0],
-            'current_user': request.user,
             'who_to_follows': social.views.who_to_follow(request),
             'recom_movies': social.views.movies_recommended(request),
             'popular_movies': social.views.popular_movies(request),

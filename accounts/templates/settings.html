@@ -2,12 +2,14 @@
 {% block pageBody %}
     <div class="container">
         <div class="row">
-            <form role="form" action="/profile/{{ current_user.username }}/" method="post">{% csrf_token %}
+            <form role="form" action="/profile/{{ request.user.username }}/" method="post">{% csrf_token %}
                 <input type="hidden" value="setting" name="type">
+
                 <div class="col-lg-6">
                     <div class="form-group">
 
-                        <img class="thumbnail" width="100px" height="100px" src="/media/users/{{ current_user.image_path }}">
+                        <img class="thumbnail" width="100px" height="100px"
+                             src="/media/users/{{ current_user.image_path }}">
                         <button class="btn btn-default">Change Photo</button>
 
                     </div>
@@ -28,7 +30,7 @@
                         </div>
                     </div>
 
-                                        <div class="form-group">
+                    <div class="form-group">
                         <label for="ShowingName">Last Name</label>
 
                         <div class="input-group">

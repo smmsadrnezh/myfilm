@@ -1,3 +1,5 @@
+import datetime
+
 from django.core.context_processors import csrf
 from django.template.loader import get_template
 from django.http import HttpResponseRedirect
@@ -11,7 +13,7 @@ from .forms import CustomRegistration
 from accounts.models import Follow
 from myfilm.models import Movie
 from social.models import Post
-import datetime
+
 
 def login(request):
     invalid_html = ""
@@ -43,7 +45,6 @@ def accounts_lists(request):
     else:
         return render(request, 'users.html', {
             'PageTitle': "Users",
-            'current_user': request.user,
             'who_to_follows': social.views.who_to_follow(request),
             'recom_movies': social.views.movies_recommended(request),
             'popular_movies': social.views.popular_movies(request),
@@ -95,15 +96,16 @@ def profile(request, username):
                     email=request.POST.get('email', ''),
                     birth_date=request.POST.get('birth_date', '')
                 )
+                profile_user = CustomUser.objects.filter(username=request.POST.get('username', ''))[0]
             else:
                 # add or remove follower
                 time = datetime.datetime.now()
                 follower_id = request.user.id
                 following_id = profile_user.id
-                if is_following(request.user,profile_user):
-                    Follow.objects.filter(follower_id=follower_id,following_id=following_id).delete()
+                if is_following(request.user, profile_user):
+                    Follow.objects.filter(follower_id=follower_id, following_id=following_id).delete()
                 else:
-                    Follow(time=time,follower_id=follower_id,following_id=following_id).save()
+                    Follow(time=time, follower_id=follower_id, following_id=following_id).save()
 
         posts = Post.objects.filter(username_id=profile_user.id).order_by('created_time')
         writer = CustomUser.objects.filter(id=profile_user.id)[0]
@@ -116,7 +118,6 @@ def profile(request, username):
             'PageTitle': "Myfilm - " + profile_user.first_name + " " + profile_user.last_name + " Profile",
             'profile_user': profile_user,
             'followers': followers(profile_user),
-            'current_user': request.user,
             'following': followings(profile_user),
             'following_count': len(followings(profile_user)),
             'followers_count': len(followers(profile_user)),
@@ -154,7 +155,6 @@ def change_password(request):
     else:
         return render(request, 'changepass.html', {
             'PageTitle': "Change Password",
-            'current_user': request.user,
             'who_to_follows': social.views.who_to_follow(request),
             'recom_movies': social.views.movies_recommended(request),
             'popular_movies': social.views.popular_movies(request)
@@ -167,7 +167,6 @@ def lists(request):
     else:
         return render(request, 'lists.html', {
             'PageTitle': "List",
-            'current_user': request.user,
             'who_to_follows': social.views.who_to_follow(request),
             'recom_movies': social.views.movies_recommended(request),
             'popular_movies': social.views.popular_movies(request)
@@ -178,12 +177,13 @@ def follow_key(user, profile_user, request):
     follow_html = ""
     button_text = "Follow"
     if user != profile_user:
-        if is_following(user,profile_user):
+        if is_following(user, profile_user):
             button_text = "Unfollow"
         c = {}
         c.update(csrf(request))
         follow_html = get_template('follow_key.html').render(Context(dict(c, **{'button_text': button_text})))
     return follow_html
+
 
 def is_following(user, profile_user):
     for following in followings(user):
