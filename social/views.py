@@ -1,7 +1,8 @@
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
+
 from accounts.models import CustomUser
 import accounts.views
-from django.shortcuts import render
 from accounts.models import Follow
 from social.models import Comment
 from accounts.models import User

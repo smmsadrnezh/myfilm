@@ -150,8 +150,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 column absolute">
-                        <div class="row clearfix right-module-fixed">
+                    <div class="col-md-4 column scrollspy">
+                        <div class="row clearfix" data-spy="affix" data-offset="400">
                             <div class="col-md-12 column">
 
                                 <div class="row clearfix">
@@ -159,7 +159,7 @@
                                     {% for movie in recom_movies %}
                                         <div class="row clearfix">
                                             <div class="col-md-2 column">
-                                                <img class="img-thumbnail" width="600px" alt="{{ movie.title }}"
+                                                <img class="img-thumbnail" alt="{{ movie.title }}"
                                                      src="/media/movies/{{ movie.image_path }}"/>
                                             </div>
                                             <div class="col-md-10 column">
@@ -168,19 +168,23 @@
                                                 </strong>
 
                                                 <p>
-                                                    <a class="btn" href="/movies/{{ movie.title }}">View details »</a>
+                                                    <a class="btn" href="/movies/{{ movie.title }}">View details
+                                                        »</a>
                                                 </p>
                                             </div>
                                         </div>
                                         <br/>
                                     {% endfor %}
                                 </div>
+
                                 <div class="row clearfix">
                                     <h2>Who to follow</h2>
                                     {% for following_user in following_users %}
                                         <div class="row clearfix">
                                             <div class="col-md-2 column">
-                                                <img alt="{{ following_user.username }}" class="img-thumbnail" width="600px" src="/media/users/{{ following_user.image_path }}"/>
+                                                <img alt="{{ following_user.username }}" class="img-thumbnail"
+                                                     width="600px"
+                                                     src="/media/users/{{ following_user.image_path }}"/>
                                             </div>
                                             <div class="col-md-10 column">
                                                 <strong>
@@ -188,11 +192,12 @@
                                                 </strong>
 
                                                 <p>
-                                                    <a class="btn" href="/profile/{{ following_user.username }}">Follow »</a>
+                                                    <a class="btn" href="/profile/{{ following_user.username }}">Follow
+                                                        »</a>
                                                 </p>
                                             </div>
                                         </div>
-                                        <br />
+                                        <br/>
                                     {% endfor %}
                                 </div>
                                 <div class="row clearfix">
@@ -209,7 +214,8 @@
                                                 </strong>
 
                                                 <p>
-                                                    <a class="btn" href="/movies/{{ movie.title }}">View details »</a>
+                                                    <a class="btn" href="/movies/{{ movie.title }}">View details
+                                                        »</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -217,6 +223,7 @@
                                     {% endfor %}
 
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -225,10 +232,11 @@
         </div>
     </div>
 </div>
-<div class="small chat sidebar-nav-fixed">
+<div class="small chat affix">
     <ul class="nav">
         {% for chat_user in chat_users %}
-            <li><a href="/profile/{{ chat_user.username }}"><img width="40" height="40" class="img-circle" src="/media/users/{{ chat_user.image_path }}"></a>
+            <li><a href="/profile/{{ chat_user.username }}"><img width="40" height="40" class="img-circle"
+                                                                 src="/media/users/{{ chat_user.image_path }}"></a>
             </li>
         {% endfor %}
     </ul>

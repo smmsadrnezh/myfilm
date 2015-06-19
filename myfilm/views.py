@@ -1,9 +1,10 @@
-import social.views
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
+
+import social.views
 import accounts.views
 from myfilm.models import MovieArtist
 from social.models import MovieRating
-from django.shortcuts import render
 from myfilm.models import Artist
 from myfilm.models import Movie
 

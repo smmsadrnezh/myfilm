@@ -5,10 +5,13 @@
         <div class="col-md-2 column">
             <img class="img-thumbnail" src="/media/users/{{ profile_user.image_path }}"/>
         </div>
-        <div class="col-md-10 column">
+        <div class="col-md-8 column">
             <h2>{{ profile_user.first_name }} {{ profile_user.last_name }}</h2>
 
             <strong>@{{ profile_user.username }}</strong>
+        </div>
+        <div class="col-md-2 column">
+            {{ follow_key }}
         </div>
     </div>
 

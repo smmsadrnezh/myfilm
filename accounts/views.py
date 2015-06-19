@@ -1,10 +1,11 @@
-import social.views
 from django.core.context_processors import csrf
 from django.template.loader import get_template
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import auth
+from django.template import Context
 
+import social.views
 from accounts.models import CustomUser
 from .forms import CustomRegistration
 from accounts.models import Follow
@@ -103,7 +104,8 @@ def profile(request, username):
             'following_users': social.views.who_to_follow(request),
             'recom_movies': social.views.movies_recommended(request),
             'popular_movies': social.views.popular_movies(request),
-            'chat_users': followings(request.user)
+            'chat_users': followings(request.user),
+            'follow_key': follow_key(request.user, profile_user)
         })
 
 
@@ -150,3 +152,14 @@ def lists(request):
             'recom_movies': social.views.movies_recommended(request),
             'popular_movies': social.views.popular_movies(request)
         })
+
+
+def follow_key(user, profile_user):
+    follow_html = ""
+    button_text = "Follow"
+    if user != profile_user:
+        for following in followings(user):
+            if following == profile_user:
+                button_text = "Unfollow"
+        follow_html = get_template('follow_key.html').render(Context({'button_text': button_text}))
+    return follow_html
