@@ -32,4 +32,4 @@ class MovieArtist(models.Model):
         unique_together = (("artist_name", "movie"),)
 
     def __str__(self):
-        return "%s %s" % (self.artist_name, self.role)
+        return "%s  %s  %s" % (self.movie, self.artist_name, self.role)
