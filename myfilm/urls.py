@@ -37,4 +37,7 @@ urlpatterns = [
                   url(r'^notifications$', 'social.views.notifications'),
                   url(r'^admin/', include(admin.site.urls)),
 
+                  # captcha url
+                  url(r'^captcha/', include('captcha.urls')),
+
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
