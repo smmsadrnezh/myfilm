@@ -23,11 +23,11 @@
 
         <a href="{{ movie.imdb_url }}"><img src="{% static "img/imdb.png" %}"></a>
 
-        <h4 class="inline">Director:</h4> <a href="#">{{ director.artist_name_id }}</a>
-        <h4 class="inline">Writer:</h4> <a href="#">{{ writer.artist_name_id }}</a>
+        <h4 class="inline">Director:</h4> <a href="/artists/{{ director.artist_name }}">{{ director.artist_name_id }}</a>
+        <h4 class="inline">Writer:</h4> <a href="/artists/{{ writer.artist_name}}">{{ writer.artist_name_id }}</a>
         <h4 class="inline">Stars:</h4>
         {% for star in stars %}
-            <a href="#">{{ star.artist_name_id }}</a><br/>
+            <a href="/artists/{{ star.artist_name_id }}">{{ star.artist_name_id }}</a><br/>
         {% endfor %}
         <h2>Full Cast</h2>
 

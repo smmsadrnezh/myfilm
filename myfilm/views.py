@@ -34,6 +34,7 @@ def movie(request, movietitle):
         if len(writer) > 0:
             writer = writer[0]
         stars = MovieArtist.objects.filter(movie_id=cur_movie.id, role='actor')
+
         ### end fetching artists
 
         return render(request, 'movie.html', {
