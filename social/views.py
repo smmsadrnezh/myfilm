@@ -21,26 +21,21 @@ def post(request, postid):
         Comment(body=request.POST['body'], post_id=postid, username_id=request.user.id, time=datetime.datetime.now(),
                 title=request.POST['title']).save()
         return HttpResponseRedirect('/posts/' + postid)
-    post = Post.objects.get(id=postid)
-    post_writer = CustomUser.objects.get(id=post.username_id)
 
-    movie = Movie.objects.get(id=post.movie_id)
-    likes = Like.objects.filter(post_id=postid)
     likers = []
-    for like in likes:
+    for like in Like.objects.filter(post_id=postid):
         likers.append(User.objects.get(id=like.username_id))
 
-    comments = Comment.objects.filter(post_id=postid)
     comments_dic = {}
-    for comment in comments:
+    for comment in Comment.objects.filter(post_id=postid):
         writer = User.objects.get(id=comment.username_id)
         comments_dic[comment] = writer
 
     return render(request, 'post.html', {
         'PageTitle': " - Post",
-        'writer': post_writer,
+        'writer': CustomUser.objects.get(id=post.username_id),
         'post': post,
-        'movie': movie,
+        'movie': Movie.objects.get(id=post.movie_id),
         'likers': likers,
         'comments': comments_dic,
         'who_to_follows': who_to_follow(request),
