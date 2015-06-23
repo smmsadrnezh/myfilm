@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import models, migrations
 import datetime
+
+from django.db import models, migrations
 from django.utils.timezone import utc
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('accounts', '0008_auto_20150613_0816'),
         ('social', '0005_auto_20150623_1303'),

@@ -53,8 +53,9 @@ class MovieRating(models.Model):
 
 class Notification(models.Model):
     text = models.CharField(max_length=100)
-    time = models.TimeField(default=django.utils.timezone.now())
+    time = models.TimeField(default=django.utils.timezone.now)
     username = models.ForeignKey('accounts.CustomUser')
+    url = models.URLField(max_length=50)
 
     def __str__(self):
-        return "notification: %s username: %s" % (self.text , self.username)
+        return "notification: %s username: %s" % (self.text, self.username)

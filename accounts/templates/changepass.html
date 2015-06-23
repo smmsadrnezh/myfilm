@@ -2,8 +2,9 @@
 {% block pageBody %}
     <div class="container">
         <div class="row">
-                <form role="form" action="/profile/{{ request.user.username }}/" method="post">{% csrf_token %}
-                    <input type="hidden" value="change_password" name="type">
+            <form role="form" action="/profile/{{ request.user.username }}/" method="post">{% csrf_token %}
+                <input type="hidden" value="change_password" name="type">
+
                 <div class="col-lg-6">
 
                     <div class="form-group">

@@ -1,5 +1,10 @@
+import datetime
+
+from django.contrib.auth.decorators import login_required
+
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+
 from social.models import Post
 import social.views
 import accounts.views
@@ -7,7 +12,6 @@ from myfilm.models import MovieArtist
 from social.models import MovieRating
 from myfilm.models import Artist
 from myfilm.models import Movie
-import datetime
 
 
 def home(request):
@@ -16,89 +20,82 @@ def home(request):
     })
 
 
+@login_required
 def movie(request, movietitle):
-    if request.user.id == None:
-        return HttpResponseRedirect('/login')
-    else:
+    # process new post form (movie review)
+    if request.method == 'POST':
+        print()
+        new_post = Post(body=request.POST.get('post_body', ''), title=request.POST.get('postTitle', ''),
+                        created_time=datetime.datetime.now(), movie_id=Movie.objects.get(title=movietitle).id,
+                        username_id=request.user.id)
+        new_post.save()
+        return HttpResponseRedirect('/posts/' + str(new_post.id))
 
-        # process new post form (movie review)
-        if request.method == 'POST':
-            print()
-            new_post = Post(body=request.POST.get('post_body', ''), title=request.POST.get('postTitle', ''), created_time=datetime.datetime.now(),movie_id=Movie.objects.get(title=movietitle).id,username_id=request.user.id)
-            new_post.save()
-            return HttpResponseRedirect('/posts/'+str(new_post.id))
+    # calculating movie rate
+    cur_movie = Movie.objects.get(title=movietitle)
+    total_rate = calc_movie_rate(cur_movie.id)
 
-        # calculating movie rate
-        cur_movie = Movie.objects.filter(title=movietitle)[0]
-        total_rate = calc_movie_rate(cur_movie.id)
+    # fetch movie artists
+    director = MovieArtist.objects.filter(movie_id=cur_movie.id, role='director')
+    if len(director) > 0:
+        director = director[0]
+    writer = MovieArtist.objects.filter(movie_id=cur_movie.id, role='writer')
+    if len(writer) > 0:
+        writer = writer[0]
+    stars = MovieArtist.objects.filter(movie_id=cur_movie.id, role='actor')
 
-        # fetch movie artists
-        director = MovieArtist.objects.filter(movie_id=cur_movie.id, role='director')
-        if len(director) > 0:
-            director = director[0]
-        writer = MovieArtist.objects.filter(movie_id=cur_movie.id, role='writer')
-        if len(writer) > 0:
-            writer = writer[0]
-        stars = MovieArtist.objects.filter(movie_id=cur_movie.id, role='actor')
-
-        return render(request, 'movie.html', {
-            'PageTitle': "Myfilm - " + cur_movie.title,
-            'rate': total_rate,
-            'movie': cur_movie,
-            'director': director,
-            'writer': writer,
-            'stars': stars,
-            'who_to_follows': social.views.who_to_follow(request),
-            'recom_movies': social.views.movies_recommended(request),
-            'popular_movies': social.views.popular_movies(request),
-            'chat_users': accounts.views.followings(request.user)
-        })
+    return render(request, 'movie.html', {
+        'PageTitle': "Myfilm - " + cur_movie.title,
+        'rate': total_rate,
+        'movie': cur_movie,
+        'director': director,
+        'writer': writer,
+        'stars': stars,
+        'who_to_follows': social.views.who_to_follow(request),
+        'recom_movies': social.views.movies_recommended(request),
+        'popular_movies': social.views.popular_movies(request),
+        'chat_users': accounts.views.followings(request.user)
+    })
 
 
+@login_required
 def movies_list(request):
-    if request.user.id == None:
-        return HttpResponseRedirect('/login')
-    else:
-        movie_rate = {}
-        for movie in Movie.objects.all().order_by('year'):
-            movie_rate[movie] = calc_movie_rate(movie.id)
+    movie_rate = {}
+    for movie in Movie.objects.all().order_by('year'):
+        movie_rate[movie] = calc_movie_rate(movie.id)
 
-        return render(request, 'movies.html', {
-            'PageTitle': "Myfilm - All Movies",
-            'movies': movie_rate,
-            'who_to_follows': social.views.who_to_follow(request),
-            'recom_movies': social.views.movies_recommended(request),
-            'popular_movies': social.views.popular_movies(request),
-            'chat_users': accounts.views.followings(request.user)
-        })
+    return render(request, 'movies.html', {
+        'PageTitle': "Myfilm - All Movies",
+        'movies': movie_rate,
+        'who_to_follows': social.views.who_to_follow(request),
+        'recom_movies': social.views.movies_recommended(request),
+        'popular_movies': social.views.popular_movies(request),
+        'chat_users': accounts.views.followings(request.user)
+    })
 
 
+@login_required
 def artists_list(request):
-    if request.user.id == None:
-        return HttpResponseRedirect('/login')
-    else:
-        return render(request, 'artists.html', {
-            'PageTitle': "Myfilm - All Artists",
-            'artists': Artist.objects.all().order_by('name'),
-            'who_to_follows': social.views.who_to_follow(request),
-            'recom_movies': social.views.movies_recommended(request),
-            'popular_movies': social.views.popular_movies(request),
-            'chat_users': accounts.views.followings(request.user)
-        })
+    return render(request, 'artists.html', {
+        'PageTitle': "Myfilm - All Artists",
+        'artists': Artist.objects.all().order_by('name'),
+        'who_to_follows': social.views.who_to_follow(request),
+        'recom_movies': social.views.movies_recommended(request),
+        'popular_movies': social.views.popular_movies(request),
+        'chat_users': accounts.views.followings(request.user)
+    })
 
 
+@login_required
 def artist(request, artistname):
-    if request.user.id == None:
-        return HttpResponseRedirect('/login')
-    else:
-        return render(request, 'artist.html', {
-            'PageTitle': "Myfilm - " + artistname,
-            'artist': Artist.objects.filter(name=artistname)[0],
-            'who_to_follows': social.views.who_to_follow(request),
-            'recom_movies': social.views.movies_recommended(request),
-            'popular_movies': social.views.popular_movies(request),
-            'chat_users': accounts.views.followings(request.user)
-        })
+    return render(request, 'artist.html', {
+        'PageTitle': "Myfilm - " + artistname,
+        'artist': Artist.objects.get(name=artistname),
+        'who_to_follows': social.views.who_to_follow(request),
+        'recom_movies': social.views.movies_recommended(request),
+        'popular_movies': social.views.popular_movies(request),
+        'chat_users': accounts.views.followings(request.user)
+    })
 
 
 def calc_movie_rate(movie_id):

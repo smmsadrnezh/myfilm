@@ -1,99 +1,96 @@
+import datetime
+
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 from accounts.models import CustomUser
-import accounts.views
 from accounts.models import Follow
 from social.models import Comment
 from accounts.models import User
 from myfilm.models import Movie
 from social.models import Post
 from social.models import Like
-import datetime
+import accounts.views
 
 
+@login_required
 def post(request, postid):
     if request.method == 'POST':
         comment_title = request.POST['title']
         comment_body = request.POST['body']
-        Comment(body=comment_body, post_id=postid, username_id=request.user.id, time=datetime.datetime.now(), title=comment_title).save()
+        Comment(body=comment_body, post_id=postid, username_id=request.user.id, time=datetime.datetime.now(),
+                title=comment_title).save()
         return HttpResponseRedirect('/posts/' + postid)
-    if request.user.id == None:
-        return HttpResponseRedirect('/login')
-    else:
-        post = Post.objects.filter(id=postid)
-        if len(post) > 0:
-            post = post[0]
+    post = Post.objects.filter(id=postid)
+    if len(post) > 0:
+        post = post[0]
 
-        post_writer = CustomUser.objects.filter(id=post.username_id)
-        if len(post_writer) > 0:
-            post_writer = post_writer[0]
+    post_writer = CustomUser.objects.filter(id=post.username_id)
+    if len(post_writer) > 0:
+        post_writer = post_writer[0]
 
-        movie = Movie.objects.filter(id=post.movie_id)
-        if len(movie) > 0:
-            movie = movie[0]
+    movie = Movie.objects.filter(id=post.movie_id)
+    if len(movie) > 0:
+        movie = movie[0]
 
-        likes = Like.objects.filter(post_id=postid)
-        likers = []
-        if (len(likes) > 0):
-            for like in likes:
-                likers.append(User.objects.filter(id=like.username_id)[0])
+    likes = Like.objects.filter(post_id=postid)
+    likers = []
+    if (len(likes) > 0):
+        for like in likes:
+            likers.append(User.objects.get(id=like.username_id))
 
-        comments = Comment.objects.filter(post_id=postid)
-        comments_dic = {}
-        for comment in comments:
-            writer = User.objects.filter(id=comment.username_id)[0]
-            comments_dic[comment] = writer
+    comments = Comment.objects.filter(post_id=postid)
+    comments_dic = {}
+    for comment in comments:
+        writer = User.objects.get(id=comment.username_id)
+        comments_dic[comment] = writer
 
-        return render(request, 'post.html', {
-            'PageTitle': "Post",
-            'writer': post_writer,
-            'post': post,
-            'movie': movie,
-            'likers': likers,
-            'comments': comments_dic,
-            'who_to_follows': who_to_follow(request),
-            'recom_movies': movies_recommended(request),
-            'popular_movies': popular_movies(request),
-            'chat_users': accounts.views.followings(request.user)
-        })
+    return render(request, 'post.html', {
+        'PageTitle': "Post",
+        'writer': post_writer,
+        'post': post,
+        'movie': movie,
+        'likers': likers,
+        'comments': comments_dic,
+        'who_to_follows': who_to_follow(request),
+        'recom_movies': movies_recommended(request),
+        'popular_movies': popular_movies(request),
+        'chat_users': accounts.views.followings(request.user)
+    })
 
 
+@login_required
 def timeline_home(request):
-    if request.user.id == None:
-        return HttpResponseRedirect('/login')
-    else:
-        followings = Follow.objects.filter(follower_id=request.user.id)
-        all_posts = []
-        for following in followings:
-            posts = Post.objects.filter(username_id=following.following_id).order_by('created_time')
-            writer = CustomUser.objects.filter(id=following.following_id)[0]
-            for post in posts:
-                movie = Movie.objects.filter(id=post.movie_id)[0]
-                all_posts.append((post, movie, writer))
+    followings = Follow.objects.filter(follower_id=request.user.id)
+    all_posts = []
+    for following in followings:
+        posts = Post.objects.filter(username_id=following.following_id).order_by('created_time')
+        writer = CustomUser.objects.get(id=following.following_id)
+        for post in posts:
+            movie = Movie.objects.get(id=post.movie_id)
+            all_posts.append((post, movie, writer))
 
-        return render(request, 'timeline.html', {
-            'PageTitle': "Myfilm - Timeline",
-            'posts': all_posts,
-            'current_user': request.user,
-            'who_to_follows': who_to_follow(request),
-            'recom_movies': movies_recommended(request),
-            'popular_movies': popular_movies(request),
-            'chat_users': accounts.views.followings(request.user)
-        })
+    return render(request, 'timeline.html', {
+        'PageTitle': "Myfilm - Timeline",
+        'posts': all_posts,
+        'current_user': request.user,
+        'who_to_follows': who_to_follow(request),
+        'recom_movies': movies_recommended(request),
+        'popular_movies': popular_movies(request),
+        'chat_users': accounts.views.followings(request.user)
+    })
 
 
+@login_required
 def notifications(request):
-    if request.user.id == None:
-        return HttpResponseRedirect('/login')
-    else:
-        return render(request, 'notifications.html', {
-            'PageTitle': "Notifications",
-            'who_to_follows': who_to_follow(request),
-            'recom_movies': movies_recommended(request),
-            'popular_movies': popular_movies(request),
-            'chat_users': accounts.views.followings(request.user)
-        })
+    return render(request, 'notifications.html', {
+        'PageTitle': "Notifications",
+        'who_to_follows': who_to_follow(request),
+        'recom_movies': movies_recommended(request),
+        'popular_movies': popular_movies(request),
+        'chat_users': accounts.views.followings(request.user)
+    })
 
 
 def movies_recommended(request):
@@ -119,11 +116,11 @@ def who_to_follow(request):
         f_followings = Follow.objects.filter(follower_id=following.id)
         for f_following in f_followings:
             if f_following.following_id != request.user.id:
-                if not recommended_followings.__contains__(CustomUser.objects.filter(id=f_following.following_id)[0]):
-                    recommended_followings.append(CustomUser.objects.filter(id=f_following.following_id)[0])
+                if not recommended_followings.__contains__(CustomUser.objects.get(id=f_following.following_id)):
+                    recommended_followings.append(CustomUser.objects.get(id=f_following.following_id))
     for following in Follow.objects.filter(follower_id=request.user.id):
-        if recommended_followings.__contains__(CustomUser.objects.filter(id=following.following_id)[0]):
-            recommended_followings.remove(CustomUser.objects.filter(id=following.following_id)[0])
+        if recommended_followings.__contains__(CustomUser.objects.get(id=following.following_id)):
+            recommended_followings.remove(CustomUser.objects.get(id=following.following_id))
 
     return recommended_followings
 
