@@ -1,12 +1,13 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-
+from social.models import Post
 import social.views
 import accounts.views
 from myfilm.models import MovieArtist
 from social.models import MovieRating
 from myfilm.models import Artist
 from myfilm.models import Movie
+import datetime
 
 
 def home(request):
@@ -19,14 +20,19 @@ def movie(request, movietitle):
     if request.user.id == None:
         return HttpResponseRedirect('/login')
     else:
-        ###calculating movie rate
 
+        # process new post form (movie review)
+        if request.method == 'POST':
+            print()
+            new_post = Post(body=request.POST.get('post_body', ''), title=request.POST.get('postTitle', ''), created_time=datetime.datetime.now(),movie_id=Movie.objects.get(title=movietitle).id,username_id=request.user.id)
+            new_post.save()
+            return HttpResponseRedirect('/posts/'+str(new_post.id))
+
+        # calculating movie rate
         cur_movie = Movie.objects.filter(title=movietitle)[0]
         total_rate = calc_movie_rate(cur_movie.id)
-        ### end of calculating movie rate
 
-        ### fetch movie artists
-
+        # fetch movie artists
         director = MovieArtist.objects.filter(movie_id=cur_movie.id, role='director')
         if len(director) > 0:
             director = director[0]
@@ -34,8 +40,6 @@ def movie(request, movietitle):
         if len(writer) > 0:
             writer = writer[0]
         stars = MovieArtist.objects.filter(movie_id=cur_movie.id, role='actor')
-
-        ### end fetching artists
 
         return render(request, 'movie.html', {
             'PageTitle': "Myfilm - " + cur_movie.title,

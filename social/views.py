@@ -16,8 +16,7 @@ def post(request, postid):
     if request.method == 'POST':
         comment_title = request.POST['title']
         comment_body = request.POST['body']
-        new_comment = Comment(body=comment_body, post_id=postid, username_id=request.user.id, time=datetime.datetime.now(), title=comment_title)
-        new_comment.save()
+        Comment(body=comment_body, post_id=postid, username_id=request.user.id, time=datetime.datetime.now(), title=comment_title).save()
         return HttpResponseRedirect('/posts/' + postid)
     if request.user.id == None:
         return HttpResponseRedirect('/login')

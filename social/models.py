@@ -1,5 +1,5 @@
 from django.db import models
-import datetime
+import django.utils.timezone
 
 
 class Post(models.Model):
@@ -49,3 +49,12 @@ class MovieRating(models.Model):
 
     def __str__(self):
         return "%s %s" % (self.movie, self.rate)
+
+
+class Notification(models.Model):
+    text = models.CharField(max_length=100)
+    time = models.TimeField(default=django.utils.timezone.now())
+    username = models.ForeignKey('accounts.CustomUser')
+
+    def __str__(self):
+        return "notification: %s username: %s" % (self.text , self.username)
