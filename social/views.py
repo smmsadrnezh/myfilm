@@ -18,7 +18,7 @@ def post(request, postid):
         comment_body = request.POST['body']
         check_duplicate = Comment.objects.filter(username_id=request.user.id, post_id=postid)
         if len(check_duplicate) == 0:
-            new_comment = Comment(body=comment_body, post_id=postid, username_id=request.user.id, time=datetime.datetime.now())
+            new_comment = Comment(body=comment_body, post_id=postid, username_id=request.user.id, time=datetime.datetime.now(), title=comment_title)
             new_comment.save()
         return HttpResponseRedirect('/posts/' + postid)
     if request.user.id == None:
