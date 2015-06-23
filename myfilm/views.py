@@ -16,7 +16,7 @@ from myfilm.models import Movie
 
 def home(request):
     return render(request, 'home.html', {
-        'PageTitle': "Myfilm - Home",
+        'PageTitle': " - Home",
     })
 
 
@@ -45,7 +45,7 @@ def movie(request, movietitle):
     stars = MovieArtist.objects.filter(movie_id=cur_movie.id, role='actor')
 
     return render(request, 'movie.html', {
-        'PageTitle': "Myfilm - " + cur_movie.title,
+        'PageTitle': " - " + cur_movie.title,
         'rate': total_rate,
         'movie': cur_movie,
         'director': director,
@@ -65,7 +65,7 @@ def movies_list(request):
         movie_rate[movie] = calc_movie_rate(movie.id)
 
     return render(request, 'movies.html', {
-        'PageTitle': "Myfilm - All Movies",
+        'PageTitle': " - All Movies",
         'movies': movie_rate,
         'who_to_follows': social.views.who_to_follow(request),
         'recom_movies': social.views.movies_recommended(request),
@@ -77,7 +77,7 @@ def movies_list(request):
 @login_required
 def artists_list(request):
     return render(request, 'artists.html', {
-        'PageTitle': "Myfilm - All Artists",
+        'PageTitle': " - All Artists",
         'artists': Artist.objects.all().order_by('name'),
         'who_to_follows': social.views.who_to_follow(request),
         'recom_movies': social.views.movies_recommended(request),
@@ -89,7 +89,7 @@ def artists_list(request):
 @login_required
 def artist(request, artistname):
     return render(request, 'artist.html', {
-        'PageTitle': "Myfilm - " + artistname,
+        'PageTitle': " - " + artistname,
         'artist': Artist.objects.get(name=artistname),
         'who_to_follows': social.views.who_to_follow(request),
         'recom_movies': social.views.movies_recommended(request),

@@ -17,28 +17,18 @@ import accounts.views
 @login_required
 def post(request, postid):
     if request.method == 'POST':
-        comment_title = request.POST['title']
-        comment_body = request.POST['body']
-        Comment(body=comment_body, post_id=postid, username_id=request.user.id, time=datetime.datetime.now(),
-                title=comment_title).save()
+        # add new comment
+        Comment(body=request.POST['body'], post_id=postid, username_id=request.user.id, time=datetime.datetime.now(),
+                title=request.POST['title']).save()
         return HttpResponseRedirect('/posts/' + postid)
-    post = Post.objects.filter(id=postid)
-    if len(post) > 0:
-        post = post[0]
+    post = Post.objects.get(id=postid)
+    post_writer = CustomUser.objects.get(id=post.username_id)
 
-    post_writer = CustomUser.objects.filter(id=post.username_id)
-    if len(post_writer) > 0:
-        post_writer = post_writer[0]
-
-    movie = Movie.objects.filter(id=post.movie_id)
-    if len(movie) > 0:
-        movie = movie[0]
-
+    movie = Movie.objects.get(id=post.movie_id)
     likes = Like.objects.filter(post_id=postid)
     likers = []
-    if (len(likes) > 0):
-        for like in likes:
-            likers.append(User.objects.get(id=like.username_id))
+    for like in likes:
+        likers.append(User.objects.get(id=like.username_id))
 
     comments = Comment.objects.filter(post_id=postid)
     comments_dic = {}
@@ -47,7 +37,7 @@ def post(request, postid):
         comments_dic[comment] = writer
 
     return render(request, 'post.html', {
-        'PageTitle': "Post",
+        'PageTitle': " - Post",
         'writer': post_writer,
         'post': post,
         'movie': movie,
@@ -65,14 +55,12 @@ def timeline_home(request):
     followings = Follow.objects.filter(follower_id=request.user.id)
     all_posts = []
     for following in followings:
-        posts = Post.objects.filter(username_id=following.following_id).order_by('created_time')
-        writer = CustomUser.objects.get(id=following.following_id)
-        for post in posts:
+        for post in Post.objects.filter(username_id=following.following_id).order_by('created_time'):
             movie = Movie.objects.get(id=post.movie_id)
-            all_posts.append((post, movie, writer))
+            all_posts.append((post, movie, CustomUser.objects.get(id=following.following_id)))
 
     return render(request, 'timeline.html', {
-        'PageTitle': "Myfilm - Timeline",
+        'PageTitle': " - Timeline",
         'posts': all_posts,
         'current_user': request.user,
         'who_to_follows': who_to_follow(request),
@@ -85,7 +73,7 @@ def timeline_home(request):
 @login_required
 def notifications(request):
     return render(request, 'notifications.html', {
-        'PageTitle': "Notifications",
+        'PageTitle': " - Notifications",
         'who_to_follows': who_to_follow(request),
         'recom_movies': movies_recommended(request),
         'popular_movies': popular_movies(request),

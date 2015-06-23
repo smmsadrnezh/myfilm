@@ -32,7 +32,7 @@ def login(request):
 
     c = {}
     c.update(csrf(request))
-    return render(request, 'login.html', dict(c, **{'PageTitle': "Login", 'invalid_html': invalid_html}))
+    return render(request, 'login.html', dict(c, **{'PageTitle': " - Login", 'invalid_html': invalid_html}))
 
 
 def logout(request):
@@ -43,7 +43,7 @@ def logout(request):
 @login_required
 def accounts_lists(request):
     return render(request, 'users.html', {
-        'PageTitle': "Users",
+        'PageTitle': " - Users",
         'who_to_follows': social.views.who_to_follow(request),
         'recom_movies': social.views.movies_recommended(request),
         'popular_movies': social.views.popular_movies(request),
@@ -63,7 +63,7 @@ def register(request):
     args = {}
     args.update(csrf(request))
     args['form'] = CustomRegistration()
-    return render(request, 'register.html', dict(args, **{'PageTitle': "Login"}))
+    return render(request, 'register.html', dict(args, **{'PageTitle': " - Login"}))
 
 
 def followings(user):
@@ -103,23 +103,17 @@ def profile(request, username):
                 return HttpResponseRedirect('/chpass')
         else:
             # add or remove follower
-            time = datetime.datetime.now()
-            follower_id = request.user.id
-            following_id = profile_user.id
             if is_following(request.user, profile_user):
-                Follow.objects.filter(follower_id=follower_id, following_id=following_id).delete()
+                Follow.objects.filter(follower_id=request.user.id, following_id=profile_user.id).delete()
             else:
-                Follow(time=time, follower_id=follower_id, following_id=following_id).save()
+                Follow(time=datetime.datetime.now(), follower_id=request.user.id, following_id=profile_user.id).save()
 
-    posts = Post.objects.filter(username_id=profile_user.id).order_by('created_time')
-    writer = CustomUser.objects.get(id=profile_user.id)
     all_posts = []
 
-    for post in posts:
-        movie = Movie.objects.get(id=post.movie_id)
-        all_posts.append((post, movie, writer))
+    for post in Post.objects.filter(username_id=profile_user.id).order_by('created_time'):
+        all_posts.append((post, Movie.objects.get(id=post.movie_id), CustomUser.objects.get(id=profile_user.id)))
     return render(request, 'profile.html', {
-        'PageTitle': "Myfilm - " + profile_user.first_name + " " + profile_user.last_name + " Profile",
+        'PageTitle': " - " + profile_user.first_name + " " + profile_user.last_name + " Profile",
         'profile_user': profile_user,
         'followers': followers(profile_user),
         'following': followings(profile_user),
@@ -136,14 +130,14 @@ def profile(request, username):
 
 def forget_password(request):
     return render(request, 'forget.html', {
-        'PageTitle': "Forget"
+        'PageTitle': " - Forget"
     })
 
 
 @login_required
 def edit_profile(request, username):
     return render(request, 'settings.html', {
-        'PageTitle': "Settings",
+        'PageTitle': " - Settings",
         'current_user': request.user,
         'who_to_follows': social.views.who_to_follow(request),
         'recom_movies': social.views.movies_recommended(request),
@@ -154,7 +148,7 @@ def edit_profile(request, username):
 @login_required
 def change_password(request):
     return render(request, 'changepass.html', {
-        'PageTitle': "Change Password",
+        'PageTitle': " - Change Password",
         'who_to_follows': social.views.who_to_follow(request),
         'recom_movies': social.views.movies_recommended(request),
         'popular_movies': social.views.popular_movies(request)
@@ -164,7 +158,7 @@ def change_password(request):
 @login_required
 def lists(request):
     return render(request, 'lists.html', {
-        'PageTitle': "List",
+        'PageTitle': " - List",
         'who_to_follows': social.views.who_to_follow(request),
         'recom_movies': social.views.movies_recommended(request),
         'popular_movies': social.views.popular_movies(request)
