@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 
 class Post(models.Model):
@@ -17,9 +18,10 @@ class Comment(models.Model):
     post = models.ForeignKey('Post')
     body = models.TextField()
     time = models.TimeField()
+    title = models.TextField()
 
     class Meta:
-        unique_together = (("username", "post"),)
+        unique_together = (("username", "post", "time"),)
 
     def __str__(self):
         return "%s" % self.body

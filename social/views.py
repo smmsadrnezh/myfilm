@@ -9,7 +9,7 @@ from accounts.models import User
 from myfilm.models import Movie
 from social.models import Post
 from social.models import Like
-import datetime,time
+import datetime
 
 
 def post(request, postid):
