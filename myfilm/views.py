@@ -15,7 +15,7 @@ from myfilm.models import Movie
 
 def home(request):
     return render(request, 'home.html', {
-        'PageTitle': " - Home",
+        'PageTitle': "Myfilm",
     })
 
 
