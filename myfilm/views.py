@@ -3,7 +3,6 @@ import datetime
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from itertools import chain
 from social.models import Post
 import social.views
 import accounts.views
@@ -73,7 +72,6 @@ def movies_list(request):
     for movie in Movie.objects.all().order_by('year'):
         movie_rate[movie] = calc_movie_rate(movie.id)
 
-    print movie_rate
     return render(request, 'movies.html', {
         'PageTitle': " - All Movies",
         'movies': movie_rate,
