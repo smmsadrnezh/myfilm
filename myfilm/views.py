@@ -3,7 +3,7 @@ import datetime
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-
+from itertools import chain
 from social.models import Post
 import social.views
 import accounts.views
@@ -11,11 +11,21 @@ from myfilm.models import MovieArtist
 from social.models import MovieRating
 from myfilm.models import Artist
 from myfilm.models import Movie
+from social.models import Comment
+from accounts.models import CustomUser
 
 
 def home(request):
+    comments = {}
+    for comment in Comment.objects.all().order_by('?')[0:2]:
+        comments[comment] = CustomUser.objects.get(id=comment.username_id)
+    sample_post = Post.objects.all().order_by('?')[:1].get()
+    sample_writer = CustomUser.objects.get(id=sample_post.username_id)
     return render(request, 'home.html', {
         'PageTitle': "Myfilm",
+        'sample_post': sample_post,
+        'sample_writer': sample_writer,
+        'comments': comments,
     })
 
 
@@ -23,7 +33,6 @@ def home(request):
 def movie(request, movietitle):
     # process new post form (movie review)
     if request.method == 'POST':
-        print()
         new_post = Post(body=request.POST.get('post_body', ''), title=request.POST.get('postTitle', ''),
                         created_time=datetime.datetime.now(), movie_id=Movie.objects.get(title=movietitle).id,
                         username_id=request.user.id)
@@ -64,6 +73,7 @@ def movies_list(request):
     for movie in Movie.objects.all().order_by('year'):
         movie_rate[movie] = calc_movie_rate(movie.id)
 
+    print movie_rate
     return render(request, 'movies.html', {
         'PageTitle': " - All Movies",
         'movies': movie_rate,

@@ -21,7 +21,7 @@
                 </div>
                 <div class="row hero-content">
                     <div class="col-md-12">
-                        <h1 class="animated fadeInDown">Get On Myfilm. It's free and always will be.</h1>
+                        <h1 class="animated fadeInDown up-indent">Get On Myfilm. It's free and always will be.</h1>
                         <a href="accounts/login" class="use-btn animated fadeInUp">Sign in</a>
                         <a href="#about" class="learn-btn animated fadeInUp">Learn more <i class="fa fa-arrow-down"></i></a>
                     </div>
@@ -156,21 +156,16 @@
                     <div class="col-md-6">
                         <h1>Join MyFilm Community and Spread your word.</h1>
 
-                        <p>Recent timeline posts on MyFilm:</p>
+                        <p>Recent post comments on MyFilm:</p>
+                        {% for comment,writer in comments.items %}
                         <blockquote class="team-quote">
-                            <div class="avatar"><img src="{% static "/media/users/avatar.png" %}" alt="User Avatar">
+                            <div class="avatar"><img class="img-circle" width="60px" src="/media/users/{{ writer.image_path }}" alt="{{ writer.username }}">
                             </div>
-                            <p>"I Hate Folan Film" - Masoud Sadrnezhaad</p>
-
+                            <p>"{{ comment.body }}" - {{ writer.first_name }} {{ writer.last_name }}</p>
                         </blockquote>
-                        <blockquote class="team-quote">
-
-                            <div class="avatar"><img src="/media/users/avatar.png" alt="User Avatar"></div>
-                            <p>"I love Folan Film" - Arman Naeimian</p>
-                        </blockquote>
-
+                                {% endfor %}
                         <a href="accounts/login" class="download-btn">Join Community <i
-                                class="fa fa-download"></i></a>
+                                class="fa"></i></a>
                     </div>
                 </div>
             </div>
@@ -181,30 +176,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Ron Howard shares first look at Tom Hanks in Inferno</h1>
+                    <h1>{{ sample_post.title }}</h1>
 
-                    <p>After The Da Vinci Code and Angels & Demons, director Ron Howard once again re-teams with Tom
-                        Hanks
-                        for the latest thrilling chapter in the life of Harvard symbologist Robert Langdon in
-                        Inferno.</p>
+                    <p>{{ sample_post.body }}</p>
 
-                    <p>It’s been six years since we last say Hanks as Langdon on the big screen in Angels & Demons, the
-                        sequel to the enormously popular The Da Vinci Code. Once again based on Dan Brown’s best-selling
-                        novel, Inferno picks up with a confused Robert Langdon waking up in an Italian hospital room
-                        with no
-                        recollection of the events of the past few days. Along for the ride is Dr. Sienna Brooks
-                        (Felicity
-                        Jones) who joins forces with Langdon to help recover his memory and stop a madman from releasing
-                        a
-                        global plague with ties to Dante’s Inferno.</p>
+                    -- {{ sample_writer }} </p>
 
-                    <p>Chronologically, Inferno is the fourth book in Dan Brown’s Langdon series, with Universal
-                        Pictures
-                        opting to develop this »</p>
-
-                    - Rachel West</p>
-
-                    <p><a href="artists/tomhanks" class="arrow-btn">See the full blog post!</a>
+                    <p><a href="posts/{{ sample_post.id }}" class="arrow-btn">See the full movie review post!</a>
                     </p>
                 </div>
             </div>
