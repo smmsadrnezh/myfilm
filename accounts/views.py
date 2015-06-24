@@ -107,6 +107,7 @@ def profile(request, username):
                 Follow.objects.filter(follower_id=request.user.id, following_id=profile_user.id).delete()
             else:
                 Follow(time=datetime.datetime.now(), follower_id=request.user.id, following_id=profile_user.id).save()
+                social.views.notification_add("follow",request.user.id,profile_user.id,None)
 
     all_posts = []
 

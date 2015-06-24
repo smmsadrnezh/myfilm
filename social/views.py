@@ -11,31 +11,49 @@ from accounts.models import User
 from myfilm.models import Movie
 from social.models import Post
 from social.models import Like
+from social.models import Notification
 import accounts.views
 
 
 @login_required
 def post(request, postid):
     if request.method == 'POST':
-        # add new comment
-        Comment(body=request.POST['body'], post_id=postid, username_id=request.user.id, time=datetime.datetime.now(),
-                title=request.POST['title']).save()
-        return HttpResponseRedirect('/posts/' + postid)
 
+        # add or remove like
+        if request.POST.get('type') == "like":
+            if Like.objects.filter(post_id=postid,username_id=request.user.id):
+                Like.objects.get(post_id=postid,username_id=request.user.id).delete()
+            else:
+                Like(post_id=postid, username_id=request.user.id, time=datetime.datetime.now()).save()
+                notification_add("like",request.user,CustomUser.objects.get(id=Post.objects.get(id=postid).username_id),Post.objects.get(id=postid))
+        else:
+
+            # add comment notification
+            notification_add("comment",request.user,CustomUser.objects.get(id=Post.objects.get(id=postid).username_id),Post.objects.get(id=postid))
+            if not Comment.objects.filter(post_id=postid):
+                for comment in Comment.objects.filter(post_id=postid):
+                    notification_add("comment_on_following",request.user,CustomUser.objects.get(id=comment.username_id),Post.objects.get(id=postid))
+
+            # add new comment
+            Comment(body=request.POST['body'], post_id=postid, username_id=request.user.id, time=datetime.datetime.now(),
+                    title=request.POST['title']).save()
+            return HttpResponseRedirect('/posts/' + postid)
+
+    # get post likes
     likers = []
     for like in Like.objects.filter(post_id=postid):
         likers.append(User.objects.get(id=like.username_id))
 
+    # get post comments
     comments_dic = {}
     for comment in Comment.objects.filter(post_id=postid):
         writer = User.objects.get(id=comment.username_id)
         comments_dic[comment] = writer
-
     return render(request, 'post.html', {
         'PageTitle': " - Post",
-        'writer': CustomUser.objects.get(id=post.username_id),
-        'post': post,
-        'movie': Movie.objects.get(id=post.movie_id),
+        'writer': CustomUser.objects.get(id=Post.objects.get(id=postid).username_id),
+        'post': Post.objects.get(id=postid),
+        'movie': Movie.objects.get(id=Post.objects.get(id=postid).movie_id),
         'likers': likers,
         'comments': comments_dic,
         'who_to_follows': who_to_follow(request),
@@ -115,3 +133,25 @@ def popular_movies(request):
             top_movies.append(repetitive_top_movie)
 
     return top_movies
+
+
+def notification_add(kind,user,notification_user,post):
+    Notification(text=notification_text(kind,user),time=datetime.datetime.now(),username_id=notification_user.id,url=notification_url(kind,user,post)).save()
+
+
+def notification_text(kind,user):
+    return {
+        'follow': user.first_name + user.last_name + " started to following you.",
+        'like': user.first_name + user.last_name + " likes your update.",
+        'comment': user.first_name + user.last_name + " commented on your update.",
+        'comment_on_following': user.first_name + user.last_name + " commented on post you are following.",
+    }.get(kind)
+
+
+def notification_url(kind,user,post):
+    return {
+        'follow': "/profile/" + user.username,
+        'like': "/posts/" + str(post.id),
+        'comment': "/posts/" + str(post.id),
+        'comment_on_following': "/profile/" + user.username,
+    }.get(kind)
