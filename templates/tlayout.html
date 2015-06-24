@@ -64,9 +64,10 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <img alt="Notifications" class="dropdown-toggle" data-toggle="dropdown"
-                         src="{% static "img/notification.png" %}" width="50px"
-                         height="50px"/>
+                    <div class="dropdown-toggle notification" data-toggle="dropdown">
+                    {{ notifications.count }}
+                    </div>
+
                     <ul class="dropdown-menu">
                         {% for notification in notifications %}
                             <li>
