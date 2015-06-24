@@ -50,7 +50,8 @@ def accounts_lists(request):
         'chat_users': followings(request.user),
         'followers': followers(CustomUser.objects.get(username=request.user.username)),
         'following': followings(CustomUser.objects.get(username=request.user.username)),
-        'follow_text': "Follow / Unfollow"
+        'follow_text': "Follow / Unfollow",
+        'notifications': social.views.notification_get(request.user.id)
     })
 
 
@@ -107,7 +108,7 @@ def profile(request, username):
                 Follow.objects.filter(follower_id=request.user.id, following_id=profile_user.id).delete()
             else:
                 Follow(time=datetime.datetime.now(), follower_id=request.user.id, following_id=profile_user.id).save()
-                social.views.notification_add("follow",request.user.id,profile_user.id,None)
+                social.views.notification_add("follow", request.user, profile_user, None)
 
     all_posts = []
 
@@ -125,7 +126,8 @@ def profile(request, username):
         'recom_movies': social.views.movies_recommended(request),
         'popular_movies': social.views.popular_movies(request),
         'chat_users': followings(request.user),
-        'follow_key': follow_key(request.user, profile_user, request)
+        'follow_key': follow_key(request.user, profile_user, request),
+        'notifications': social.views.notification_get(request.user.id)
     })
 
 
@@ -142,7 +144,8 @@ def edit_profile(request, username):
         'current_user': request.user,
         'who_to_follows': social.views.who_to_follow(request),
         'recom_movies': social.views.movies_recommended(request),
-        'popular_movies': social.views.popular_movies(request)
+        'popular_movies': social.views.popular_movies(request),
+        'notifications': social.views.notification_get(request.user.id)
     })
 
 
@@ -152,7 +155,8 @@ def change_password(request):
         'PageTitle': " - Change Password",
         'who_to_follows': social.views.who_to_follow(request),
         'recom_movies': social.views.movies_recommended(request),
-        'popular_movies': social.views.popular_movies(request)
+        'popular_movies': social.views.popular_movies(request),
+        'notifications': social.views.notification_get(request.user.id)
     })
 
 
@@ -162,7 +166,8 @@ def lists(request):
         'PageTitle': " - List",
         'who_to_follows': social.views.who_to_follow(request),
         'recom_movies': social.views.movies_recommended(request),
-        'popular_movies': social.views.popular_movies(request)
+        'popular_movies': social.views.popular_movies(request),
+        'notifications': social.views.notification_get(request.user.id)
     })
 
 

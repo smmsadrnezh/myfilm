@@ -68,20 +68,12 @@
                          src="{% static "img/notification.png" %}" width="50px"
                          height="50px"/>
                     <ul class="dropdown-menu">
-                        <li>
-                            <a href="/posts/1">Arman Naeimian likes your update.</a>
-                        </li>
-                        <li>
-                            <a href="/posts/1">Sadjad Fouladi commented on your update.</a>
-                        </li>
-                        <li>
-                            <a href="/posts/1">Arman Nameimian commented on post you are following.</a>
-                        </li>
-                        <li>
-                            <a href="/profile/fouladi">Sadjad Fouladi started to following you.</a>
-                        </li>
-                        <li class="divider">
-                        </li>
+                        {% for notification in notifications %}
+                            <li>
+                                <a href="{{ notification.url }}">{{ notification.text }}</a>
+                            </li>
+                        {% endfor %}
+                        <li class="divider" role="separator"></li>
                         <li>
                             <a href="/notifications">View all notifications.</a>
                         </li>

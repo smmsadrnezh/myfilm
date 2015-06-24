@@ -1,17 +1,10 @@
 {% extends "tlayout.html" %}
 {% block pageBody %}
     <ul class="list-group">
-        <li class="list-group-item list-group-item-success">
-            <a href="#">Arman Naeimian likes your post.</a>
-        </li>
-        <li class="list-group-item list-group-item-info">
-            <a href="#">Sadjad Fouladi commented on your post.</a>
-        </li>
-        <li class="list-group-item list-group-item-warning">
-            <a href="/">Arman Nameimian commented on post you also wrote on.</a>
-        </li>
-        <li class="list-group-item list-group-item-danger">
-            <a href="/profile/1">Sadjad Fouladi started to following you.</a>
-        </li>
+        {% for notification in notifications %}
+            <li class="list-group-item list-group-item-success">
+                <a href="{{ notification.url }}">{{ notification.text }}</a>
+            </li>
+        {% endfor %}
     </ul>
 {% endblock %}

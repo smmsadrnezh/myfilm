@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 from accounts.models import CustomUser
+
 from accounts.models import Follow
 from social.models import Comment
 from accounts.models import User
@@ -13,6 +14,7 @@ from social.models import Post
 from social.models import Like
 from social.models import Notification
 import accounts.views
+import social.views
 
 
 @login_required
@@ -21,21 +23,27 @@ def post(request, postid):
 
         # add or remove like
         if request.POST.get('type') == "like":
-            if Like.objects.filter(post_id=postid,username_id=request.user.id):
-                Like.objects.get(post_id=postid,username_id=request.user.id).delete()
+            if Like.objects.filter(post_id=postid, username_id=request.user.id):
+                Like.objects.get(post_id=postid, username_id=request.user.id).delete()
             else:
                 Like(post_id=postid, username_id=request.user.id, time=datetime.datetime.now()).save()
-                notification_add("like",request.user,CustomUser.objects.get(id=Post.objects.get(id=postid).username_id),Post.objects.get(id=postid))
+                notification_add("like", request.user,
+                                 CustomUser.objects.get(id=Post.objects.get(id=postid).username_id),
+                                 Post.objects.get(id=postid))
         else:
 
             # add comment notification
-            notification_add("comment",request.user,CustomUser.objects.get(id=Post.objects.get(id=postid).username_id),Post.objects.get(id=postid))
+            notification_add("comment", request.user,
+                             CustomUser.objects.get(id=Post.objects.get(id=postid).username_id),
+                             Post.objects.get(id=postid))
             if not Comment.objects.filter(post_id=postid):
                 for comment in Comment.objects.filter(post_id=postid):
-                    notification_add("comment_on_following",request.user,CustomUser.objects.get(id=comment.username_id),Post.objects.get(id=postid))
+                    notification_add("comment_on_following", request.user,
+                                     CustomUser.objects.get(id=comment.username_id), Post.objects.get(id=postid))
 
             # add new comment
-            Comment(body=request.POST['body'], post_id=postid, username_id=request.user.id, time=datetime.datetime.now(),
+            Comment(body=request.POST['body'], post_id=postid, username_id=request.user.id,
+                    time=datetime.datetime.now(),
                     title=request.POST['title']).save()
             return HttpResponseRedirect('/posts/' + postid)
 
@@ -59,7 +67,8 @@ def post(request, postid):
         'who_to_follows': who_to_follow(request),
         'recom_movies': movies_recommended(request),
         'popular_movies': popular_movies(request),
-        'chat_users': accounts.views.followings(request.user)
+        'chat_users': accounts.views.followings(request.user),
+        'notifications': social.views.notification_get(request.user.id)
     })
 
 
@@ -79,7 +88,8 @@ def timeline_home(request):
         'who_to_follows': who_to_follow(request),
         'recom_movies': movies_recommended(request),
         'popular_movies': popular_movies(request),
-        'chat_users': accounts.views.followings(request.user)
+        'chat_users': accounts.views.followings(request.user),
+        'notifications': notification_get(request.user.id)
     })
 
 
@@ -90,7 +100,8 @@ def notifications(request):
         'who_to_follows': who_to_follow(request),
         'recom_movies': movies_recommended(request),
         'popular_movies': popular_movies(request),
-        'chat_users': accounts.views.followings(request.user)
+        'chat_users': accounts.views.followings(request.user),
+        'notifications': notification_get(request.user.id)
     })
 
 
@@ -135,23 +146,35 @@ def popular_movies(request):
     return top_movies
 
 
-def notification_add(kind,user,notification_user,post):
-    Notification(text=notification_text(kind,user),time=datetime.datetime.now(),username_id=notification_user.id,url=notification_url(kind,user,post)).save()
+def notification_add(kind, user, notification_user, post):
+    Notification(text=notification_text(kind, user), time=datetime.datetime.now(), username_id=notification_user.id,
+                 url=notification_url(kind, user, post)).save()
 
 
-def notification_text(kind,user):
+def notification_text(kind, user):
     return {
-        'follow': user.first_name + user.last_name + " started to following you.",
-        'like': user.first_name + user.last_name + " likes your update.",
-        'comment': user.first_name + user.last_name + " commented on your update.",
-        'comment_on_following': user.first_name + user.last_name + " commented on post you are following.",
+        'follow': user.first_name + " " + user.last_name + " started to following you.",
+        'like': user.first_name + " " + user.last_name + " likes your update.",
+        'comment': user.first_name + " " + user.last_name + " commented on your update.",
+        'comment_on_following': user.first_name + " " + user.last_name + " commented on post you are following.",
     }.get(kind)
 
 
-def notification_url(kind,user,post):
-    return {
-        'follow': "/profile/" + user.username,
-        'like': "/posts/" + str(post.id),
-        'comment': "/posts/" + str(post.id),
-        'comment_on_following': "/profile/" + user.username,
-    }.get(kind)
+def notification_url(kind, user, post):
+    if post:
+        return {
+            'like': "/posts/" + str(post.id),
+            'comment': "/posts/" + str(post.id),
+        }.get(kind)
+    else:
+        return {
+            'follow': "/profile/" + user.username,
+            'comment_on_following': "/profile/" + user.username,
+        }.get(kind)
+
+
+def notification_get(id):
+    try:
+        return Notification.objects.filter(username_id=id)
+    except Notification.DoesNotExist:
+        return None

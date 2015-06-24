@@ -21,7 +21,8 @@ def search(request):
         'who_to_follows': social.views.who_to_follow(request),
         'recom_movies': social.views.movies_recommended(request),
         'popular_movies': social.views.popular_movies(request),
-        'chat_users': accounts.views.followings(request.user)
+        'chat_users': accounts.views.followings(request.user),
+        'notifications': social.views.notification_get(request.user.id)
     })
     form = SearchForm()
     return render(request, 'search.html', {'form': form,

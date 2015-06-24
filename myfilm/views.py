@@ -1,7 +1,6 @@
 import datetime
 
 from django.contrib.auth.decorators import login_required
-
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
@@ -54,7 +53,8 @@ def movie(request, movietitle):
         'who_to_follows': social.views.who_to_follow(request),
         'recom_movies': social.views.movies_recommended(request),
         'popular_movies': social.views.popular_movies(request),
-        'chat_users': accounts.views.followings(request.user)
+        'chat_users': accounts.views.followings(request.user),
+        'notifications': social.views.notification_get(request.user.id)
     })
 
 
@@ -70,7 +70,8 @@ def movies_list(request):
         'who_to_follows': social.views.who_to_follow(request),
         'recom_movies': social.views.movies_recommended(request),
         'popular_movies': social.views.popular_movies(request),
-        'chat_users': accounts.views.followings(request.user)
+        'chat_users': accounts.views.followings(request.user),
+        'notifications': social.views.notification_get(request.user.id)
     })
 
 
@@ -82,7 +83,8 @@ def artists_list(request):
         'who_to_follows': social.views.who_to_follow(request),
         'recom_movies': social.views.movies_recommended(request),
         'popular_movies': social.views.popular_movies(request),
-        'chat_users': accounts.views.followings(request.user)
+        'chat_users': accounts.views.followings(request.user),
+        'notifications': social.views.notification_get(request.user.id)
     })
 
 
@@ -94,7 +96,8 @@ def artist(request, artistname):
         'who_to_follows': social.views.who_to_follow(request),
         'recom_movies': social.views.movies_recommended(request),
         'popular_movies': social.views.popular_movies(request),
-        'chat_users': accounts.views.followings(request.user)
+        'chat_users': accounts.views.followings(request.user),
+        'notifications': social.views.notification_get(request.user.id)
     })
 
 
