@@ -68,9 +68,10 @@ def movie(request, movietitle):
 
 @login_required
 def movies_list(request):
-    movie_rate = {}
+    movie_rate = []
     for movie in Movie.objects.all().order_by('year'):
-        movie_rate[movie] = calc_movie_rate(movie.id)
+        item = (movie, calc_movie_rate(movie.id))
+        movie_rate.append(item)
 
     return render(request, 'movies.html', {
         'PageTitle': " - All Movies",
