@@ -193,27 +193,30 @@
     <section class="screenshots" id="screenshots">
         <div class="container-fluid">
             <div class="row">
-            <ul class="grid">
-                {% for movie_cover in movie_covers %}
+                <ul class="grid">
+                    {% for movie_cover in movie_covers %}
 
 
-                    <li>
-                        <figure>
-                            <img src="/media/movie-covers/thumb/{{ movie_cover.cover_image }}" alt="{{ movie_cover.title }} ({{ movie_cover.year }})">
-                            <figcaption>
-                                <div class="caption-content">
-                                    <a href="/media/movie-covers/large/{{ movie_cover.cover_image }}" class="single_image">
-                                        <i class="fa fa-search"></i><br>
-                                        <p>{{ movie_cover.title }} ({{ movie_cover.year }})</p>
-                                    </a>
-                                </div>
-                            </figcaption>
-                        </figure>
-                    </li>
+                        <li>
+                            <figure>
+                                <img src="/media/movie-covers/thumb/{{ movie_cover.cover_image }}"
+                                     alt="{{ movie_cover.title }} ({{ movie_cover.year }})">
+                                <figcaption>
+                                    <div class="caption-content">
+                                        <a href="/media/movie-covers/large/{{ movie_cover.cover_image }}"
+                                           class="single_image">
+                                            <i class="fa fa-search"></i><br>
+
+                                            <p>{{ movie_cover.title }} ({{ movie_cover.year }})</p>
+                                        </a>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </li>
 
 
-                {% endfor %}
-            </ul>
+                    {% endfor %}
+                </ul>
             </div>
             <div class="row">
                 <ul class="grid">

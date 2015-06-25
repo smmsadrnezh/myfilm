@@ -1,9 +1,11 @@
 import datetime
+
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import render_to_response
+
 from accounts.models import CustomUser
 from accounts.models import Follow
 from social.models import Comment
@@ -12,9 +14,9 @@ from myfilm.models import Movie
 from social.models import Post
 from social.models import Like
 from social.models import Notification
-
 import accounts.views
 import social.views
+
 
 @login_required
 def post(request, postid):
@@ -83,7 +85,7 @@ def timeline_home(request):
     return render(request, 'timeline.html', {
         'PageTitle': " - Timeline",
         'current_user': request.user,
-        'posts':all_posts,
+        'posts': all_posts,
         'who_to_follows': who_to_follow(request),
         'recom_movies': movies_recommended(request),
         'popular_movies': popular_movies(request),
@@ -151,7 +153,7 @@ def notification_add(kind, user, notification_user, post):
         return
     else:
         Notification(text=notification_text(kind, user), time=datetime.datetime.now(), username_id=notification_user.id,
-                 url=notification_url(kind, user, post)).save()
+                     url=notification_url(kind, user, post)).save()
 
 
 def notification_text(kind, user):
@@ -162,8 +164,8 @@ def notification_text(kind, user):
         'comment_on_following': user.first_name + " " + user.last_name + " commented on post you are following.",
     }.get(kind)
 
-def insert_post(request,postnumber):
 
+def insert_post(request, postnumber):
     followings = Follow.objects.filter(follower_id=request.user.id)
     all_posts = []
     for following in followings:
@@ -171,9 +173,10 @@ def insert_post(request,postnumber):
             movie = Movie.objects.get(id=post.movie_id)
             all_posts.append((post, movie, CustomUser.objects.get(id=following.following_id)))
 
-    return HttpResponse(render_to_response('entry.html',context={
-        'posts':all_posts,
+    return HttpResponse(render_to_response('entry.html', context={
+        'posts': all_posts,
     }))
+
 
 def notification_url(kind, user, post):
     if post:
@@ -181,10 +184,10 @@ def notification_url(kind, user, post):
             'like': "/posts/" + str(post.id),
             'comment': "/posts/" + str(post.id),
             'comment_on_following': "/posts/" + str(post.id),
-            }.get(kind)
+        }.get(kind)
         return {
             'follow': "/profile/" + user.username,
-            }.get(kind)
+        }.get(kind)
     else:
         pass
 
