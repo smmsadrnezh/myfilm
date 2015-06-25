@@ -5,7 +5,6 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 from accounts.models import CustomUser
-
 from accounts.models import Follow
 from social.models import Comment
 from accounts.models import User
@@ -36,7 +35,7 @@ def post(request, postid):
             notification_add("comment", request.user,
                              CustomUser.objects.get(id=Post.objects.get(id=postid).username_id),
                              Post.objects.get(id=postid))
-            if not Comment.objects.filter(post_id=postid):
+            if Comment.objects.filter(post_id=postid):
                 for comment in Comment.objects.filter(post_id=postid):
                     notification_add("comment_on_following", request.user,
                                      CustomUser.objects.get(id=comment.username_id), Post.objects.get(id=postid))
@@ -147,7 +146,10 @@ def popular_movies(request):
 
 
 def notification_add(kind, user, notification_user, post):
-    Notification(text=notification_text(kind, user), time=datetime.datetime.now(), username_id=notification_user.id,
+    if user == notification_user:
+        return
+    else:
+        Notification(text=notification_text(kind, user), time=datetime.datetime.now(), username_id=notification_user.id,
                  url=notification_url(kind, user, post)).save()
 
 
@@ -165,16 +167,17 @@ def notification_url(kind, user, post):
         return {
             'like': "/posts/" + str(post.id),
             'comment': "/posts/" + str(post.id),
-        }.get(kind)
-    else:
+            'comment_on_following': "/posts/" + str(post.id),
+            }.get(kind)
         return {
             'follow': "/profile/" + user.username,
-            'comment_on_following': "/profile/" + user.username,
-        }.get(kind)
+            }.get(kind)
+    else:
+        pass
 
 
 def notification_get(id):
     try:
-        return Notification.objects.filter(username_id=id)
+        return Notification.objects.filter(username_id=id).order_by('-time')
     except Notification.DoesNotExist:
         return None

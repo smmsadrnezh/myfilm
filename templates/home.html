@@ -158,12 +158,14 @@
 
                         <p>Recent post comments on MyFilm:</p>
                         {% for comment,writer in comments.items %}
-                        <blockquote class="team-quote">
-                            <div class="avatar"><img class="img-circle" width="60px" src="/media/users/{{ writer.image_path }}" alt="{{ writer.username }}">
-                            </div>
-                            <p>"{{ comment.body }}" - {{ writer.first_name }} {{ writer.last_name }}</p>
-                        </blockquote>
-                                {% endfor %}
+                            <blockquote class="team-quote">
+                                <div class="avatar"><img class="img-circle" width="60px"
+                                                         src="/media/users/{{ writer.image_path }}"
+                                                         alt="{{ writer.username }}">
+                                </div>
+                                <p>"{{ comment.body }}" - {{ writer.first_name }} {{ writer.last_name }}</p>
+                            </blockquote>
+                        {% endfor %}
                         <a href="accounts/login" class="download-btn">Join Community <i
                                 class="fa"></i></a>
                     </div>
@@ -191,126 +193,27 @@
     <section class="screenshots" id="screenshots">
         <div class="container-fluid">
             <div class="row">
-                <ul class="grid">
+            <ul class="grid">
+                {% for movie_cover in movie_covers %}
+
+
                     <li>
                         <figure>
-                            <img src="/media/home/covers/thumb/gloomy-sunday.jpg" alt="Gloomy Sunday (1999)">
+                            <img src="/media/movie-covers/thumb/{{ movie_cover.cover_image }}" alt="{{ movie_cover.title }} ({{ movie_cover.year }})">
                             <figcaption>
                                 <div class="caption-content">
-                                    <a href="/media/home/covers/large/gloomy-sunday.jpg" class="single_image">
+                                    <a href="/media/movie-covers/large/{{ movie_cover.cover_image }}" class="single_image">
                                         <i class="fa fa-search"></i><br>
-
-                                        <p>Gloomy Sunday (1999)</p>
+                                        <p>{{ movie_cover.title }} ({{ movie_cover.year }})</p>
                                     </a>
                                 </div>
                             </figcaption>
                         </figure>
                     </li>
-                    <li>
-                        <figure>
-                            <img src="/media/home/covers/thumb/schindlers-list.jpg"
-                                 alt="Schindler's List (1993)">
-                            <figcaption>
-                                <div class="caption-content">
-                                    <a href="/media/home/covers/large/schindlers-list.jpg" class="single_image">
-                                        <i class="fa fa-search"></i><br>
 
-                                        <p>Schindler's List (1993)</p>
-                                    </a>
-                                </div>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li>
-                        <figure>
-                            <img src="/media/home/covers/thumb/goodfellas.jpg" alt="Goodfellas (1990)">
-                            <figcaption>
-                                <div class="caption-content">
-                                    <a href="/media/home/covers/large/goodfellas.jpg" class="single_image">
-                                        <i class="fa fa-search"></i><br>
 
-                                        <p>Goodfellas (1990)</p>
-                                    </a>
-                                </div>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li>
-                        <figure>
-                            <img src="/media/home/covers/thumb/the-dark-knight.jpg" alt="The Dark Knight (2008)">
-                            <figcaption>
-                                <div class="caption-content">
-                                    <a href="/media/home/covers/large/the-dark-knight.jpg" class="single_image">
-                                        <i class="fa fa-search"></i><br>
-
-                                        <p>The Dark Knight (2008)</p>
-                                    </a>
-                                </div>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li>
-                        <figure>
-                            <img src="/media/home/covers/thumb/django-unchained.jpg"
-                                 alt="Django Unchained (2012)">
-                            <figcaption>
-                                <div class="caption-content">
-                                    <a href="/media/home/covers/large/django-unchained.jpg" class="single_image">
-                                        <i class="fa fa-search"></i><br>
-
-                                        <p>Django Unchained (2012)</p>
-                                    </a>
-                                </div>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li>
-                        <figure>
-                            <img src="/media/home/covers/thumb/leon-the-professional.jpg"
-                                 alt="Léon: The Professional (1994)">
-                            <figcaption>
-                                <div class="caption-content">
-                                    <a href="/media/home/covers/large/leon-the-professional.jpg"
-                                       class="single_image">
-                                        <i class="fa fa-search"></i><br>
-
-                                        <p>Léon: The Professional (1994)</p>
-                                    </a>
-                                </div>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li>
-                        <figure>
-                            <img src="/media/home/covers/thumb/one-flew-over-the-cuckoos-nest.jpg"
-                                 alt="One Flew Over the Cuckoo's Nest (1975)">
-                            <figcaption>
-                                <div class="caption-content">
-                                    <a href="/media/home/covers/large/one-flew-over-the-cuckoos-nest.jpg"
-                                       class="single_image">
-                                        <i class="fa fa-search"></i><br>
-
-                                        <p>One Flew Over the Cuckoo's Nest (1975)</p>
-                                    </a>
-                                </div>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li>
-                        <figure>
-                            <img src="/media/home/covers/thumb/fight-club.jpg" alt="Fight Club (1999)">
-                            <figcaption>
-                                <div class="caption-content">
-                                    <a href="/media/home/covers/large/fight-club.jpg" class="single_image">
-                                        <i class="fa fa-search"></i><br>
-
-                                        <p>Fight Club (1999)</p>
-                                    </a>
-                                </div>
-                            </figcaption>
-                        </figure>
-                    </li>
-                </ul>
+                {% endfor %}
+            </ul>
             </div>
             <div class="row">
                 <ul class="grid">

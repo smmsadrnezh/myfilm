@@ -3,6 +3,7 @@ import datetime
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+
 from social.models import Post
 import social.views
 import accounts.views
@@ -25,6 +26,7 @@ def home(request):
         'sample_post': sample_post,
         'sample_writer': sample_writer,
         'comments': comments,
+        'movie_covers': Movie.objects.filter(cover_image__isnull=False).order_by('?')[0:8]
     })
 
 
@@ -118,3 +120,4 @@ def calc_movie_rate(movie_id):
     if total_rate != 0:
         total_rate /= len(cur_movie_voters)
     return total_rate
+

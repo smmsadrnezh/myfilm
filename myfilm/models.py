@@ -7,6 +7,7 @@ class Movie(models.Model):
     description = models.TextField()
     image_path = models.FilePathField()
     imdb_url = models.URLField()
+    cover_image = models.FilePathField(null=True)
 
     def __str__(self):
         return "%s" % self.title
