@@ -173,7 +173,8 @@ def insert_post(request,postnumber):
             movie = Movie.objects.get(id=post.movie_id)
             all_posts.append((post, movie, CustomUser.objects.get(id=following.following_id)))
 
-    return HttpResponse(render_to_response("movie.html"))
+    print(all_posts)
+    return HttpResponse(render_to_response("entry.html", {'posts':all_posts}))
 
 def notification_url(kind, user, post):
     if post:
