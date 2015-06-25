@@ -86,6 +86,7 @@ def timeline_home(request):
     return render(request, 'timeline.html', {
         'PageTitle': " - Timeline",
         'current_user': request.user,
+        'posts':all_posts,
         'who_to_follows': who_to_follow(request),
         'recom_movies': movies_recommended(request),
         'popular_movies': popular_movies(request),
@@ -166,14 +167,14 @@ def notification_text(kind, user):
 
 def insert_post(request,postnumber):
 
-    followings = Follow.objects.filter(follower_id=request.user.id)
-    all_posts = []
-    for following in followings:
-        for post in Post.objects.filter(username_id=following.following_id).order_by('created_time')[0:postnumber]:
-            movie = Movie.objects.get(id=post.movie_id)
-            all_posts.append((post, movie, CustomUser.objects.get(id=following.following_id)))
+    # followings = Follow.objects.filter(follower_id=request.user.id)
+    # all_posts = []
+    # for following in followings:
+    #     for post in Post.objects.filter(username_id=following.following_id).order_by('created_time')[0:postnumber]:
+    #         movie = Movie.objects.get(id=post.movie_id)
+    #         all_posts.append((post, movie, CustomUser.objects.get(id=following.following_id)))
 
-    return HttpResponse(render_to_response("movie.html"))
+    return HttpResponse("this is test text")
 
 def notification_url(kind, user, post):
     if post:
