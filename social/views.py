@@ -1,5 +1,4 @@
 import datetime
-
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
@@ -92,7 +91,7 @@ def timeline_home(request):
         'popular_movies': popular_movies(request),
         'chat_users': accounts.views.followings(request.user),
         'notifications': notification_get(request.user.id),
-        'entry_template': 'entry.html'
+        # 'entry_template': 'entry.html'
     })
 
 
@@ -167,14 +166,16 @@ def notification_text(kind, user):
 
 def insert_post(request,postnumber):
 
-    # followings = Follow.objects.filter(follower_id=request.user.id)
-    # all_posts = []
-    # for following in followings:
-    #     for post in Post.objects.filter(username_id=following.following_id).order_by('created_time')[0:postnumber]:
-    #         movie = Movie.objects.get(id=post.movie_id)
-    #         all_posts.append((post, movie, CustomUser.objects.get(id=following.following_id)))
+    followings = Follow.objects.filter(follower_id=request.user.id)
+    all_posts = []
+    for following in followings:
+        for post in Post.objects.filter(username_id=following.following_id).order_by('created_time')[0:postnumber]:
+            movie = Movie.objects.get(id=post.movie_id)
+            all_posts.append((post, movie, CustomUser.objects.get(id=following.following_id)))
 
-    return HttpResponse("this is test text")
+    return HttpResponse(render_to_response('entry.html',context={
+        'posts':all_posts,
+    }))
 
 def notification_url(kind, user, post):
     if post:
