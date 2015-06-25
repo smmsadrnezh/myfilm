@@ -16,8 +16,6 @@ from social.models import Notification
 import accounts.views
 import social.views
 
-i=0
-
 @login_required
 def post(request, postid):
     if request.method == 'POST':

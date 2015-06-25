@@ -10,9 +10,6 @@
                         var cdt = document.querySelector("#container");
                         cdt.innerHTML = xhr.responseText;
                     }
-                    else {
-                        alert(xhr.status)
-                    }
                 }
             };
 
