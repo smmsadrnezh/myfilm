@@ -3,7 +3,7 @@
     $(window).scroll(function() {
         if($(window).scrollTop() + $(window).height() == $(document).height()) {
             xhr.open('get', '/getdata/'+i);
-            i+=2;
+            i+=1;
             xhr.onreadystatechange = function() {
                 if(xhr.readyState === 4) {
                     if(xhr.status === 200) {

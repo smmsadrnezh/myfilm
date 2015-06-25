@@ -85,7 +85,6 @@ def timeline_home(request):
 
     return render(request, 'timeline.html', {
         'PageTitle': " - Timeline",
-        'posts': all_posts,
         'current_user': request.user,
         'who_to_follows': who_to_follow(request),
         'recom_movies': movies_recommended(request),
@@ -173,7 +172,8 @@ def insert_post(request,postnumber):
         for post in Post.objects.filter(username_id=following.following_id).order_by('created_time')[0:postnumber]:
             movie = Movie.objects.get(id=post.movie_id)
             all_posts.append((post, movie, CustomUser.objects.get(id=following.following_id)))
-    return render_to_response("entry.html", {'posts':all_posts})
+
+    return HttpResponse(render_to_response("movie.html"))
 
 def notification_url(kind, user, post):
     if post:
