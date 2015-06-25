@@ -1,34 +1,5 @@
 {% extends "tlayout.html" %}
 {% block pageBody %}
-    {% for post,movie,writer in posts %}
-        <div class="row clearfix" xmlns="http://www.w3.org/1999/html">
-            <div class="row clearfix">
-                <div class="col-md-2 column">
-                    <h4><a href="/profile/{{ writer.username }}">{{ writer.username }}</a></h4>
-                    <img class="img-thumbnail" alt="{{ writer.username }}" src="/media/users/{{ writer.image_path }}"/>
-                </div>
-                <div class="col-md-9 column">
-                    <h3>{{ post.title }}</h3>
-
-                    <p>
-                        <a href="/posts/{{ post.id }}">{{ post.created_time }}</a>
-                    </p>
-                    <h4>Movie Title: <a href="/movies/{{ movie.title }}">{{ movie.title }}</a></h4>
-
-                    <P>
-                        {{ post.body }}
-                    </P>
-
-                </div>
-            </div>
-        </div>
-        <hr class="featurette-divider">
-    {% endfor %}
-        <div id="container">
-            {% for post,movie,user in all_posts %}
-                {{ post.body }}{{ movie.title }}{{ user.username }}
-            {% endfor %}
-        </div>
-
+    {% include entry_template %}
 {% endblock %}
 

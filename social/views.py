@@ -90,7 +90,8 @@ def timeline_home(request):
         'recom_movies': movies_recommended(request),
         'popular_movies': popular_movies(request),
         'chat_users': accounts.views.followings(request.user),
-        'notifications': notification_get(request.user.id)
+        'notifications': notification_get(request.user.id),
+        'entry_template': 'entry.html'
     })
 
 
