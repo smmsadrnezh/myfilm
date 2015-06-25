@@ -24,4 +24,11 @@
         </div>
         <hr class="featurette-divider">
     {% endfor %}
+        <div id="container">
+            {% for post,movie,user in all_posts %}
+                {{ post.body }}{{ movie.title }}{{ user.username }}
+            {% endfor %}
+        </div>
+
 {% endblock %}
+

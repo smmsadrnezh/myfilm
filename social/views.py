@@ -2,6 +2,7 @@ import datetime
 
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.shortcuts import render
 
 from accounts.models import CustomUser
@@ -15,6 +16,7 @@ from social.models import Notification
 import accounts.views
 import social.views
 
+i=0
 
 @login_required
 def post(request, postid):
@@ -161,6 +163,15 @@ def notification_text(kind, user):
         'comment_on_following': user.first_name + " " + user.last_name + " commented on post you are following.",
     }.get(kind)
 
+def insert_post(request,postnumber):
+
+    followings = Follow.objects.filter(follower_id=request.user.id)
+    all_posts = []
+    for following in followings:
+        for post in Post.objects.filter(username_id=following.following_id).order_by('created_time'):
+            movie = Movie.objects.get(id=post.movie_id)
+            all_posts.append((post, movie, CustomUser.objects.get(id=following.following_id)))
+    return HttpResponse(all_posts[0])
 
 def notification_url(kind, user, post):
     if post:

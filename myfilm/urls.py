@@ -40,4 +40,7 @@ urlpatterns = [
                   # captcha url
                   # url(r'^captcha/', include('captcha.urls')),
 
+                  # ajax url
+                  url(r'^getdata/(?P<postnumber>\d+)/$', 'social.views.insert_post'),
+
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
