@@ -165,16 +165,17 @@ def notification_text(kind, user):
     }.get(kind)
 
 
-def insert_post(request, postnumber):
+def insert_post(request,postnumber):
+    a = int(postnumber)
     followings = Follow.objects.filter(follower_id=request.user.id)
     all_posts = []
     for following in followings:
-        for post in Post.objects.filter(username_id=following.following_id).order_by('created_time')[0:postnumber]:
+        for post in Post.objects.filter(username_id=following.following_id).order_by('created_time'):
             movie = Movie.objects.get(id=post.movie_id)
             all_posts.append((post, movie, CustomUser.objects.get(id=following.following_id)))
 
-    return HttpResponse(render_to_response('entry.html', context={
-        'posts': all_posts,
+    return HttpResponse(render_to_response('entry.html', {
+        'posts':all_posts[0:a+1],
     }))
 
 
