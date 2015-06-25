@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.shortcuts import render
-
+from django.shortcuts import render_to_response
 from accounts.models import CustomUser
 from accounts.models import Follow
 from social.models import Comment
@@ -13,6 +13,7 @@ from myfilm.models import Movie
 from social.models import Post
 from social.models import Like
 from social.models import Notification
+
 import accounts.views
 import social.views
 
@@ -169,10 +170,10 @@ def insert_post(request,postnumber):
     followings = Follow.objects.filter(follower_id=request.user.id)
     all_posts = []
     for following in followings:
-        for post in Post.objects.filter(username_id=following.following_id).order_by('created_time'):
+        for post in Post.objects.filter(username_id=following.following_id).order_by('created_time')[0:postnumber]:
             movie = Movie.objects.get(id=post.movie_id)
             all_posts.append((post, movie, CustomUser.objects.get(id=following.following_id)))
-    return HttpResponse(all_posts[0])
+    return render_to_response("entry.html", {'posts':all_posts})
 
 def notification_url(kind, user, post):
     if post:
