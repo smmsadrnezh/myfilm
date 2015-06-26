@@ -1,5 +1,6 @@
-var i = 0;
+var i = 2;
 var xhr = new XMLHttpRequest();
+
 $(window).scroll(function () {
     if ($(window).scrollTop() + $(window).height() == $(document).height()) {
         xhr.open('get', '/getdata/' + i);
@@ -16,6 +17,3 @@ $(window).scroll(function () {
         xhr.send(null);
     }
 });
-
-
-

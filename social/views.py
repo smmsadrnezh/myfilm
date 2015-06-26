@@ -4,7 +4,6 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.shortcuts import render_to_response
 
 from accounts.models import CustomUser
 from accounts.models import Follow
@@ -75,36 +74,33 @@ def post(request, postid):
 
 @login_required
 def timeline_home(request):
+    return render(request, 'timeline.html', {
+        'PageTitle': " - Timeline",
+        'posts': post_render(request)[0:1],
+        'current_user': request.user,
+        'who_to_follows': who_to_follow(request),
+        'recom_movies': movies_recommended(request),
+        'popular_movies': popular_movies(request),
+        'chat_users': accounts.views.followings(request.user),
+        'notifications': notification_get(request.user.id),
+        'firstLoad': 'entry.html',
+    })
+
+
+def insert_post(request, postnumber):
+    return HttpResponse(render(request, 'entry.html', {
+        'posts': post_render(request)[0:int(postnumber)],
+    }))
+
+
+def post_render(request):
     followings = Follow.objects.filter(follower_id=request.user.id)
     all_posts = []
     for following in followings:
         for post in Post.objects.filter(username_id=following.following_id).order_by('created_time'):
             movie = Movie.objects.get(id=post.movie_id)
             all_posts.append((post, movie, CustomUser.objects.get(id=following.following_id)))
-
-    return render(request, 'timeline.html', {
-        'PageTitle': " - Timeline",
-        'current_user': request.user,
-        'posts': all_posts,
-        'who_to_follows': who_to_follow(request),
-        'recom_movies': movies_recommended(request),
-        'popular_movies': popular_movies(request),
-        'chat_users': accounts.views.followings(request.user),
-        'notifications': notification_get(request.user.id),
-        # 'entry_template': 'entry.html'
-    })
-
-
-@login_required
-def notifications(request):
-    return render(request, 'notifications.html', {
-        'PageTitle': " - Notifications",
-        'who_to_follows': who_to_follow(request),
-        'recom_movies': movies_recommended(request),
-        'popular_movies': popular_movies(request),
-        'chat_users': accounts.views.followings(request.user),
-        'notifications': notification_get(request.user.id)
-    })
+    return all_posts
 
 
 def movies_recommended(request):
@@ -148,6 +144,18 @@ def popular_movies(request):
     return top_movies
 
 
+@login_required
+def notifications(request):
+    return render(request, 'notifications.html', {
+        'PageTitle': " - Notifications",
+        'who_to_follows': who_to_follow(request),
+        'recom_movies': movies_recommended(request),
+        'popular_movies': popular_movies(request),
+        'chat_users': accounts.views.followings(request.user),
+        'notifications': notification_get(request.user.id)
+    })
+
+
 def notification_add(kind, user, notification_user, post):
     if user == notification_user:
         return
@@ -163,20 +171,6 @@ def notification_text(kind, user):
         'comment': user.first_name + " " + user.last_name + " commented on your update.",
         'comment_on_following': user.first_name + " " + user.last_name + " commented on post you are following.",
     }.get(kind)
-
-
-def insert_post(request,postnumber):
-    a = int(postnumber)
-    followings = Follow.objects.filter(follower_id=request.user.id)
-    all_posts = []
-    for following in followings:
-        for post in Post.objects.filter(username_id=following.following_id).order_by('created_time'):
-            movie = Movie.objects.get(id=post.movie_id)
-            all_posts.append((post, movie, CustomUser.objects.get(id=following.following_id)))
-
-    return HttpResponse(render_to_response('entry.html', {
-        'posts':all_posts[0:a+1],
-    }))
 
 
 def notification_url(kind, user, post):
@@ -200,6 +194,6 @@ def notification_get(id):
         return None
 
 
-def delete_notification(request,notifid):
+def delete_notification(request, notifid):
     Notification.objects.get(id=notifid).delete()
-    return HttpResponseRedirect('/timeline/')
+    return HttpResponseRedirect('/notifications')
