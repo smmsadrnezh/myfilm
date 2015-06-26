@@ -18,6 +18,9 @@ import social.views
 
 
 @login_required
+
+def post_like(request,postid):
+    return
 def post(request, postid):
     if request.method == 'POST':
 

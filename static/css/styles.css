@@ -719,8 +719,8 @@ Features Slider
 ========================================================================== */
 .features-bg {
     position: relative;
-    min-height: 400px;
-    background: url('../img/features-intro-01.jpg') no-repeat center center;
+    /*min-height: 400px;*/
+    background: url('../img/image.png') no-repeat center center;
     background-size: cover;
 }
 
