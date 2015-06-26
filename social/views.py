@@ -194,6 +194,6 @@ def notification_get(id):
         return None
 
 
-def delete_notification(request, notifid):
+def notification_delete(request, notifid):
     Notification.objects.get(id=notifid).delete()
     return HttpResponseRedirect('/notifications')
