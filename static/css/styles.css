@@ -1194,3 +1194,18 @@ Waypoints
     -webkit-animation-delay: 1s;
     animation-delay: 1s;
 }
+
+/*=========*/
+    li a.delete {
+        background:#999;
+        color:#fff;
+        text-decoration:none;
+        float:right;
+        padding:2px 4px;
+        border-radius:5px;
+    }
+
+	li a.delete:hover {
+		background:#C22A00;
+	}
+/*=========*/

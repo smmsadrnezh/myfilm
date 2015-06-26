@@ -35,6 +35,7 @@ urlpatterns = [
                   url(r'^timeline/$', 'social.views.timeline_home'),
                   url(r'^posts/(?P<postid>\d+)/$', 'social.views.post'),
                   url(r'^notifications$', 'social.views.notifications'),
+                  url(r'^delete/notifications/(?P<notifid>\d+)$', 'social.views.delete_notification'),
                   url(r'^admin/', include(admin.site.urls)),
 
                   # captcha url

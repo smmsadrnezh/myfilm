@@ -72,7 +72,7 @@
                     <ul class="dropdown-menu">
                         {% for notification in notifications %}
                             <li>
-                                <a href="{{ notification.url }}">{{ notification.text }}</a>
+                                <a href="{{ notification.url }}">{{ notification.text }}</a><a class="delete" href="/delete/notifications/{{ notification.id }}">&#10008;</a>
                             </li>
                         {% endfor %}
                         <li class="divider" role="separator"></li>

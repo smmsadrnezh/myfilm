@@ -198,3 +198,8 @@ def notification_get(id):
         return Notification.objects.filter(username_id=id).order_by('-time')
     except Notification.DoesNotExist:
         return None
+
+
+def delete_notification(request,notifid):
+    Notification.objects.get(id=notifid).delete()
+    return HttpResponseRedirect('/timeline/')
