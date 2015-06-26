@@ -10,7 +10,6 @@ from django.contrib import auth
 
 from accounts.models import CustomUser
 from .forms import CustomRegistration
-from .forms import ImageForm
 from accounts.models import Follow
 from myfilm.models import Movie
 from social.models import Post
@@ -88,17 +87,11 @@ def profile(request, username):
     if request.method == "POST":
         if request.POST.get('type', '') == "setting":
             # edit user setting
-
             CustomUser.objects.filter(id=request.user.id).update(
                 first_name=request.POST.get('first_name', ''),
                 last_name=request.POST.get('last_name', ''),
                 birth_date=request.POST.get('birth_date', ''),
-                image_path=request.FILES.get('image')
             )
-            # form = ImageForm(request.POST, request.FILES)
-            # if form.is_valid():
-            #     form.save()
-            profile_user = CustomUser.objects.get(username=request.POST.get('username', ''))
         elif request.POST.get('type', '') == "change_password":
             # change user password
             if request.POST.get('password', '') == request.POST.get('conf_password', ''):
