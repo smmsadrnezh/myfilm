@@ -90,10 +90,8 @@ def profile(request, username):
             # edit user setting
 
             CustomUser.objects.filter(id=request.user.id).update(
-                #username=request.POST.get('username', ''),
                 first_name=request.POST.get('first_name', ''),
                 last_name=request.POST.get('last_name', ''),
-                #email=request.POST.get('email', ''),
                 birth_date=request.POST.get('birth_date', ''),
             )
             form = ImageForm(request.POST, request.FILES)

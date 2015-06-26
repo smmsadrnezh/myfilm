@@ -11,7 +11,8 @@
                         <img class="thumbnail" width="100px" height="100px"
                              src="/media/users/{{ current_user.image_path }}">
 
-                        <input type="file" name="image" >
+                        <a href="#" class="learn-btn fadeInUp" onclick="document.getElementById('fileID').click(); return false;" />Change photo</a>
+                        <input type="file" id="fileID" style="visibility: hidden;" />
 
                     </div>
                     <div class="form-group">
