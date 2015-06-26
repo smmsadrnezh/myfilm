@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 # from captcha.fields import CaptchaField
 
@@ -28,3 +29,8 @@ class CustomRegistration(UserCreationForm):
             CustomUser.save()
 
         return CustomUser
+
+class ImageForm(ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['image_path']
