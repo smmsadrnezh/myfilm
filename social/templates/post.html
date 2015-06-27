@@ -25,18 +25,11 @@
 
         <div class="row clearfix">
             <div class="col-md-11 column">
-                <form action="." method="post" role="form">{% csrf_token %}
-                    <input type="hidden" value="like" name="type">
-                    <button id="like" type="button" class="btn btn-default">Like</button>
+                <button id="likebtn" type="button" onclick="like();" class="btn btn-default">Like</button>
 
-                </form>
-
-                <p>
-                    {% for liker in likers %}
-                        <a href="/profile/{{ liker.username }}">{{ liker.username }}</a> and
-                    {% endfor %}
-                    like this post.
-                </p>
+                <div id="like">
+                    {% include secondLoad %}
+                </div>
                 <hr class="featurette-divider">
             </div>
         </div>
@@ -44,19 +37,11 @@
 
         <div class="row clearfix">
             <div class="col-md-11 column">
-                {% for comment,writer in comments.items %}
-                    <h3>
-                        {{ comment.title }}
-                    </h3>
+                <div id="comment">
+                    {% include thirdLoad %}
+                </div>
 
-                    <p>
-                        {{ comment.body }} -- <a href="/profile/{{ writer.username }}">{{ writer.username }}</a>
-                    </p>
-                    <p>{{ comment.time }}</p>
-                    <hr class="featurette-divider">
-                {% endfor %}
-
-                <form action="/posts/{{ post.id }}/" method="post" class="form-horizontal" role="form">{% csrf_token %}
+                <form id="commentForm" method="post" onsubmit="comment();return false;" class="form-horizontal" role="form">{% csrf_token %}
                     <div class="form-group">
                         <label for="input" class="col-sm-2 control-label">Comment</label>
                         <br/>
@@ -71,7 +56,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default">Submit</button>
+                            <button type="submit" onclick="" class="btn btn-default">Submit</button>
                         </div>
                     </div>
                 </form>
