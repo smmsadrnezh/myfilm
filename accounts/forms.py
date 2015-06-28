@@ -7,9 +7,9 @@ from accounts.models import CustomUser
 
 
 class CustomRegistration(UserCreationForm):
-    email = forms.EmailField(required=True)
-    first_name = forms.CharField()
-    last_name = forms.CharField()
+    email = forms.EmailField(required=True,widget=forms.TextInput(attrs={'class': 'form-control' , 'placeholder':'enter your email'}))
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control' , 'placeholder':'enter your first name'}))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'  , 'placeholder':'enter your last name'}))
     captcha = CaptchaField()
 
     class Meta:
