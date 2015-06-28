@@ -122,7 +122,8 @@ def post_render(request):
 def movies_recommended(request):
     recommended_movies = []
 
-    for top_movie in Movie.objects.filter(movierating__rate__gte=4.5, movierating__username_id=request.user.id):
+    for top_movie in Movie.objects.filter(movierating__rate__gte=4.5):
+        print(top_movie.title)
         top_voters = CustomUser.objects.filter(movierating__rate__gte=4.5)
         for top_voter in top_voters:
             voters_top_movies = Movie.objects.filter(movierating__rate__gte=4.5, movierating__username_id=top_voter.id)
