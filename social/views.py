@@ -17,84 +17,7 @@ import accounts.views
 import social.views
 
 
-@login_required
-
-def post_comment(request,postid):
-
-    #add comment notification
-    notification_add("comment", request.user,
-                     CustomUser.objects.get(id=Post.objects.get(id=postid).username_id),
-                     Post.objects.get(id=postid))
-    if Comment.objects.filter(post_id=postid):
-        for comment in Comment.objects.filter(post_id=postid):
-            notification_add("comment_on_following", request.user,
-                             CustomUser.objects.get(id=comment.username_id), Post.objects.get(id=postid))
-
-    # add new comment
-    Comment(body=request.POST['body'], post_id=postid, username_id=request.user.id,
-            time=datetime.datetime.now(),
-            title=request.POST['title']).save()
-
-    comments_dic = {}
-    for comment in Comment.objects.filter(post_id=postid):
-        writer = User.objects.get(id=comment.username_id)
-        comments_dic[comment] = writer
-    return HttpResponse(render(request, 'comment.html', {
-        'comments': comments_dic,
-        }))
-
-def post_like(request,postid):
-    if request.is_ajax():
-        if Like.objects.filter(post_id=postid, username_id=request.user.id):
-
-            Like.objects.get(post_id=postid, username_id=request.user.id).delete()
-        else:
-            Like(post_id=postid, username_id=request.user.id, time=datetime.datetime.now()).save()
-            notification_add("like", request.user,CustomUser.objects.get(id=Post.objects.get(id=postid).username_id),
-            Post.objects.get(id=postid))
-        likers = []
-        for like in Like.objects.filter(post_id=postid):
-            likers.append(User.objects.get(id=like.username_id))
-
-    return HttpResponse(render(request, 'like.html', {
-        'likers': likers,
-    }))
 def post(request, postid):
-
-
-        # response_text = ""
-        #
-        #     response_text += liker.username + ","
-        # response_text += "like this post."
-        # return HttpResponse(response_text)
-
-    # if request.method == 'POST':
-    #     # add or remove like
-    #     if request.POST.get('type') == "like":
-    #         if Like.objects.filter(post_id=postid, username_id=request.user.id):
-    #             Like.objects.get(post_id=postid, username_id=request.user.id).delete()
-    #         else:
-    #             Like(post_id=postid, username_id=request.user.id, time=datetime.datetime.now()).save()
-    #             notification_add("like", request.user,
-    #                              CustomUser.objects.get(id=Post.objects.get(id=postid).username_id),
-    #                              Post.objects.get(id=postid))
-    #     else:
-    #
-    #         # add comment notification
-    #         notification_add("comment", request.user,
-    #                          CustomUser.objects.get(id=Post.objects.get(id=postid).username_id),
-    #                          Post.objects.get(id=postid))
-    #         if Comment.objects.filter(post_id=postid):
-    #             for comment in Comment.objects.filter(post_id=postid):
-    #                 notification_add("comment_on_following", request.user,
-    #                                  CustomUser.objects.get(id=comment.username_id), Post.objects.get(id=postid))
-    #
-    #         # add new comment
-    #         Comment(body=request.POST['body'], post_id=postid, username_id=request.user.id,
-    #                 time=datetime.datetime.now(),
-    #                 title=request.POST['title']).save()
-    #         return HttpResponseRedirect('/posts/' + postid)
-
     # get post likes
     likers = []
     for like in Like.objects.filter(post_id=postid):
@@ -117,9 +40,52 @@ def post(request, postid):
         'popular_movies': popular_movies(request),
         'chat_users': accounts.views.followings(request.user),
         'notifications': social.views.notification_get(request.user.id),
-        'secondLoad':'like.html',
-        'thirdLoad':'comment.html'
+        'secondLoad': 'like.html',
+        'thirdLoad': 'comment.html'
     })
+
+
+@login_required
+def post_comment(request, postid):
+    # add comment notification
+    notification_add("comment", request.user,
+                     CustomUser.objects.get(id=Post.objects.get(id=postid).username_id),
+                     Post.objects.get(id=postid))
+    if Comment.objects.filter(post_id=postid):
+        for comment in Comment.objects.filter(post_id=postid):
+            notification_add("comment_on_following", request.user,
+                             CustomUser.objects.get(id=comment.username_id), Post.objects.get(id=postid))
+
+    # add new comment
+    Comment(body=request.POST['body'], post_id=postid, username_id=request.user.id,
+            time=datetime.datetime.now(),
+            title=request.POST['title']).save()
+
+    comments_dic = {}
+    for comment in Comment.objects.filter(post_id=postid):
+        writer = User.objects.get(id=comment.username_id)
+        comments_dic[comment] = writer
+    return HttpResponse(render(request, 'comment.html', {
+        'comments': comments_dic,
+    }))
+
+
+def post_like(request, postid):
+    if request.is_ajax():
+        if Like.objects.filter(post_id=postid, username_id=request.user.id):
+
+            Like.objects.get(post_id=postid, username_id=request.user.id).delete()
+        else:
+            Like(post_id=postid, username_id=request.user.id, time=datetime.datetime.now()).save()
+            notification_add("like", request.user, CustomUser.objects.get(id=Post.objects.get(id=postid).username_id),
+                             Post.objects.get(id=postid))
+        likers = []
+        for like in Like.objects.filter(post_id=postid):
+            likers.append(User.objects.get(id=like.username_id))
+
+    return HttpResponse(render(request, 'like.html', {
+        'likers': likers,
+    }))
 
 
 @login_required

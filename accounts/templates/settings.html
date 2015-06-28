@@ -11,8 +11,9 @@
                         <img class="thumbnail" width="100px" height="100px"
                              src="/media/users/{{ current_user.image_path }}">
 
-                        <a href="#" class="learn-btn fadeInUp" onclick="document.getElementById('image').click(); return false;" />Change photo</a>
-                        <input type="file" id="image" name="image" style="visibility: hidden;" />
+                        <a href="#" class="learn-btn fadeInUp"
+                           onclick="document.getElementById('image').click(); return false;"/>Change photo</a>
+                        <input type="file" id="image" name="image" style="visibility: hidden;"/>
 
                     </div>
                     <div class="form-group">
@@ -20,7 +21,7 @@
 
                         <div class="input-group">
                             <input type="text" class="form-control gray" name="username" id="username"
-                                   value="{{ current_user.username }}" size="35" disabled >
+                                   value="{{ current_user.username }}" size="35" disabled>
                         </div>
                     </div>
                     <div class="form-group">

@@ -1,4 +1,3 @@
-
 function comment() {
     var url = window.location.pathname + "comment/"; // the script where you handle the form input.
 
@@ -7,7 +6,7 @@ function comment() {
         url: url,
         data: $("#commentForm").serialize(), // serializes the form's elements.
         success: function (data) {
-             document.querySelector("#comment").innerHTML = data;
+            document.querySelector("#comment").innerHTML = data;
         }
     });
 
@@ -17,7 +16,7 @@ function comment() {
 
 function like() {
     likebtn = document.getElementById("likebtn");
-    if(likebtn.innerHTML=="Like")
+    if (likebtn.innerHTML == "Like")
         likebtn.innerHTML = "UnLike"
     else
         likebtn.innerHTML = "Like"

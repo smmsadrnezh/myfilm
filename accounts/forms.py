@@ -30,6 +30,7 @@ class CustomRegistration(UserCreationForm):
 
         return CustomUser
 
+
 class ImageForm(ModelForm):
     class Meta:
         model = CustomUser
