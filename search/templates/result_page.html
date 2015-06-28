@@ -3,7 +3,7 @@
 {% block pageBody %}
     <div class="row clearfix">
         <div class="col-md-12 column">
-            <h2>Search Result</h2>
+            <h2>Search Result For <code>{{ search_string }}</code></h2>
             <br/>
             <ul class="nav nav-tabs">
                 <li class="nav active"><a href="#people" data-toggle="tab">People</a></li>
@@ -22,29 +22,29 @@
 
                                 <div class="col-md-2 column">
                                     <img class="img-circle" src="/media/users/{{ user_result.image_path }}">
-                                    </div>
+                                </div>
                                 <div>
-                                <h4>{{ user_result.first_name }} {{ user_result.last_name }}</h4>
-                                <h4>Birthday: {{ user_result.birth_date }}</h4>
-                            </div>
-                        </a>
-                        </li>
+                                    <h4>{{ user_result.first_name }} {{ user_result.last_name }}</h4>
+                                    <h4>Birthday: {{ user_result.birth_date }}</h4>
+                                </div>
+                            </a>
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
                 <div class="tab-pane fade" id="movies">
-                <ul class="nav">
-                {% for movie_result in movies_result %}
-                    <li class="active"><a href="/movies/{{ movie_result.title }}">
-                    <div id="movie_img">
-                        <img class="thumbnail" src="/media/movies/{{ movie_result.image_path }}">
-                    </div>
-                    <div id="movie_info">
-                        <h3>{{ movie_result.title }} ({{ movie_result.year }})</h3>
-                    </div>
-                    </a></li>
-                {% endfor %}
-                </ul>
+                    <ul class="nav">
+                        {% for movie_result in movies_result %}
+                            <li class="active"><a href="/movies/{{ movie_result.title }}">
+                                <div id="movie_img">
+                                    <img class="thumbnail" src="/media/movies/{{ movie_result.image_path }}">
+                                </div>
+                                <div id="movie_info">
+                                    <h3>{{ movie_result.title }} ({{ movie_result.year }})</h3>
+                                </div>
+                            </a></li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
         </div>

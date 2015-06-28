@@ -1,0 +1,16 @@
+{% if  search_string|length >= 2 %}
+    <p><b>Searching for &quot;<code>{{ search_string }}</code>&quot;:</b>
+        {% if  search_results.count > 0 %}
+            </p>
+            <ul>
+                {% for  movie_search_results in movies_search_results %}
+                    <li class="#ajax-search-result-container">{{ movie_search_results.title }}</li>
+                {% endfor %}
+                {% for  user_search_results in users_search_results %}
+                    <li class="#ajax-search-result-container">{{ user_search_results.first_name }} {{ user_search_results.last_name }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <i>No results</i></p>
+        {% endif %}
+{% endif %}
