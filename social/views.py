@@ -196,11 +196,10 @@ def notification_url(kind, user, post):
             'comment': "/posts/" + str(post.id),
             'comment_on_following': "/posts/" + str(post.id),
         }.get(kind)
+    else:
         return {
             'follow': "/profile/" + user.username,
         }.get(kind)
-    else:
-        pass
 
 
 def notification_get(id):
