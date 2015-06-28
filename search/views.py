@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -27,9 +29,28 @@ def search(request):
         return HttpResponseRedirect('/timeline')
 
 
-def ajax_search(request, search_string):
-    return HttpResponse(render(request, 'result_ajax.html', {
-        'search_string': search_string,
-        'movies_search_results': CustomUser.objects.filter(username__contains=request.POST.get('search_string')),
-        'users_search_results': CustomUser.objects.filter(username__contains=request.POST.get('search_string')),
-    }))
+def ajax_search(request):
+    if request.is_ajax():
+        users = CustomUser.objects.filter(username__contains=request.GET.get('term', ''))
+        movies = Movie.objects.filter(title__contains=request.GET.get('term', ''))
+
+        results = []
+        for user in users:
+            user_json = {}
+            user_json['id'] = user.username
+            user_json['label'] = user.first_name + " " + user.last_name
+            user_json['value'] = user.username
+            print(user_json)
+            results.append(user_json)
+        for movie in movies:
+            movie_json = {}
+            movie_json['id'] = movie.title
+            movie_json['label'] = movie.title + " (" + str(movie.year) + ")"
+            movie_json['value'] = movie.title
+            print(movie_json)
+            results.append(movie_json)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)

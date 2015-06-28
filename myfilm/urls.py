@@ -15,7 +15,7 @@ urlpatterns = [
 
                   # search app urls
                   url(r'^search/$', 'search.views.search'),
-                  url(r'^search/(?P<search_string>\d+)/$', 'search.views.ajax_search'),
+                  url(r'^search/ajax/$', 'search.views.ajax_search'),
 
                   # accounts app urls
                   url(r'^chpass$', 'accounts.views.change_password'),
