@@ -42,7 +42,7 @@ urlpatterns = [
                   url(r'^admin/', include(admin.site.urls)),
 
                   # captcha url
-                  # url(r'^captcha/', include('captcha.urls')),
+                  url(r'^captcha/', include('captcha.urls')),
 
                   # ajax url for timeline page
                   url(r'^getdata/(?P<postnumber>\d+)/$', 'social.views.insert_post'),

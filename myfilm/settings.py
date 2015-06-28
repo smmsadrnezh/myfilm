@@ -37,7 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'captcha',
+    'captcha',
     'myfilm',
     'accounts',
     'chat',
@@ -122,3 +122,7 @@ STATICFILES_DIRS = (
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+SOUTH_MIGRATION_MODULES = {
+'captcha': 'captcha.south_migrations',
+}

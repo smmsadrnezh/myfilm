@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
-# from captcha.fields import CaptchaField
+from captcha.fields import CaptchaField
 
 from accounts.models import CustomUser
 
@@ -10,7 +10,7 @@ class CustomRegistration(UserCreationForm):
     email = forms.EmailField(required=True)
     first_name = forms.CharField()
     last_name = forms.CharField()
-    # captcha = CaptchaField()
+    captcha = CaptchaField()
 
     class Meta:
         model = CustomUser
