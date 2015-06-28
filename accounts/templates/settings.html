@@ -55,7 +55,7 @@
                         <label for="date">Birth Date</label>
 
                         <div class="input-group">
-                            <input type="date" class="form-control gray input-width" id="birth_date" name="birth_date"
+                            <input type="date" class="form-control gray input-width datepicker" id="birth_date" name="birth_date"
                                    value="yyyy-mm-dd" required>
                         </div>
                     </div>
@@ -79,4 +79,9 @@
             </div>
         </div>
     </div>
+    <script>
+  $(function() {
+    $( ".datepicker" ).datepicker();
+  });
+  </script>
 {% endblock %}
