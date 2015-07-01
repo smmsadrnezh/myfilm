@@ -9,6 +9,7 @@ from accounts.models import CustomUser
 from accounts.models import Follow
 from social.models import Comment
 from accounts.models import User
+from social.models import MovieRating
 from myfilm.models import Movie
 from social.models import Post
 from social.models import Like
@@ -121,14 +122,17 @@ def post_render(request):
 
 def movies_recommended(request):
     recommended_movies = []
-
-    for top_movie in Movie.objects.filter(movierating__rate__gte=4.5):
-        print(top_movie.title)
-        top_voters = CustomUser.objects.filter(movierating__rate__gte=4.5)
+    user_top_movies = set()
+    for top_movie in Movie.objects.filter(movierating__username_id=request.user.id, movierating__rate__gt=4.5):
+        user_top_movies.add(top_movie)
+    for top_movie in user_top_movies:
+        top_voters = CustomUser.objects.filter(movierating__rate__gt=4.5, movierating__movie_id=top_movie.id).exclude(id=request.user.id)
         for top_voter in top_voters:
-            voters_top_movies = Movie.objects.filter(movierating__rate__gte=4.5, movierating__username_id=top_voter.id)
+            voters_top_movies = Movie.objects.filter(movierating__rate__gt=4.5, movierating__username_id=top_voter.id).exclude(id=top_movie.id)
+            print(voters_top_movies)
             for voters_top_movie in voters_top_movies:
-                if not recommended_movies.__contains__(voters_top_movie):
+                if not recommended_movies.__contains__(voters_top_movie) and (not user_top_movies.__contains__(voters_top_movie)):
+                    print(voters_top_movie)
                     recommended_movies.append(voters_top_movie)
     return recommended_movies
 
