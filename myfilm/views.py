@@ -26,7 +26,8 @@ def home(request):
         'sample_post': sample_post,
         'sample_writer': sample_writer,
         'comments': comments,
-        'movie_covers': Movie.objects.filter(cover_image__isnull=False).order_by('?')[0:8]
+        'movie_covers': Movie.objects.filter(cover_image__isnull=False).order_by('?')[0:8],
+        'artist_posts': Artist.objects.filter().order_by('?')[0:4]
     })
 
 
