@@ -20,10 +20,7 @@ def login(request):
     invalid_html = ""
 
     if request.method == "POST":
-        username = request.POST.get('username', '')
-        password = request.POST.get('password', '')
-        user = auth.authenticate(username=username, password=password)
-
+        user = auth.authenticate(username=request.POST.get('username', ''), password=request.POST.get('password', ''))
         if user is not None:
             auth.login(request, user)
             return HttpResponseRedirect('/timeline')
@@ -64,7 +61,7 @@ def register(request):
     args = {}
     args.update(csrf(request))
     args['form'] = CustomRegistration()
-    return render(request, 'register.html', dict(args, **{'PageTitle': " - Login"}))
+    return render(request, 'register.html', dict(args, **{'PageTitle': " - Register"}))
 
 
 def followings(user):
@@ -86,21 +83,21 @@ def profile(request, username):
     profile_user = CustomUser.objects.get(username=username)
     if request.method == "POST":
         if request.POST.get('type', '') == "setting":
-            # edit user setting
+            # handle edit user setting requests
             CustomUser.objects.filter(id=request.user.id).update(
                 first_name=request.POST.get('first_name', ''),
                 last_name=request.POST.get('last_name', ''),
                 birth_date=request.POST.get('birth_date', ''),
             )
         elif request.POST.get('type', '') == "change_password":
-            # change user password
+            # handle change user password requests
             if request.POST.get('password', '') == request.POST.get('conf_password', ''):
                 request.user.set_password(request.POST.get('password', ''))
                 request.user.save()
             else:
                 return HttpResponseRedirect('/chpass')
         else:
-            # add or remove follower
+            # handle add or remove follower requests
             if is_following(request.user, profile_user):
                 Follow.objects.filter(follower_id=request.user.id, following_id=profile_user.id).delete()
             else:

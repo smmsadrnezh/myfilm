@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 from accounts.models import CustomUser
+
 from accounts.models import Follow
 from social.models import Comment
 from accounts.models import User
@@ -133,7 +134,7 @@ def movies_recommended(request):
                                                      movierating__username_id=top_voter.id).exclude(id=top_movie.id)
             for voters_top_movie in voters_top_movies:
                 if not recommended_movies.__contains__(voters_top_movie) and (
-                not user_top_movies.__contains__(voters_top_movie)):
+                        not user_top_movies.__contains__(voters_top_movie)):
                     recommended_movies.append(voters_top_movie)
     return recommended_movies
 
@@ -219,11 +220,13 @@ def notification_delete(request, notifid):
     Notification.objects.get(id=notifid).delete()
     return HttpResponseRedirect('/notifications')
 
-def add_rate(request,movietitle,rate):
+
+def add_rate(request, movietitle, rate):
     if request.is_ajax():
-        if MovieRating.objects.filter(username_id=request.user.id,movie_id = Movie.objects.get(title=movietitle).id):
-            MovieRating.objects.filter(username_id=request.user.id,movie_id = Movie.objects.get(title=movietitle).id).update(
-                    rate=rate
-                )
+        if MovieRating.objects.filter(username_id=request.user.id, movie_id=Movie.objects.get(title=movietitle).id):
+            MovieRating.objects.filter(username_id=request.user.id,
+                                       movie_id=Movie.objects.get(title=movietitle).id).update(
+                rate=rate
+            )
         else:
-            MovieRating(movie_id=Movie.objects.get(title=movietitle).id,username_id=request.user.id,rate=rate).save()
+            MovieRating(movie_id=Movie.objects.get(title=movietitle).id, username_id=request.user.id, rate=rate).save()
