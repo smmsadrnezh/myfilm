@@ -11,7 +11,10 @@
             </div>
         </div>
         <p>
-            <input id="input-6a" class="rating" data-min="0" data-max="5" data-step="1" data-size="xs">
+
+        <form action="/movies/{{ movie.title }}" method="post" class="form-horizontal" role="form">{% csrf_token %}
+            <input id="user-rating" class="rating" data-min="0" data-max="5" data-step="1" data-size="xs">
+        </form>
         </p>
 
         <p>

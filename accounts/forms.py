@@ -7,10 +7,14 @@ from accounts.models import CustomUser
 
 
 class CustomRegistration(UserCreationForm):
-    email = forms.EmailField(required=True,widget=forms.TextInput(attrs={'class': 'form-control' , 'placeholder':'enter your email'}))
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control' , 'placeholder':'enter your first name'}))
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'  , 'placeholder':'enter your last name'}))
-    birth_date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control datepicker'  , 'placeholder':'enter your birthdate'}))
+    email = forms.EmailField(required=True,
+                             widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'enter your email'}))
+    first_name = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'enter your first name'}))
+    last_name = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'enter your last name'}))
+    birth_date = forms.DateField(
+        widget=forms.TextInput(attrs={'class': 'form-control datepicker', 'placeholder': 'enter your birthdate'}))
     captcha = CaptchaField()
 
     class Meta:
@@ -33,8 +37,9 @@ class CustomRegistration(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super(UserCreationForm, self).__init__(*args, **kwargs)
-        for field_name,field in self.fields.items():
+        for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
+
 
 class ImageForm(ModelForm):
     class Meta:

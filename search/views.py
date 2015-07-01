@@ -40,14 +40,12 @@ def ajax_search(request):
             user_json['id'] = user.username
             user_json['label'] = user.first_name + " " + user.last_name
             user_json['value'] = user.username
-            print(user_json)
             results.append(user_json)
         for movie in movies:
             movie_json = {}
             movie_json['id'] = movie.title
             movie_json['label'] = movie.title + " (" + str(movie.year) + ")"
             movie_json['value'] = movie.title
-            print(movie_json)
             results.append(movie_json)
         data = json.dumps(results)
     else:

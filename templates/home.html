@@ -53,14 +53,14 @@
                     <div class="features-slider">
                         <ul class="slides" id="featuresSlider">
                             {% for artist_post in artist_posts %}
-                            <li>
-                                <h1>{{ artist_post.name }}</h1>
+                                <li>
+                                    <h1>{{ artist_post.name }}</h1>
 
-                                <p>{{ artist_post.biography }}</p>
+                                    <p>{{ artist_post.biography }}</p>
 
-                                <p><a href="/artists/{{ artist_post.name }}" class="arrow-btn">Read more! <i
-                                        class="fa fa-long-arrow-right"></i></a></p>
-                            </li>
+                                    <p><a href="/artists/{{ artist_post.name }}" class="arrow-btn">Read more! <i
+                                            class="fa fa-long-arrow-right"></i></a></p>
+                                </li>
                             {% endfor %}
                         </ul>
                     </div>

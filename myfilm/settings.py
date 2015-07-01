@@ -124,5 +124,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 SOUTH_MIGRATION_MODULES = {
-'captcha': 'captcha.south_migrations',
+    'captcha': 'captcha.south_migrations',
 }

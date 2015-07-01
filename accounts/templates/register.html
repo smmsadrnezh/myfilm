@@ -6,8 +6,9 @@
             <form action="/register/" method="post" role="form">{% csrf_token %}
                 {{ form.non_field_errors }}
                 {{ form.as_p }}
-                <br /><br />
-                <input type="submit" name="submit" value="Register" class="btn-block btn-lg btn-primary learn-btn btn-margin">
+                <br/><br/>
+                <input type="submit" name="submit" value="Register"
+                       class="btn-block btn-lg btn-primary learn-btn btn-margin">
             </form>
         </div>
     </div>
@@ -15,9 +16,9 @@
 {% endblock %}
 
 {% block jquery-ui %}
-            <script>
-  $(function() {
-    $( ".datepicker" ).datepicker();
-  });
-  </script>
+    <script>
+        $(function () {
+            $(".datepicker").datepicker();
+        });
+    </script>
 {% endblock %}
