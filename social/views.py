@@ -12,6 +12,7 @@ from accounts.models import User
 from myfilm.models import Movie
 from social.models import Post
 from social.models import Like
+from social.models import MovieRating
 from social.models import Notification
 import accounts.views
 import social.views
@@ -217,3 +218,12 @@ def notification_get(id):
 def notification_delete(request, notifid):
     Notification.objects.get(id=notifid).delete()
     return HttpResponseRedirect('/notifications')
+
+def add_rate(request,movietitle,rate):
+    if request.is_ajax():
+        if MovieRating.objects.filter(username_id=request.user.id,movie_id = Movie.objects.get(title=movietitle).id):
+            MovieRating.objects.filter(username_id=request.user.id,movie_id = Movie.objects.get(title=movietitle).id).update(
+                    rate=rate
+                )
+        else:
+            MovieRating(movie_id=Movie.objects.get(title=movietitle).id,username_id=request.user.id,rate=rate).save()

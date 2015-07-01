@@ -38,6 +38,7 @@ urlpatterns = [
                   url(r'^posts/(?P<postid>\d+)/like/$', 'social.views.post_like'),
                   url(r'^posts/(?P<postid>\d+)/comment/$', 'social.views.post_comment'),
                   url(r'^notifications$', 'social.views.notifications'),
+                  url(r'^movies/(?P<movietitle>[1-9 a-z A-Z %\':.]+)/(?P<rate>\d+)/', 'social.views.add_rate'),
                   url(r'^delete/notifications/(?P<notifid>\d+)$', 'social.views.notification_delete'),
                   url(r'^admin/', include(admin.site.urls)),
 
