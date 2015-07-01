@@ -42,7 +42,7 @@ class Like(models.Model):
 class MovieRating(models.Model):
     username = models.ForeignKey('accounts.CustomUser')
     movie = models.ForeignKey('myfilm.Movie')
-    rate = models.IntegerField()
+    rate = models.FloatField()
 
     class Meta:
         unique_together = (("username", "movie"),)
