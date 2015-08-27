@@ -16,18 +16,6 @@ libraries used in this project:
 
 * python manage.py runserver
 
-## Code Developers
-
-[S. M. Masoud Sadrnezhaad](http://sadrnezhaad.ir/smm) & [Arman Naeimian](http://ce.sharif.edu/~armannaeimian/)
-
-This app is created by [Django Web Framework](https://www.djangoproject.com)
-
-## TODO
-
-* changing profile picture bugfix
-* creating template for chat box and chat history page
-* notification remove button position
-
 ## Demo
 
 for superuser:
@@ -58,3 +46,15 @@ for normal user:
 * Recommended Movies
 * User Profile Page
 * Artists Profile
+
+## Code Developers
+
+[S. M. Masoud Sadrnezhaad](http://sadrnezhaad.ir/smm) & [Arman Naeimian](http://ce.sharif.edu/~armannaeimian/)
+
+This app is created by [Django Web Framework](https://www.djangoproject.com)
+
+## TODO
+
+* changing profile picture bugfix
+* creating template for chat box and chat history page
+* notification remove button position
